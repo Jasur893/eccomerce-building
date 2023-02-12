@@ -3,6 +3,7 @@ export default function Navbar() {
     <div>
       <h1>Navbar</h1>
       <p>Hello</p>
+      <p>test</p>
     </div>
   )
 }
