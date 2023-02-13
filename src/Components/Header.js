@@ -5,10 +5,10 @@ import Logo from '../img/logo.png'
 
 export default function Header() {
   return (
-    <Navbar style={{background: "#212526"}} className="p-0" expand="lg">
+    <Navbar className="p-0 bg-dark" expand="lg">
       <div className='container mx-auto'>
         <Nav className='flex justify-between w-full'>
-          <Navbar.Brand href="#home" className='flex justify-center'>
+          <Navbar.Brand href="#home" className='flex justify-center items-center'>
             <img
               alt="logo-foto"
               src={Logo}
