@@ -14,7 +14,7 @@ const titleObj = {
 export default function Banner() {
   return (
     <div className='py-6 bg-dark'>
-      <div className="container mx-auto  grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-rows-2 gap-4">
+      <div className="container_content grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-rows-2 gap-4">
         <div className="col-span-2 row-span-2">
           <BannerItem banner={banner01} title={titleObj.title1} />
         </div>

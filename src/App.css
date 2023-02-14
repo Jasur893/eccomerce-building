@@ -1,3 +1,11 @@
+.container_content {
+  max-width: 1200px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .custom_input{
   position: relative;
 
@@ -36,3 +44,24 @@
   background-color: orangered;
 }
 
+.carousel-indicators {
+  position: absolute;
+  margin-top: 50px;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-bottom: 0;
+  justify-content: space-between;
+}
+
+
+
+.carousel-indicators [data-bs-target] {
+  width: 23%;
+  border-top: 0;
+  border-bottom: 0;
+  background-color: gray;
+}
+
+.carousel-indicators .active {
+  background-color: red;
+}

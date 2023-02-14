@@ -1,15 +1,17 @@
 import './App.css';
-import Header from './Components/Header';
-import HeaderNav from './Components/HeaderNav'
+import Layout from './Components/Layout';
 import Banner from './Components/Banner'
+import CardsSectionContent from './Components/CardsSectionContent'
+
 
 function App() {
   return (
-    <div>
-      <Header />
-      <HeaderNav />
-      <Banner />
-    </div>
+    <>
+      <Layout>
+        <Banner />
+        <CardsSectionContent />
+      </Layout>
+    </>
   );
 }
 
