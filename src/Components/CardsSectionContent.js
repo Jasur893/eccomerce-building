@@ -11,7 +11,7 @@ export default function CardsSectionContent() {
   }
 
   return (
-    <div className='pt-3 bg-slate-100 mx-auto'>
+    <div className='pt-3 pb-5 bg-slate-100 mx-auto'>
       <div className='container_content grid grid-cols-1 xl:grid-cols-2  gap-3'>
         <CardsSection  sectionTitleObj={sectionTitleObj.title01}/>
         <CardsSection sectionTitleObj={sectionTitleObj.title02} />

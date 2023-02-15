@@ -65,3 +65,9 @@
 .carousel-indicators .active {
   background-color: red;
 }
+
+.span_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
