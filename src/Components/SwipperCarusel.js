@@ -10,8 +10,8 @@ export default function SwipperCarusel(props) {
 
   const sliderArr = props.brandArr.map((el, idx) => {
     return (
-      <SwiperSlide>
-        <img key={idx} className='d-block w-100' src={el} alt='1 slide' />
+      <SwiperSlide key={idx}>
+        <img className='d-block w-100' src={el} alt='1 slide' />
       </SwiperSlide>
     )
   })
