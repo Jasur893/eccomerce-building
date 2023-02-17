@@ -5,11 +5,10 @@ import Logo from '../img/logo.png'
 
 export default function Header() {
   return (
-    <Navbar className='py-0 bg-dark'>
+    <Navbar className='header_content py-0 bg-dark'>
       <div className='container_content flex  justify-between w-full'>
         <Nav className='flex justify-between w-full'>
           <Navbar.Brand
-            href='#home'
             className='flex justify-center items-center py-0'
           >
             <img
@@ -35,31 +34,27 @@ export default function Header() {
           </div>
 
           <div className='h-full '>
-            <div className='ms-auto flex justify-center py-0 gap-px lg:h-14 w-full'>
-              <Nav.Link
-                className='text-white bg-zinc-700 hover:bg-orange-700 '
-                href='#home'
+            <div className='ms-auto flex justify-center cursor-pointer py-0 gap-px lg:h-14 w-full'>
+              <div
+                className='flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700 '
               >
-                <i className='p-2 text-xl align-middle fa-regular fa-heart'></i>
-              </Nav.Link>
-              <Nav.Link
-                className='text-white bg-zinc-700 hover:bg-orange-700'
-                href='#link'
+                <i className='px-3 py-2 text-xl fa-regular fa-heart'></i>
+              </div>
+              <div
+                className='flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
-                <i className='p-2 text-xl fa-solid fa-chart-simple'></i>
-              </Nav.Link>
-              <Nav.Link
-                className='text-white bg-zinc-700 hover:bg-orange-700'
-                href='#link'
+                <i className='px-3 py-2 text-xl fa-solid fa-chart-simple'></i>
+              </div>
+              <div
+                className='flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
-                <i className='p-2 text-xl fa-regular fa-circle-user'></i>
-              </Nav.Link>
-              <Nav.Link
-                className='text-white bg-zinc-700 hover:bg-orange-700'
-                href='#link'
+                <i className='px-3 py-2 text-xl fa-regular fa-circle-user'></i>
+              </div>
+              <div
+                className='flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
-                <i className='p-2 text-xl fa-solid fa-cart-shopping'></i>
-              </Nav.Link>
+                <i className='px-3 py-2 text-xl fa-solid fa-cart-shopping'></i>
+              </div>
             </div>
           </div>
         </Nav>

@@ -1,3 +1,18 @@
+.App {
+  text-align: center;
+}
+
+.header_content {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.Content-Footer {
+  margin-top: 56px;
+}
+
 .container_content {
   max-width: 1200px;
   padding-left: 25px;
@@ -33,6 +48,7 @@
 .nav_border:hover{
   border: 1px solid orangered;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .hover_link{
@@ -72,17 +88,6 @@
   align-items: center;
 }
 
-/* .swiper-pagination-bullet {
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 20px;
-  font-size: 12px;
-  color: #000;
-  opacity: 1;
-  background: rgba(0, 0, 0, 0.2);
-} */
-
 .swiper-pagination-bullet {
   margin-top: 10px;
 	color:#000;
@@ -91,4 +96,22 @@
 }
 .swiper-pagination-bullet-active {
 	background: orangered !important;
+}
+
+
+.borderTab {
+  border: 1px solid black !important;
+}
+
+.nav-link {
+  color: #212526;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active, .nav-link:hover {
+  background-color: black;
+  color: white;
+  
+  border: 1px solid black !important;
 }

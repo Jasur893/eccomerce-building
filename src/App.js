@@ -1,26 +1,26 @@
-import './App.css';
-import Layout from './Components/Layout';
-import Banner from './Components/Banner'
-import CardsSectionContent from './Components/CardsSectionContent'
-import BrandSection from './Components/BrandSection';
-import AboutUs from './Components/AboutUs';
-import FilterSlider from './Components/FilterSlider';
-import NewsSection from './Components/NewsSection';
+import { Routes, Route } from 'react-router-dom'
+import Header from './Components/Header'
+import HeaderNav from './Components/HeaderNav'
+import Footer from './Components/Footer'
+import MainHeader from './Components/MainHeader'
+import './App.css'
+
 
 function App() {
   return (
-    <>
-      <Layout>
-        <Banner />
-        <CardsSectionContent />
-        <BrandSection />
-        <AboutUs />
-        <FilterSlider />
-        <NewsSection />
-      </Layout>
-    </>
-  );
+    <div className='App'>
+      <Header />
+      <div className='mt-11 lg:mt-14'>
+        <HeaderNav />
+        <div className='main__section'>
+          <Routes>
+            <Route exact path='/' element={<MainHeader />} />
+          </Routes>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  )
 }
 
-
-export default App;
+export default App
