@@ -4,7 +4,8 @@ import Banner from './Components/Banner'
 import CardsSectionContent from './Components/CardsSectionContent'
 import BrandSection from './Components/BrandSection';
 import AboutUs from './Components/AboutUs';
-
+import FilterSlider from './Components/FilterSlider';
+import NewsSection from './Components/NewsSection';
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <CardsSectionContent />
         <BrandSection />
         <AboutUs />
+        <FilterSlider />
+        <NewsSection />
       </Layout>
     </>
   );

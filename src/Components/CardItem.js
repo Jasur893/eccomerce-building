@@ -1,14 +1,16 @@
 import Card from 'react-bootstrap/Card'
 import CaruselCards from './CaruselCards'
 
-export default function CardItem() {
+
+export default function CardItem(props) {
+
   return (
-    <Card className='relative border-0 transition ease-in-out delay-150 hover:translate-y-1 hover:scale-105'>
+    <Card className='relative border-0 z-[999] transition ease-in-out delay-150 hover:translate-y-1 hover:scale-105'>
       <Card.Body className='flex justify-between align-center p-2'>
         <span className='bg-purple-900 text-white leading-none p-1'>
           Новинка
         </span>
-        <div className='flex justify-end align-center'>
+        <div className='pl-2 pr-1 flex justify-end align-center'>
           <span className='text-gray-300 pr-2'>
             <i className='fa-solid fa-chart-simple'></i>
           </span>
@@ -30,11 +32,11 @@ export default function CardItem() {
             <span className='text-base line-through text-gray-300 pr-6'>
               720 ₽
             </span>
-            <span className='text-sm text text-green-700'>
+            <span className='text-xs md:text-sm text text-green-700'>
               <i className='fa-solid fa-check'></i> в наличии
             </span>
-            <div className='absolute bottom-0 right-0 border-2 border-orange-700 rounded-br-md flex justify-center align-center p-2 text-xs'>
-              <i className='text-xl leading-none fa-solid fa-cart-shopping'></i>
+            <div className='absolute bottom-0 right-0 border-2 border-orange-700 rounded-br-md flex justify-center align-center p-1 lg:p-2 text-xs'>
+              <i className='text-base lg:text-xl leading-none fa-solid fa-cart-shopping'></i>
             </div>
           </div>
         </div>

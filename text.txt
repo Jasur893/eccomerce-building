@@ -59,3 +59,6 @@ export default function App() {
           style={{ paddingTop: '4px', paddingBottom: '4px' }}
           className='bg-white text-dark rounded-full px-2 fa-solid fa-angle-left'
         ></i>
+
+
+<span className='bg-purple-900 text-white leading-none p-1'></span>

@@ -1,3 +1,4 @@
+import Footer from './Footer';
 import Header from './Header';
 import HeaderNav from './HeaderNav';
 
@@ -7,6 +8,7 @@ export default function Layout({children}) {
       <Header />
       <HeaderNav />
       {children}
+      <Footer />
     </>
   )
 }
