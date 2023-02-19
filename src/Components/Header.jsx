@@ -1,14 +1,18 @@
 // import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import { NavLink } from 'react-router-dom'
 import Logo from '../img/logo.png'
 
 export default function Header() {
+
+
   return (
     <Navbar className='header_content py-0 bg-dark'>
       <div className='container_content flex  justify-between w-full'>
         <Nav className='flex justify-between w-full'>
-          <Navbar.Brand
+          <NavLink
+            to='/#'
             className='flex justify-center items-center py-0'
           >
             <img
@@ -18,7 +22,7 @@ export default function Header() {
               height='40'
               className=''
             />
-          </Navbar.Brand>
+          </NavLink>
           <div className='hidden md:flex justify-end w-4/6'>
             <div className='flex flex-col pl-4 justify-center align-center mr-7'>
               <span className='text-white leading-4'>

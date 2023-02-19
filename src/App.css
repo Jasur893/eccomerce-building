@@ -1,5 +1,5 @@
-.App {
-  text-align: center;
+.content {
+  min-height: calc(100vh - 130px - 200px);
 }
 
 .header_content {
@@ -53,7 +53,7 @@
 
 .hover_link{
   background-color: black;
-  transition: all 1s ease;
+  transition: all .7s ease;
 }
 
 .hover_link:hover{
@@ -114,4 +114,15 @@
   color: white;
   
   border: 1px solid black !important;
+}
+
+.catlog_hover {
+  background-color: white;
+  color: black;
+  transition: all .5s ease;
+}
+
+.catlog_hover:hover {
+  background-color: #F05A00 !important;
+  color: white !important;
 }

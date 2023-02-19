@@ -5,7 +5,7 @@ export default function Footer() {
     <div className='bg-dark py-8'>
       <div className='container_content grid grid-cols-2 gap-x-5 sm:grid-cols-3'>
         <div className='flex justify-center sm:justify-start'>
-          <ul className='text-white text-sm sm:text-base mb-0 pl-0'>
+          <ul className='text-white text-left text-sm sm:text-base mb-0 pl-0'>
             <li>Малярные товары</li>
             <li className=''>Электрооборудование</li>
             <li>Спецодежда</li>
@@ -15,7 +15,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className='flex justify-center'>
-          <ul className='text-white text-sm sm:text-base mb-0 pl-5 sm:pl-0'>
+          <ul className='text-white text-left text-sm sm:text-base mb-0 pl-5 sm:pl-0'>
             <li>О компании товары</li>
             <li>Контакты</li>
             <li>Новинки</li>
@@ -26,7 +26,7 @@ export default function Footer() {
         <div className='col-span-2 sm:col-span-1 mt-2 sm:mt-0 flex justify-center sm:justify-end'>
           <div>
             <img src={logo} alt='' />
-            <ul className='text-white mb-0 pl-0'>
+            <ul className='text-white text-left mb-0 pl-0'>
               <li className='text-sm md:text-lg pt-2'>+7 495 120-32-14</li>
               <li className='text-sm md:text-lg pb-2'>+7 495 120-32-15</li>
               <li className='pb-3 pt-3'>
