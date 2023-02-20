@@ -5,7 +5,7 @@ import Catalogs from './Catalogs'
 export default function CatalogContent() {
   const catalogs = getcatalogNames()
   let activeStyle = {
-    backgroundColor: 'orangered',
+    backgroundColor: 'rgb(249 115 22)',
     color: 'white'
   }
 
@@ -15,11 +15,11 @@ export default function CatalogContent() {
         <div className='bg-slate-100'>
           <h2 className='text-left py-2'>Каталог</h2>
 
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[1px]'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[2px]'>
             {catalogs.map(({ name, id }) => (
               <NavLink
                 key={id}
-                className='py-2 no-underline rounded-sm catlog_hover'
+                className='border text-center transition duration-700 hover:bg-orange-500 bg-slate-50 hover:text-white text-gray-900 py-2 no-underline rounded-sm'
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
                 to={id}
               >
@@ -28,9 +28,11 @@ export default function CatalogContent() {
             ))}
           </div>
 
-          <Routes>
-            <Route path=':catalogId/*' element={<Catalogs />} />
-          </Routes>
+          <div className=''>
+            <Routes>
+              <Route path=':catalogId/*' element={<Catalogs />} />
+            </Routes>
+          </div>
         </div>
       </div>
     </div>

@@ -1,19 +1,24 @@
+import katalog01 from './img/catalog/katalog01.png'
+
 const catalogs = [
   {
     name: "Малярные товары",
     id: 'molyarni-tovari',
     resources: [
       {
-        name: "Грутовка",
-        id: 'gruntovka'
+        name: "Грунтовка",
+        id: 'gruntovka',
+        image: katalog01
       },
       {
         name: "Красители",
-        id: "krasiteli"
+        id: "krasiteli",
+        image: katalog01
       },
       {
         name: "Шпатлёвка",
-        id: "shpatlyovka"
+        id: "shpatlyovka",
+        image: katalog01
       }
     ]
   },
@@ -23,15 +28,18 @@ const catalogs = [
     resources: [
       {
         name: "Перфораторы",
-        id: 'perforatori'
+        id: 'perforatori',
+        image: katalog01
       },
       {
         name: "дрели",
-        id: "dreli"
+        id: "dreli",
+        image: katalog01
       },
       {
         name: "Фонари",
-        id: "fonari"
+        id: "fonari",
+        image: katalog01,
       }
     ]
   },
@@ -41,15 +49,18 @@ const catalogs = [
     resources: [
       {
         name: "Костюм Trellchem Splash",
-        id: 'kostym-trellchem-splash'
+        id: 'kostym-trellchem-splash',
+        image: katalog01
       },
       {
         name: "Костюм сигнальный Kron",
-        id: "kostym-signalniy-kron"
+        id: "kostym-signalniy-kron",
+        image: katalog01
       },
       {
         name: "Защитный Microchem",
-        id: "zashitniy-microchem"
+        id: "zashitniy-microchem",
+        image: katalog01
       }
     ]
   },
@@ -59,15 +70,18 @@ const catalogs = [
     resources: [
       {
         name: "Бетоносмесители",
-        id: 'betonosmesiteli'
+        id: 'betonosmesiteli',
+        image: katalog01
       },
       {
         name: "Теплицы",
-        id: "teplitsi"
+        id: "teplitsi",
+        image: katalog01
       },
       {
         name: "Тачки садовые",
-        id: "tachki-sadovie"
+        id: "tachki-sadovie",
+        image: katalog01
       }
     ]
   },
@@ -77,15 +91,18 @@ const catalogs = [
     resources: [
       {
         name: "Поливочный инвентарь",
-        id: 'polivochniy-invertor'
+        id: 'polivochniy-invertor',
+        image: katalog01
       },
       {
         name: "Насосы",
-        id: "nasosi"
+        id: "nasosi",
+        image: katalog01
       },
       {
         name: "Поликарбонат",
-        id: "polikorbanat"
+        id: "polikorbanat",
+        image: katalog01
       }
     ]
   },{
@@ -94,15 +111,18 @@ const catalogs = [
     resources: [
       {
         name: "Слесарный",
-        id: 'slesarniy'
+        id: 'slesarniy',
+        image: katalog01
       },
       {
         name: "Монтажный",
-        id: "montajniy"
+        id: "montajniy",
+        image: katalog01
       },
       {
         name: "Вспомагательный",
-        id: "vspomagatelniy"
+        id: "vspomagatelniy",
+        image: katalog01
       }
     ]
   },

@@ -10,7 +10,7 @@ export default function FilterSlider() {
       <Tabs
         defaultActiveKey='home'
         id='uncontrolled-tab-example'
-        className='borderTab container_content gap-x-1 md:gap-x-10 bg-black'
+        className='borderTab container_content gap-x-1 md:gap-x-10'
       >
         <Tab className='borderTab bg-dark border-t-0' eventKey='home' title='Новинки'>
           <div className='container_content'>

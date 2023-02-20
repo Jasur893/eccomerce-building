@@ -14,7 +14,7 @@ export default function HeaderNav() {
         <div className='w-full py-2 flex justify-between flex-wrap gap-x-1 gap-y-1 sm:gap-x-2.5'>
           <NavLink 
             style={({ isActive }) => isActive ? activeStyle : undefined}
-             to='/catalog' className='no-underline nav_border'>
+             to='/catalog' className='no-underline border-[1px] rounded-md transition duration-700 hover:border-orange-700 border-black'>
             <div className='p-2 text-white'>
               <i className='pr-2 fa-solid fa-align-left'></i>
               <span>Каталог товаров</span>
@@ -22,20 +22,20 @@ export default function HeaderNav() {
           </NavLink>
           <NavLink
             style={({ isActive }) => isActive ? activeStyle : undefined}
-            to='/about-company' className='nav_border no-underline'>
+            to='/about-company' className='border-[1px] rounded-md transition duration-700 hover:border-orange-700 border-black no-underline'>
             <div 
              className='p-2 text-white '>О компании</div>
           </NavLink>
           <NavLink
             style={({ isActive }) => isActive ? activeStyle : undefined}
             to='/promotion'
-            className='nav_border no-underline'>
+            className='border-[1px] border-black rounded-md transition duration-700 hover:border-orange-700 no-underline'>
             <div className='p-2 text-white'>Акции</div>
           </NavLink>
           <NavLink
             style={({ isActive }) => isActive ? activeStyle : undefined}
             to='/hit-season'
-            className='nav_border no-underline'>
+            className='border-[1px] border-black rounded-md transition duration-700 hover:border-orange-700  no-underline'>
             <div className='p-2 text-white'>Хиты сезона</div>
           </NavLink>
           <div className='hidden md:block p-2'>

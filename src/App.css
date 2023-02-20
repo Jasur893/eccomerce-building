@@ -1,5 +1,6 @@
 .content {
   min-height: calc(100vh - 130px - 200px);
+  background-color: #f2f5f7;
 }
 
 .header_content {
@@ -37,27 +38,6 @@
   background: url("./img/search.svg");
   background-repeat: no-repeat;
   background-position: center;
-}
-
-.nav_border{
-  border: 1px solid black;
-  border-radius: 6px;
-  transition: all 1s ease;
-}
-
-.nav_border:hover{
-  border: 1px solid orangered;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.hover_link{
-  background-color: black;
-  transition: all .7s ease;
-}
-
-.hover_link:hover{
-  background-color: orangered;
 }
 
 .carousel-indicators {
@@ -98,31 +78,21 @@
 	background: orangered !important;
 }
 
-
-.borderTab {
-  border: 1px solid black !important;
-}
-
-.nav-link {
-  color: #212526;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active, .nav-link:hover {
-  background-color: black;
+.accordion_item_custom {
+  background-color: rgb(55 65 81);
   color: white;
-  
-  border: 1px solid black !important;
+  padding-left: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.accordion_item_custom:not(:nth-of-type(5)){
+  border-bottom: 1px solid white ;
 }
 
-.catlog_hover {
-  background-color: white;
-  color: black;
-  transition: all .5s ease;
+
+.accordion_header_custom {
+  font-size: 10px;
+  font-weight: 400;
+  margin-bottom: 0;
 }
 
-.catlog_hover:hover {
-  background-color: #F05A00 !important;
-  color: white !important;
-}
