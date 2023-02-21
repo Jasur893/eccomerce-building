@@ -1,8 +1,15 @@
 import Card from 'react-bootstrap/Card'
 import CaruselCards from './CaruselCards'
-
+import card01 from '../img/caruselcard/card01.png'
+import card02 from '../img/caruselcard/card02.png'
+import card03 from '../img/caruselcard/card03.png'
+import card04 from '../img/caruselcard/card04.png'
 
 export default function CardItem(props) {
+  const fotos = {
+    cardsPhoto : [card01, card02, card03, card04]
+  }
+
 
   return (
     <Card className='relative border-0 z-[999] transition ease-in-out delay-150 hover:translate-y-1 hover:scale-105'>
@@ -20,7 +27,7 @@ export default function CardItem(props) {
         </div>
       </Card.Body>
 
-      <CaruselCards />
+      <CaruselCards  fotos={fotos}/>
 
       <Card.Body className='p-2'>
         <Card.Text className='text-sm mb-1'>

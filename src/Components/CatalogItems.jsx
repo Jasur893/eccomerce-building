@@ -3,6 +3,7 @@ import { NavDropdown } from 'react-bootstrap'
 import { getcatalogNames } from '../catalogApi'
 import { useState } from 'react'
 import AccardionCatalogs from './AccardionCatalogs'
+import CardItem from './CardItem'
 
 export default function CatalogItems() {
   const { catalog2 } = useParams()
@@ -14,11 +15,11 @@ export default function CatalogItems() {
   }
 
   return (
-    <div className='h-full bg-emerald-200 py-4'>
+    <div className='h-full bg-slate-100 py-4'>
       <div className='container_content'>
         <h2 className='text-start'>{catalog2}</h2>
 
-        <div className='h-full grid grid-cols-5 gap-x-2'>
+        <div className='h-full grid grid-cols-4 gap-x-3'>
           <div className='col-span-1 '>
             <div className='flex flex-col'>
               <div className=''>
@@ -50,13 +51,18 @@ export default function CatalogItems() {
               </div>
           </div>
 
-          <div className='bg-green-500 col-span-4'>
-              <div className='inline'>1</div>
-              <div className='inline'>2</div>
-              <div className='inline'>3</div>
-              <div className='inline'>4</div>
-              <div className='inline'>5</div>
-              <div className='inline'>6</div>
+          <div className='col-span-3'>
+              <div className='grid grid-cols-3 gap-3'>
+                <CardItem />
+                <CardItem />
+                <CardItem />
+                <CardItem />
+                <CardItem />
+                <CardItem />
+                <CardItem />
+                <CardItem />
+                <CardItem />
+              </div>
           </div>
         </div>
       </div>

@@ -13,7 +13,7 @@ function App() {
       <Header />
       <div className='mt-11 lg:mt-14'></div>
       <HeaderNav/>
-        <div className='h-[600px] main__section content'>
+        <div className='main__section content'>
           <Routes>
             <Route exact path='/' element={<MainHeader />} />
             <Route path='catalog/*' element={<CatalogContent/>}/>

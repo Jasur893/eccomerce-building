@@ -84,6 +84,7 @@
   padding-left: 12px;
   padding-top: 6px;
   padding-bottom: 6px;
+  padding-right: 6px;
 }
 .accordion_item_custom:not(:nth-of-type(5)){
   border-bottom: 1px solid white ;
@@ -96,3 +97,16 @@
   margin-bottom: 0;
 }
 
+.form_number_input {
+  width: 40%;
+  height: 23px;
+  border-radius: 4px;
+  color: #000;
+  font-size: 14px;
+}
+
+.tab_content {
+  display: flex;
+  align-content: center;
+  padding-top: 10px;
+}
