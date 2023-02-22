@@ -4,7 +4,7 @@ export default function AboutUs() {
   return (
     <div className='pt-5 pb-5 bg-slate-100 mx-auto'>
       <div className='container_content gap-y-4 grid grid-cols-1 md:grid-cols-2'>
-        <div className='border'>
+        <div className=''>
           <img src={aboutUs} className='w-full' alt="About"/>
         </div>
         <div className='md:ml-10 lg:ml-28'>

@@ -114,3 +114,7 @@
 .nav-pills .nav-link.active {
   background-color: #000;
 }
+
+.word_wrp {
+  overflow-wrap: break-word;
+}

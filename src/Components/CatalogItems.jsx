@@ -20,17 +20,17 @@ export default function CatalogItems() {
         <h2 className='text-start'>{catalog2}</h2>
 
         <div className='h-full grid grid-cols-4 gap-x-3'>
-          <div className='col-span-1 '>
+          <div className='col-span-4  sm:col-span-1'>
             <div className='flex flex-col'>
               <div className=''>
                 {catalog.map((catalogEl, catalogIdx) => (
-                  <div key={catalogIdx}>
+                  <div className='w-full' key={catalogIdx}>
                     <NavDropdown
                       id='nav-dropdown-dark-example'
                       title={catalogEl.name}
                       menuVariant='white'
-                      className='border pl-3 py-1 bg-gray-700 text-white'
-                      drop='end'
+                      className='text-[12px] lg:text-base border w-full break-words pl-3 py-1 bg-gray-700 text-white'
+                      drop='down'
                       onClick={() => setActive(catalogEl.name)}
                       style={active=== catalogEl.name ? activeStyle : null}
                     >
@@ -45,14 +45,14 @@ export default function CatalogItems() {
                   </div>
                 ))}
               </div>
-              <div className='pt-2'>
+              <div className='pt-2 pb-3'>
                 <AccardionCatalogs />
               </div>
               </div>
           </div>
 
-          <div className='col-span-3'>
-              <div className='grid grid-cols-3 gap-3'>
+          <div className='col-span-4 sm:col-span-3'>
+              <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
                 <CardItem />
                 <CardItem />
                 <CardItem />

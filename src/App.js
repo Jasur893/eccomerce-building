@@ -6,6 +6,8 @@ import MainHeader from './Components/MainHeader'
 import './App.css'
 import CatalogContent from './Components/CatalogContent'
 import CatalogItems from './Components/CatalogItems'
+import Favorites from './Components/Favorites'
+import AboutCardItem from './Components/AboutCardItem'
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Route exact path='/' element={<MainHeader />} />
             <Route path='catalog/*' element={<CatalogContent/>}/>
             <Route path='catalog/:catalog1/:catalog2/*' element={<CatalogItems/>} />
+            <Route path='favorites' element={<Favorites />} />
+            <Route path='/about-card/*' element={<AboutCardItem />} />
           </Routes>
         </div>
       <Footer />
