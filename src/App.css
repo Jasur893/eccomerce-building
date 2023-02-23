@@ -118,3 +118,7 @@
 .word_wrp {
   overflow-wrap: break-word;
 }
+
+.modal_window {
+  background-color: rgba(0, 0, 0, 0.4);
+}
