@@ -12,6 +12,7 @@ import ComparisonProduct from './Components/ComparisonProduct'
 import News from './Components/News'
 import PersonalArea from './Components/PersonalArea'
 import Basket from './Components/Basket'
+import Ordering from './Components/Ordering'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path='/news' element={<News />} />
             <Route path='/lichniy-kabinet/*' element={<PersonalArea/>}/>
             <Route path='/basket' element={<Basket/>} />
+            <Route path='/ordering/*' element={<Ordering />} />
           </Routes>
         </div>
       <Footer />
