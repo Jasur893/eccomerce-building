@@ -1,11 +1,13 @@
 // import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Logo from '../img/logo.png'
 
 export default function Header() {
-
+  let isAactiveStyle = {
+    backgroundColor: 'rgb(249 115 22)',
+  }
 
   return (
     <Navbar className='header_content py-0 bg-dark'>
@@ -39,26 +41,28 @@ export default function Header() {
 
           <div className='h-full '>
             <div className='ms-auto flex justify-center cursor-pointer py-0 gap-px lg:h-14 w-full'>
-              <Link to='/favorites'
+              <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)} to='/favorites'
                 className='no-underline flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700 '
               >
                 <i className='px-3 py-2 text-xl fa-regular fa-heart'></i>
-              </Link>
-              <div
-                className='flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
+              </NavLink>
+              <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)} to='/comparison'
+                className='no-underline flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
                 <i className='px-3 py-2 text-xl fa-solid fa-chart-simple'></i>
-              </div>
-              <div
+              </NavLink>
+              <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)}
+                to='/lichniy-kabinet'
                 className='flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
                 <i className='px-3 py-2 text-xl fa-regular fa-circle-user'></i>
-              </div>
-              <div
+              </NavLink>
+              <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)}
+                to='/basket'
                 className='flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
                 <i className='px-3 py-2 text-xl fa-solid fa-cart-shopping'></i>
-              </div>
+              </NavLink>
             </div>
           </div>
         </Nav>

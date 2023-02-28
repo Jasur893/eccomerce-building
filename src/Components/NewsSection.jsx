@@ -1,4 +1,5 @@
 import moment from 'moment/moment'
+import { Link } from 'react-router-dom'
 import news01 from '../img/news/news01.jpg'
 import news02 from '../img/news/news02.png'
 
@@ -14,9 +15,9 @@ export default function NewsSection() {
           в нем участвующих. Компании имеют статус юридического лица.
         </p>
         <div className='text-left'>
-          <button className='text-left mt-3 lg:mt-8 mb-3 lg:mb-1 px-4 py-2 text-xs sm:text-lg transition duration-700 rounded-md bg-zinc-900 text-white hover:bg-orange-700'>
+          <Link to='/news' className='no-underline text-left mt-3 lg:mt-8 mb-3 lg:mb-1 px-4 py-2 text-xs sm:text-lg transition duration-700 rounded-md bg-zinc-900 text-white hover:bg-orange-700'>
             ПЕРЕЙТИ К НОВОСТЯМ
-          </button>
+          </Link>
         </div>
       </div>
       <div>

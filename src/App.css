@@ -122,3 +122,40 @@
 .modal_window {
   background-color: rgba(0, 0, 0, 0.4);
 }
+
+.comparition_swipper-space {
+  margin-right: 2px !important;
+  border-radius: 6px;
+  background-color: #3B3B3B;
+}
+
+.comparition_swipper-space:hover {
+  background-color: orangered;
+}
+
+.comparition_swipper-space.active {
+  background-color: orangered;
+}
+
+.scroll_position {
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background: transparent;
+}
+
+div.scrollcards .card{
+  /* display: inline-block; */
+  padding: 14px;
+  text-decoration: none;
+  width: 320px;
+  height: 470px;
+}
+
+.accardion_item_history-custom {
+  background-color: white;
+  padding: 20px 15px 15px;
+}

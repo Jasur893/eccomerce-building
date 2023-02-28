@@ -8,6 +8,10 @@ import CatalogContent from './Components/CatalogContent'
 import CatalogItems from './Components/CatalogItems'
 import Favorites from './Components/Favorites'
 import AboutCardItem from './Components/AboutCardItem'
+import ComparisonProduct from './Components/ComparisonProduct'
+import News from './Components/News'
+import PersonalArea from './Components/PersonalArea'
+import Basket from './Components/Basket'
 
 function App() {
   return (
@@ -22,6 +26,10 @@ function App() {
             <Route path='catalog/:catalog1/:catalog2/*' element={<CatalogItems/>} />
             <Route path='favorites' element={<Favorites />} />
             <Route path='/about-card/*' element={<AboutCardItem />} />
+            <Route path='/comparison/*' element={<ComparisonProduct/>} />
+            <Route path='/news' element={<News />} />
+            <Route path='/lichniy-kabinet/*' element={<PersonalArea/>}/>
+            <Route path='/basket' element={<Basket/>} />
           </Routes>
         </div>
       <Footer />
