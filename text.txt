@@ -1,1 +1,81 @@
 bg-slate-100
+
+
+<div>
+          <p className='font-bold mb-2'>Введите адрес доставки</p>
+
+          <div className='grid grid-cols-2 gap-4 md:gap-14 mb-2'>
+            <div className='px-3 col-span-2 md:col-span-1'>
+              <label htmlFor='city' className='w-full text-xs text-gray-600'>
+                Город
+              </label>
+              <input
+                onChange={(e) => setCity(e.target.value)}
+                value={city}
+                className='border-b-2 focus:outline-0 mb-2 w-[90%]'
+                type='text'
+                name='city'
+                id='city'
+              />
+              <label htmlFor='street' className='w-full text-xs text-gray-600'>
+                Улица
+              </label>
+              <input
+                onChange={(e) => setStreet(e.target.value)}
+                value={street}
+                className='border-b-2 focus:outline-0 mb-2 w-[90%]'
+                type='text'
+                name='street'
+                id='street'
+              />
+            </div>
+
+            <div className='px-3 col-span-2 md:col-span-1'>
+              <label htmlFor='frame' className='w-full text-xs text-gray-600'>
+                Корпус
+              </label>
+              <input
+                onChange={(e) => setFrame(e.target.value)}
+                value={frame}
+                className='border-b-2 focus:outline-0 mb-2 w-[90%]'
+                type='text'
+                name='frame'
+                id='frame'
+              />
+              <div className='flex justify-between gap-3 w-[90%]'>
+                <div>
+                  <label
+                    htmlFor='house'
+                    className='w-full text-xs text-gray-600'
+                  >
+                    Дом
+                  </label>
+                  <input
+                    onChange={(e) => setHouse(e.target.value)}
+                    value={house}
+                    className='border-b-2 focus:outline-0 mb-2 w-[100%]'
+                    type='text'
+                    name='house'
+                    id='house'
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor='apartment'
+                    className='w-full text-xs text-gray-600'
+                  >
+                    Квартира
+                  </label>
+                  <input
+                    onChange={(e) => setApartment(e.target.value)}
+                    value={apartment}
+                    className='border-b-2 focus:outline-0 mb-2 w-[100%]'
+                    type='text'
+                    name='apartment'
+                    id='apartment'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

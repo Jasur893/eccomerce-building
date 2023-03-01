@@ -159,3 +159,15 @@ div.scrollcards .card{
   background-color: white;
   padding: 20px 15px 15px;
 }
+
+.bg-not_found {
+  background-image: url('./img/not-found.jpeg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-origin: content-box;
+}
+
+.bg_opacity {
+  background-color: rgba(242, 245, 247, 0.8);
+}

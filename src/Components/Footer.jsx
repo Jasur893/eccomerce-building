@@ -7,25 +7,25 @@ export default function Footer() {
         <div className='flex justify-center sm:justify-start'>
           <ul className='text-white text-left text-sm sm:text-base mb-0 pl-0'>
             <li>Малярные товары</li>
-            <li className=''>Электрооборудование</li>
-            <li>Спецодежда</li>
-            <li>Для дома и дачи</li>
-            <li>Сезонное</li>
-            <li>Инструмент</li>
+            <li className='pt-[2px] sm:pt-3'>Электрооборудование</li>
+            <li className='pt-[2px] sm:pt-3'>Спецодежда</li>
+            <li className='pt-[2px] sm:pt-3'>Для дома и дачи</li>
+            <li className='pt-[2px] sm:pt-3'>Сезонное</li>
+            <li className='pt-[2px] sm:pt-3'>Инструмент</li>
           </ul>
         </div>
         <div className='flex justify-center'>
           <ul className='text-white text-left text-sm sm:text-base mb-0 pl-5 sm:pl-0'>
             <li>О компании товары</li>
-            <li>Контакты</li>
-            <li>Новинки</li>
-            <li>Хиты сезона</li>
-            <li>Распродажи</li>
+            <li className='pt-[2px] sm:pt-3'>Контакты</li>
+            <li className='pt-[2px] sm:pt-3'>Новинки</li>
+            <li className='pt-[2px] sm:pt-3'>Хиты сезона</li>
+            <li className='pt-[2px] sm:pt-3'>Распродажи</li>
           </ul>
         </div>
         <div className='col-span-2 sm:col-span-1 mt-2 sm:mt-0 flex justify-center sm:justify-end'>
           <div>
-            <img src={logo} alt='' />
+            <img src={logo} alt='logo' />
             <ul className='text-white text-left mb-0 pl-0'>
               <li className='text-sm md:text-lg pt-2'>+7 495 120-32-14</li>
               <li className='text-sm md:text-lg pb-2'>+7 495 120-32-15</li>

@@ -13,6 +13,7 @@ import News from './Components/News'
 import PersonalArea from './Components/PersonalArea'
 import Basket from './Components/Basket'
 import Ordering from './Components/Ordering'
+import NotFound from './Components/NotFound'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path='/lichniy-kabinet/*' element={<PersonalArea/>}/>
             <Route path='/basket' element={<Basket/>} />
             <Route path='/ordering/*' element={<Ordering />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </div>
       <Footer />
