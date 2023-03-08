@@ -1,8 +1,8 @@
 import SwipperCarusel from './SwipperCarusel';
-import brend01 from '../img/brands/brend01.png'
-import brend02 from '../img/brands/brend02.png'
-import brend03 from '../img/brands/brend03.png'
-import brend04 from '../img/brands/brend04.png'
+import brend01 from '../assets/brands/brend01.png'
+import brend02 from '../assets/brands/brend02.png'
+import brend03 from '../assets/brands/brend03.png'
+import brend04 from '../assets/brands/brend04.png'
 
 const brandArr = [brend01, brend02, brend03, brend04, brend01, brend02, brend03, brend04]
 

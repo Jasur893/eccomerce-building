@@ -3,7 +3,6 @@ import Header from './Components/Header'
 import HeaderNav from './Components/HeaderNav'
 import Footer from './Components/Footer'
 import MainHeader from './Components/MainHeader'
-import './App.css'
 import CatalogContent from './Components/CatalogContent'
 import CatalogItems from './Components/CatalogItems'
 import Favorites from './Components/Favorites'
@@ -14,10 +13,13 @@ import PersonalArea from './Components/PersonalArea'
 import Basket from './Components/Basket'
 import Ordering from './Components/Ordering'
 import NotFound from './Components/NotFound'
+import './App.css'
+
 
 function App() {
+
   return (
-    <div className=''>
+    <>
       <Header />
       <div className='mt-11 lg:mt-14'></div>
       <HeaderNav/>
@@ -25,9 +27,9 @@ function App() {
           <Routes>
             <Route exact path='/' element={<MainHeader />} />
             <Route path='catalog/*' element={<CatalogContent/>}/>
-            <Route path='catalog/:catalog1/:catalog2/*' element={<CatalogItems/>} />
+            <Route path='catalog/:catalog1/:catalogId/:catlogName' element={<CatalogItems/>} />
             <Route path='favorites' element={<Favorites />} />
-            <Route path='/about-card/*' element={<AboutCardItem />} />
+            <Route path='/about-card/:nameId/:typeId/*' element={<AboutCardItem />} />
             <Route path='/comparison/*' element={<ComparisonProduct/>} />
             <Route path='/news' element={<News />} />
             <Route path='/lichniy-kabinet/*' element={<PersonalArea/>}/>
@@ -37,7 +39,7 @@ function App() {
           </Routes>
         </div>
       <Footer />
-    </div>
+    </>
   )
 }
 

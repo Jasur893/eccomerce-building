@@ -1,7 +1,7 @@
 import moment from 'moment/moment'
 import { Link } from 'react-router-dom'
-import news01 from '../img/news/news01.jpg'
-import news02 from '../img/news/news02.png'
+import news01 from '../assets/news/news01.jpg'
+import news02 from '../assets/news/news02.png'
 
 export default function NewsSection() {
   return (

@@ -1,4 +1,17 @@
-import katalog01 from './img/catalog/katalog01.png'
+import gruntovka from './assets/catalog/gruntovka-betonkontakt-ct-19.jpg'
+import kraski from './assets/catalog/kraski04.jpg'
+import smesiSuxi from './assets/catalog/smesi-bergauf.jpg'
+import perfo from './assets/catalog/perfo01.jpg'
+import drel from './assets/catalog/drel02.jpg'
+import bolgar from './assets/catalog/bolgar01.jpg'
+import odejda from './assets/catalog/odejda01.jpg'
+import obuv from './assets/catalog/obuv03.jpg'
+import perchatka from './assets/catalog/perchatki04.jpg'
+import polivInvertor from './assets/catalog/polivochniy01.png'
+import nasos from './assets/catalog/karcher01.jpg'
+import slesar from './assets/catalog/slesar01.jpg'
+import montaj from './assets/catalog/montaj01.jpeg'
+
 
 const catalogs = [
   {
@@ -8,17 +21,17 @@ const catalogs = [
       {
         name: "Грунтовка",
         id: 'gruntovka',
-        image: katalog01
+        image: gruntovka
       },
       {
-        name: "Красители",
-        id: "krasiteli",
-        image: katalog01
+        name: "Крастели",
+        id: "krasteli",
+        image: kraski
       },
       {
-        name: "Шпатлёвка",
-        id: "shpatlyovka",
-        image: katalog01
+        name: "Сухие смеси",
+        id: "suxiye-smesi",
+        image: smesiSuxi
       }
     ]
   },
@@ -29,59 +42,38 @@ const catalogs = [
       {
         name: "Перфораторы",
         id: 'perforatori',
-        image: katalog01
+        image: perfo
       },
       {
         name: "дрели",
         id: "dreli",
-        image: katalog01
+        image: drel
       },
       {
-        name: "Фонари",
-        id: "fonari",
-        image: katalog01,
+        name: "Шлифовальные машинки",
+        id: "shlifmashinki",
+        image: bolgar,
       }
     ]
   },
   {
-    name: "Спецодежда",
-    id: "spets-odejda",
+    name: "Для Строителей",
+    id: "dlya-stroiteley",
     resources: [
       {
-        name: "Костюм Trellchem Splash",
-        id: 'kostym-trellchem-splash',
-        image: katalog01
+        name: "Спец Одежда",
+        id: 'spets-odejda',
+        image: odejda
       },
       {
-        name: "Костюм сигнальный Kron",
-        id: "kostym-signalniy-kron",
-        image: katalog01
+        name: "Обувь",
+        id: "obuv",
+        image: obuv
       },
       {
-        name: "Защитный Microchem",
-        id: "zashitniy-microchem",
-        image: katalog01
-      }
-    ]
-  },
-  {
-    name: "Сезонное",
-    id: "seasons",
-    resources: [
-      {
-        name: "Бетоносмесители",
-        id: 'betonosmesiteli',
-        image: katalog01
-      },
-      {
-        name: "Теплицы",
-        id: "teplitsi",
-        image: katalog01
-      },
-      {
-        name: "Тачки садовые",
-        id: "tachki-sadovie",
-        image: katalog01
+        name: "Перчатки",
+        id: "perchatki",
+        image: perchatka
       }
     ]
   },
@@ -92,18 +84,13 @@ const catalogs = [
       {
         name: "Поливочный инвентарь",
         id: 'polivochniy-invertor',
-        image: katalog01
+        image: polivInvertor
       },
       {
         name: "Насосы",
         id: "nasosi",
-        image: katalog01
+        image: nasos
       },
-      {
-        name: "Поликарбонат",
-        id: "polikorbanat",
-        image: katalog01
-      }
     ]
   },{
     name: "Инструменты",
@@ -112,18 +99,13 @@ const catalogs = [
       {
         name: "Слесарный",
         id: 'slesarniy',
-        image: katalog01
+        image: slesar
       },
       {
         name: "Монтажный",
         id: "montajniy",
-        image: katalog01
+        image: montaj
       },
-      {
-        name: "Вспомагательный",
-        id: "vspomagatelniy",
-        image: katalog01
-      }
     ]
   },
 

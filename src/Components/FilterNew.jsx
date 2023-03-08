@@ -5,8 +5,9 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import "swiper/css/pagination";
 import CardItem from './CardItem'
+import Loader from './Loader'
 
-export default function FilterNew() {
+export default function FilterNew(props) {
   const prevRef = React.useRef(null)
   const nextRef = React.useRef(null)
 
@@ -24,7 +25,8 @@ export default function FilterNew() {
         </span>
       </div>
       <div className='w-[95%]'>
-        <Swiper
+        {props.data.length > 0 ? (
+          <Swiper
           className='p-3'
           modules={[Navigation, Scrollbar, A11y, Pagination]}
           navigation={{
@@ -32,7 +34,7 @@ export default function FilterNew() {
             nextEl: nextRef.current,
           }}
           pagination={{ 
-            clickable: true
+            dynamicBullets: true,
           }}
           onInit={(swipper) => {
             swipper.params.navigation.prevEl = prevRef.current
@@ -62,22 +64,15 @@ export default function FilterNew() {
             },
           }}
         >
-          <SwiperSlide>
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardItem />
-          </SwiperSlide>
+          {props.data.filter(item => item.mark === 'Новинка').map((mark, idx)=> (
+            <SwiperSlide key={idx}>
+              <CardItem data={mark} />
+            </SwiperSlide>
+          ))}
         </Swiper>
+        ) : (
+          <div className='flex justify-center py-3'><Loader /></div>
+        )}
       </div>
       <div className='pl-2 flex flex-col justify-center'>
         <span

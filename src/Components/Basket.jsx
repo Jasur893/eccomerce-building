@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import foto from '../img/comparisionCard/comparisionCard01.png'
+import foto from '../assets/comparisionCard/comparisionCard01.png'
 
 export default function Basket() {
   return (

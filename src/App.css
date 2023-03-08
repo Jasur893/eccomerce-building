@@ -6,7 +6,9 @@
 .header_content {
   position: fixed;
   top: 0;
-  z-index: 1000;
+  right: 0;
+  left: 0;
+  z-index: 999;
   width: 100%;
 }
 
@@ -35,7 +37,7 @@
   margin: auto 0;
   width: 25px;
   height: 25px;
-  background: url("./img/search.svg");
+  background: url("./assets/search.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -161,7 +163,7 @@ div.scrollcards .card{
 }
 
 .bg-not_found {
-  background-image: url('./img/not-found.jpeg');
+  background-image: url('./assets/not-found.jpeg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -170,4 +172,18 @@ div.scrollcards .card{
 
 .bg_opacity {
   background-color: rgba(242, 245, 247, 0.8);
+}
+
+.setmark{
+  color: #fff;
+  line-height: 1;
+  padding: 4px;
+}
+
+.color_purple{
+  background-color: indigo;
+}
+
+.color_oranged{
+  background-color: #FC573B;
 }

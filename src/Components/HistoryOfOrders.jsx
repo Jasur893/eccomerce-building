@@ -1,5 +1,5 @@
 import Accordion from 'react-bootstrap/Accordion'
-import foto from '../img/comparisionCard/comparisionCard01.png'
+import foto from '../assets/comparisionCard/comparisionCard01.png'
 
 export default function HistoryOfOrders() {
   return (

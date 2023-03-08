@@ -1,4 +1,4 @@
-import bgAbout01 from '../img/news/bgAbout01.png'
+import bgAbout01 from '../assets/news/bgAbout01.png'
 
 export default function News() {
   return (

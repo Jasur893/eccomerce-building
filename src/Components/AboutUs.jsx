@@ -1,4 +1,4 @@
-import aboutUs from '../img/aboutUs.jpg'
+import aboutUs from '../assets/aboutUs.jpg'
 
 export default function AboutUs() {
   return (

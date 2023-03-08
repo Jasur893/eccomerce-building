@@ -1,3 +1,4 @@
+// import AddProduct from './AddProduct';
 import AboutUs from './AboutUs';
 import Banner from './Banner';
 import BrandSection from './BrandSection';
@@ -8,6 +9,7 @@ import NewsSection from './NewsSection';
 export default function MainHeader() {
   return (
     <>
+      {/* <AddProduct/> */}
       <Banner />
       <CardsSectionContent />
       <BrandSection />

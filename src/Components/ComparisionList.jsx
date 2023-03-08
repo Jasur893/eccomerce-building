@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import ComparisionCardItem from './ComparisionCardItem';
-import comparisionCard01 from '../img/comparisionCard/comparisionCard01.png'
+import comparisionCard01 from '../assets/comparisionCard/comparisionCard01.png'
 
 export default function ComparisionList() {
   const [showOne, setShowOne] = useState(true)

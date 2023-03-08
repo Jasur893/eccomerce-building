@@ -5,13 +5,14 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import "swiper/css/pagination";
 import CardItem from './CardItem'
+import Loader from './Loader'
 
-export default function FilterPromotion() {
+export default function FilterPromotion(props) {
   const prevRef = React.useRef(null)
   const nextRef = React.useRef(null)
 
   return (
-    <div className='flex justify-center align-center w-full px-2 py-3 h-full'>
+    <div className='relative flex justify-center align-center w-full px-2 py-3 h-full'>
       <div className='pr-2 flex flex-col justify-center'>
         <span
           ref={prevRef}
@@ -24,12 +25,16 @@ export default function FilterPromotion() {
         </span>
       </div>
       <div className='w-[95%]'>
-        <Swiper
+        {props.data.length > 0 ? (
+          <Swiper
           className='p-3'
           modules={[Navigation, Scrollbar, A11y, Pagination]}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
+          }}
+          pagination={{ 
+            dynamicBullets: true,
           }}
           onInit={(swipper) => {
             swipper.params.navigation.prevEl = prevRef.current
@@ -37,8 +42,6 @@ export default function FilterPromotion() {
             swipper.navigation.init()
             swipper.navigation.update()
           }}
-          pagination={{ 
-            clickable: true }}
           scrollbar={{ hide: false }}
           spaceBetween={50}
           slidesPerView={4}
@@ -61,22 +64,15 @@ export default function FilterPromotion() {
             },
           }}
         >
-          <SwiperSlide>
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardItem />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardItem />
-          </SwiperSlide>
+          {props.data.filter(item => item.mark === 'Акция').map((mark, idx)=> (
+            <SwiperSlide key={idx}>
+              <CardItem data={mark} />
+            </SwiperSlide>
+          ))}
         </Swiper>
+        ) : (
+          <div className='flex justify-center py-3'><Loader /></div>
+        )}
       </div>
       <div className='pl-2 flex flex-col justify-center'>
         <span

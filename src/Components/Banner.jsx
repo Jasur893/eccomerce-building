@@ -1,8 +1,8 @@
 import BannerItem from './BannerItem'
-import banner01 from '../img/banner/banner01.jpg'
-import banner02 from '../img/banner/banner02.jpg'
-import banner03 from '../img/banner/banner03.jpg'
-import banner04 from '../img/banner/banner04.jpg'
+import banner01 from '../assets/banner/banner01.jpg'
+import banner02 from '../assets/banner/banner02.jpg'
+import banner03 from '../assets/banner/banner03.jpg'
+import banner04 from '../assets/banner/banner04.jpg'
 
 const titleObj = {
   title1: "DeWALT - Инструмент настоящим характером",
