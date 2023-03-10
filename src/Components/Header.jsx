@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { NavLink } from 'react-router-dom'
 import Logo from '../assets/logo.png'
 
-export default function Header() {
+export default function Header(props) {
   let isAactiveStyle = {
     backgroundColor: 'rgb(249 115 22)',
   }
@@ -54,7 +54,7 @@ export default function Header() {
               </NavLink>
 
               <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)}
-                to='/lichniy-kabinet'
+                to={props.userdata ? '/lichniy-kabinet/*' : '/login'}
                 className='flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
                 <i className='px-3 py-2 text-xl fa-regular fa-circle-user'></i>

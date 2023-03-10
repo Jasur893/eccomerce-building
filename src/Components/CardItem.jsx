@@ -39,9 +39,9 @@ export default function CardItem(props) {
           <div className='w-[90%]'>
             <div className='flex justify-start items-center flex-wrap'>
               <span className='text-xl font-semibold pr-2'>{props.data?.price} ₽</span>
-              <span className='text-[14px] line-through text-gray-300 pr-3'>
+              {/* <span className='text-[14px] line-through text-gray-300 pr-3'>
                 720 ₽
-              </span>
+              </span> */}
               <span className='text-xs md:text-sm whitespace-nowrap text-green-700'>
                 <i className='fa-solid fa-check'></i> в наличии
               </span>

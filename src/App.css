@@ -187,3 +187,7 @@ div.scrollcards .card{
 .color_oranged{
   background-color: #FC573B;
 }
+
+.modal_reg{
+  background-color: rgba(0, 0, 0, 0.8);
+}
