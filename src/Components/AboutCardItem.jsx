@@ -3,8 +3,8 @@ import CardCharacteristic from './CardCharacteristic'
 import CardDelivery from './CardDelivery'
 import CardDescription from './CardDescription'
 import CardReview from './CardReview'
-import { query, onSnapshot, getDoc, doc } from 'firebase/firestore';
-import { db } from '../FirebaseConfigs/firebaseConfig'; 
+import { query, onSnapshot, getDoc, doc } from 'firebase/firestore'
+import { db } from '../FirebaseConfigs/firebaseConfig'
 import { useEffect, useState } from 'react'
 import Loader from './Loader'
 
@@ -13,18 +13,19 @@ export default function AboutCardItem() {
   const [productId, setProductId] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
   const [errosMsg, setErrorMsg] = useState('')
+  const [favorited, setFavorited] = useState(false)
+  const isSetFavorited = () => setFavorited(!favorited)
 
   console.log(productId)
 
   useEffect(() => {
-    const getProduct = async() => {
-      const docRef = doc(db, `products-${typeId.toUpperCase()}`, nameId);
+    const getProduct = async () => {
+      const docRef = doc(db, `products-${typeId.toUpperCase()}`, nameId)
       const docSnap = await getDoc(docRef)
       setProductId(docSnap.data())
     }
     getProduct()
-  },[])
-
+  }, [])
 
   const navLinkStyle = ({ isActive }) => {
     return {
@@ -40,34 +41,49 @@ export default function AboutCardItem() {
             <>
               <div className='py-3 grid grid-cols-1 md:grid-cols-2'>
                 <div className='h-[300px] flex justify-center'>
-                  <img className='h-full' src={productId?.productImage} alt='card' />
+                  <img
+                    className='h-full'
+                    src={productId?.productImage}
+                    alt='card'
+                  />
                 </div>
-              <div className='px-2'>
-                <p className='pt-2 text-3xl'>
-                  {productId?.productTittle}
-                </p>
-                <p className='text-[14px] text-green-300'>В наличии</p>
-                <p className='w-[70%]'>
-                  {productId?.description}
-                </p>
-                <span className='text-2xl font-semibold pr-2'>{productId?.price} ₽</span>
-                <span className='text-base line-through text-gray-300 pr-6'>
-                  720 ₽
-                </span>
-                <div className='flex justify-start align-center gap-3 pt-3'>
-                  <span className='cursor-pointer py-2 px-3 bg-orange-700 rounded-md text-white'>
-                    В КОРЗИНУ
+                <div className='px-2'>
+                  <p className='pt-2 text-3xl'>{productId?.productTittle}</p>
+                  <p className='text-[14px] text-green-300'>В наличии</p>
+                  <p className='w-[70%]'>{productId?.description}</p>
+                  <span className='text-2xl font-semibold pr-2'>
+                    {productId?.price} ₽
                   </span>
-                  <div className='cursor-pointer flex flex-col justify-center text-gray-300'>
-                    <i className='text-xl fa-solid fa-chart-simple'></i>
-                  </div>
-                  <div className='cursor-pointer flex flex-col justify-center text-gray-300'>
-                    <i className='text-xl  align-middle fa-regular fa-heart'></i>
+                  <span className='text-base line-through text-gray-300 pr-6'>
+                    720 ₽
+                  </span>
+                  <div className='flex justify-start align-center gap-3 pt-3'>
+                    <span className='cursor-pointer py-2 px-3 bg-orange-700 rounded-md text-white'>
+                      В КОРЗИНУ
+                    </span>
+                    <div className='cursor-pointer flex flex-col justify-center text-gray-300'>
+                      <i className='text-xl fa-solid fa-chart-simple'></i>
+                    </div>
+                    <div className='cursor-pointer flex flex-col justify-center text-gray-300'>
+                      <div className='relative w-[16px] h-[16px]'>
+                        <input
+                          className='absolute top-0 right-0 left-0 opacity-0 w-[18px] cursor-pointer'
+                          checked={favorited}
+                          onChange={isSetFavorited}
+                          type='checkbox'
+                          value='showhide'
+                        />
+                        {favorited ? (
+                          <i className='text-[18px] text-red-500 fa-solid fa-heart'></i>
+                        ) : (
+                          <i className='text-[18px] text-gray-300 fa-sharp fa-regular fa-heart'></i>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              </div>
-            
+
               <div>
                 <div className='pl-3 py-3 flex justify-start align-center flex-wrap gap-3 sm:gap-4'>
                   <NavLink
@@ -102,8 +118,19 @@ export default function AboutCardItem() {
 
                 <div className='pl-3 py-4'>
                   <Routes>
-                    <Route index path='opisaniye' element={<CardDescription product={productId?.description} />} />
-                    <Route path='xarakteristika' element={<CardCharacteristic product={productId?.brand}/>} />
+                    <Route
+                      index
+                      path='opisaniye'
+                      element={
+                        <CardDescription product={productId?.description} />
+                      }
+                    />
+                    <Route
+                      path='xarakteristika'
+                      element={
+                        <CardCharacteristic product={productId?.brand} />
+                      }
+                    />
                     <Route path='dostavka' element={<CardDelivery />} />
                     <Route path='otziv' element={<CardReview />} />
                   </Routes>
@@ -115,7 +142,6 @@ export default function AboutCardItem() {
               <Loader />
             </div>
           )}
-
         </div>
       </div>
     </div>

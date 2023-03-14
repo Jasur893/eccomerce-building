@@ -2,7 +2,7 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 import HistoryOfOrders from './HistoryOfOrders';
 import PersonalInformation from './PersonalInformation';
 
-export default function PersonalArea() {
+export default function PersonalArea(props) {
   let isActiveStyle = {
     color: 'orangered'
   }
@@ -10,7 +10,13 @@ export default function PersonalArea() {
   return (
     <div className='bg-slate-100'>
       <div className='container_content'>
-        <h3 className='text-3xl pt-3'>Личный кабинет</h3>
+        <div className='mt-5 relative'>
+          <h3 className='text-3xl'>Личный кабинет</h3>
+          <h6 className=''>Привет: {props.userId[0].email}</h6>
+          <span onClick={() => props?.handleLogOut()} className='absolute right-0 top-0 cursor-pointer hover:text-orange-500'>
+            <i className="fa-solid fa-right-from-bracket"></i>
+          </span>
+        </div>
         <div className='grid grid-cols-12 gap-3 pb-3'>
           <div className='col-span-12 md:col-span-3'>
             <div className='flex flex-col rounded-md bg-dark overflow-hidden'>

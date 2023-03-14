@@ -3,15 +3,6 @@
   background-color: #f2f5f7;
 }
 
-.header_content {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-}
-
 .Content-Footer {
   margin-top: 56px;
 }
@@ -190,4 +181,13 @@ div.scrollcards .card{
 
 .modal_reg{
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.css-j204z7-MuiFormControlLabel-root {
+  margin-right: 0 !important;
+}
+
+.basket_shadow:hover{
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06), 0px -10px 20px rgba(0, 0, 0, 0.06);
+  z-index: 2;
 }

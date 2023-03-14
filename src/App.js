@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate} from 'react-router-dom'
 import Header from './Components/Header'
 import HeaderNav from './Components/HeaderNav'
 import Footer from './Components/Footer'
@@ -14,108 +14,18 @@ import Basket from './Components/Basket'
 import Ordering from './Components/Ordering'
 import NotFound from './Components/NotFound'
 import './App.css'
-import { createContext, useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { query, where, getDocs, collection } from "firebase/firestore"; 
 import { auth, db } from './FirebaseConfigs/firebaseConfig'; 
 import Login from './Components/auth/Login'
 import SignUp from './Components/auth/SignUp'
 
-const UserContext = createContext()
-
 const  App = () => {
-  const [products, setProducts] = useState([])
-
-  useEffect(() => {
-    const getFilter = async() => {
-      const productsArray = []
-      await getDocs(collection(db, 'products-ГРУНТОВКА')).then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            productsArray.push({...doc.data(), id: doc.id})
-          })
-        }).catch((error)=> {
-          console.log(error.message);
-        })
-      await getDocs(collection(db, 'products-ДРЕЛИ')).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-      await getDocs(collection(db, 'products-КРАСТЕЛИ')).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-      await getDocs(collection(db, 'products-МОНТАЖНЫЙ')).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-      await getDocs(collection(db, 'products-НАСОСЫ')).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-      await getDocs(collection(db, 'products-ПЕРФОРАТОРЫ')).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-      await getDocs(collection(db, 'products-ПЕРЧАТКИ')).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-      await getDocs(collection(db, 'products-ПОЛИВОЧНЫЙ ИНВЕНТАРЬ')).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-      await getDocs(collection(db, 'products-СЛЕСАРНЫЙ')).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-      await getDocs(collection(db, 'products-СПЕЦ ОДЕЖДА')).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-      await getDocs(collection(db, 'products-СУХИЕ СМЕСИ')).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-      await getDocs(collection(db, 'products-ШЛИФОВАЛЬНЫЕ МАШИНКИ')).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-      setProducts(productsArray)
-    }
-    getFilter()
-  },[])
+  const navigate = useNavigate()
+  const [errosMsg, setErrorMsg] = useState('')
+  const [successMsg, setSuccessMsg] = useState('')
+  // const [cartData, setCartData] = useState([])
+ 
 
   function GetCurrentUser() {
     
@@ -123,14 +33,11 @@ const  App = () => {
     const userCollectionRef = collection(db, 'users')
 
     useMemo(() => {
-      console.log('render')
       auth.onAuthStateChanged(userlogged => {
-        ;
         if(userlogged){
           const getUsers = async() => {
             const q = query(collection(db, "users"),where("uid", "==", userlogged.uid))
             const data = await getDocs(q)
-            // console.log(data);
             setUser(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
           }
           getUsers()
@@ -141,15 +48,40 @@ const  App = () => {
     },[])
     return user
   }
+
+  const handleLogOut = () => {
+    auth.signOut()
+      .then(() => {
+        navigate("/")
+      })
+  }
+
   const loggeduser =  GetCurrentUser()
-  if(loggeduser){console.log(loggeduser[0].email)}
- 
+  
+  
+  //  if(loggeduser) {
+  //   const  getCardData = () => {
+  //     const cartArray = []
+  //     const path = `cart-${loggeduser[0].uid}`
+
+  //   getDocs(collection(db, path)).then((querySnapshot) => {
+  //       console.log(querySnapshot);
+  //       querySnapshot.forEach((doc) => {
+  //         cartArray.push({...doc.data(), id: doc.id})
+  //         console.log(doc.id);
+  //       })
+  //       setCartData(cartArray)
+  //   })
+  //   .catch('Error error, error')
+    
+  //    }
+  //  }
+
 
   return (
-    <UserContext.Provider value={products}>
+    <>
       <Header userdata={loggeduser}/>
-      <div className='realtive mt-11 lg:mt-14'></div>
-      <HeaderNav/>
+      <HeaderNav  />
         <div className='main__section content'>
           <div>
             <p>{loggeduser ? loggeduser[0].email : 'No data'} </p>
@@ -167,7 +99,7 @@ const  App = () => {
             <Route path='*' element={<NotFound />} />
 
             {loggeduser ? (
-              <Route path='/lichniy-kabinet/*' element={<PersonalArea/>}/>
+              <Route path='/lichniy-kabinet/*' element={<PersonalArea handleLogOut={handleLogOut} userId={loggeduser}/>}/>
             ) : (
               <>
                 <Route path='/login' element={<Login/>} />
@@ -177,11 +109,11 @@ const  App = () => {
           </Routes>
         </div>
       <Footer />
-    </UserContext.Provider>
+    </>
   )
 }
 
-export {App, UserContext}
+export default App
 
 
 

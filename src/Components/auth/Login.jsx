@@ -43,7 +43,7 @@ export default function Login() {
 
   return (
     <div className='flex justify-center py-3'>
-      <div className='container_content bg-white'>
+      <div className='container_content bg-white w-[60%]'>
         <h2 className='text-center pt-2'>Вход</h2>
         <form className=''>
           {successMsg && <div className='p-2 rounded-md bg-green-500 text-green-900'>{successMsg}</div>}

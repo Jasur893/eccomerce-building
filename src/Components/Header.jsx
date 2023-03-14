@@ -1,16 +1,26 @@
-// import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
 import { NavLink } from 'react-router-dom'
 import Logo from '../assets/logo.png'
+import { useContext, useEffect, useState } from 'react'
+import { ProductContext } from '../context/ProductContext'
 
 export default function Header(props) {
+  const [isActive, setIsActive] = useState(false)
+  const {value3} = useContext(ProductContext)
+  const cart = value3
+  
   let isAactiveStyle = {
     backgroundColor: 'rgb(249 115 22)',
   }
 
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      window.scrollY > 90 ? setIsActive(true) : setIsActive(false)
+    })
+  },[])
+
   return (
-    <Navbar className='header_content ml-0 py-0 bg-dark'>
+    <div className={`${isActive && 'fixed top-0 w-full z-50 shadow-md'} ml-0 py-0 bg-dark transition-all`}>
       <div className='container_content flex  justify-between w-full'>
         <Nav className='flex justify-between w-full'>
           <NavLink
@@ -42,9 +52,10 @@ export default function Header(props) {
           <div className='h-full '>
             <div className='ms-auto flex justify-center cursor-pointer py-0 gap-px lg:h-14 w-full'>
               <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)} to='/favorites'
-                className='no-underline flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700 '
+                className='relative no-underline flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700 '
               >
                 <i className='px-3 py-2 text-xl fa-regular fa-heart'></i>
+                <span className='absolute top-2 right-1 flex justify-center items-center bg-orange-600 rounded-full text-[12px] w-[20px] h-[20px]'><i>{0}</i></span>
               </NavLink>
 
               <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)} to='/comparison'
@@ -54,7 +65,7 @@ export default function Header(props) {
               </NavLink>
 
               <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)}
-                to={props.userdata ? '/lichniy-kabinet/*' : '/login'}
+                to={props.userdata ? '/lichniy-kabinet' : '/login'}
                 className='flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
                 <i className='px-3 py-2 text-xl fa-regular fa-circle-user'></i>
@@ -62,14 +73,15 @@ export default function Header(props) {
               
               <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)}
                 to='/basket'
-                className='flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
+                className='relative flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
                 <i className='px-3 py-2 text-xl fa-solid fa-cart-shopping'></i>
+                <span className='absolute top-2 right-1 flex justify-center items-center bg-orange-600 rounded-full text-[12px] w-[20px] h-[20px]'><i>{cart.length}</i></span>
               </NavLink>
             </div>
           </div>
         </Nav>
       </div>
-    </Navbar>
+    </div>
   )
 }

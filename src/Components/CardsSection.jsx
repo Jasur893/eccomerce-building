@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CardItem from './CardItem'
-import { collection, query, onSnapshot, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../FirebaseConfigs/firebaseConfig'; 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Scrollbar, A11y } from 'swiper'

@@ -4,7 +4,7 @@ import { NavDropdown } from 'react-bootstrap'
 import { getcatalogNames } from '../catalogApi'
 import AccardionCatalogs from './AccardionCatalogs'
 import CardItem from './CardItem'
-import { collection, query, onSnapshot, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../FirebaseConfigs/firebaseConfig'; 
 import Loader from './Loader'
 

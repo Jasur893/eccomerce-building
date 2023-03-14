@@ -20,7 +20,6 @@ export default function SignUp() {
       .then((userCredential) => {
         const user = userCredential.user
         const initialcartvalue = 0
-        console.log(user)
 
         addDoc(collection(db, 'users'), {
           firstname: firstname,
@@ -55,7 +54,7 @@ export default function SignUp() {
 
   return (
     <div className='flex justify-center py-3'>
-      <div className='container_content bg-white'>
+      <div className='container_content bg-white w-[60%]'>
         <h2 className='text-center pt-2'>Регистрация</h2>
         <form className='' onSubmit={handleSubmit}>
           {successMsg && <div className='p-2 rounded-md bg-green-500 text-green-900'>{successMsg}</div>}
@@ -118,3 +117,4 @@ export default function SignUp() {
     </div>
   )
 }
+
