@@ -1,19 +1,20 @@
 import Card from 'react-bootstrap/Card'
 import CaruselCards from './CaruselCards'
 import { Link } from 'react-router-dom'
-import {useState} from 'react'
+// import {useState} from 'react'
 import { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
 
 
 export default function CardItem(props) {
-  const {value2} = useContext(ProductContext)
-  const addToCart = value2
-  const {mark, id, productImage, productType, productTittle, price} = props?.data
-  const isSetFavorited = () => setFavorited(!favorited);
-  
-  const [favorited, setFavorited] = useState(false);
- 
+  const {value2, value8} = useContext(ProductContext)
+  const addToCart = value2;
+  const toggleFavorite = value8;
+  const {mark, id, productImage, productType, productTittle, price, isLiked} = props?.data
+  // const isSetFavorited = () => setFavorited(!favorited);
+  // const [favorited, setFavorited] = useState(false);
+
+
   let className = 'setmark'
   if (props.data?.mark === 'Новинка') {
     className += ' color_purple'
@@ -34,15 +35,16 @@ export default function CardItem(props) {
 
 
             <div className='relative w-[16px] h-[16px]'>
-              <input
-                className='absolute top-0 right-0 left-0 opacity-0 w-[18px] cursor-pointer'
-                checked={favorited}
-                onChange={isSetFavorited}
-                type="checkbox"
-                value='showhide'
+              <span
+                className='absolute top-0 right-0 left-0 w-[18px] h-[18px] border cursor-pointer'
+                onClick={() => toggleFavorite(id)}
+                // checked={favorited}
+                // onChange={isSetFavorited}
+                // type="checkbox"
+                // value='showhide'
               />
-              {favorited ?  (
-                <i className="text-[18px] text-red-500 fa-solid fa-heart"></i>
+              {isLiked ?  (
+                  <i className="text-[18px] text-red-500 fa-solid fa-heart"></i>
                 ) : (
                   <i className="text-[18px] text-gray-300 fa-sharp fa-regular fa-heart"></i>
               )}

@@ -9,7 +9,7 @@ import {ProductContext} from '../context/ProductContext'
  
 export default function FilterSlider() {
   const {value1} = useContext(ProductContext)
-  const products = value1
+  const productsAll = value1
 
   return (
       <div className='bg-black'>
@@ -25,12 +25,12 @@ export default function FilterSlider() {
             title='Новинки'
           >
             <div className='container_content'>
-              <FilterNew data={products} />
+              <FilterNew data={productsAll} />
             </div>
           </Tab>
           <Tab className='borderTab bg-dark' eventKey='profile' title='Акции'>
             <div className='container_content'>
-              <FilterStock data={products} />
+              <FilterStock data={productsAll} />
             </div>
           </Tab>
           <Tab
@@ -39,7 +39,7 @@ export default function FilterSlider() {
             title='Хиты продаж'
           >
             <div className='container_content'>
-              <FilterHitSale data={products} />
+              <FilterHitSale data={productsAll} />
             </div>
           </Tab>
         </Tabs>

@@ -134,10 +134,27 @@
   overflow: auto;
 }
 
-::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-  background: transparent;
+/* ::-webkit-scrollbar {
+  width: 5px;
+  height: 20px;
+} */
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+	background-color: #CCCCCC;
+}
+
+::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #FFF;
+	background-image: -webkit-linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 25%, transparent 100%, rgba(0, 0, 0, 1) 75%, transparent)
 }
 
 div.scrollcards .card{

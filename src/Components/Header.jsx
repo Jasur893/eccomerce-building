@@ -1,11 +1,10 @@
 import Nav from 'react-bootstrap/Nav'
 import { NavLink } from 'react-router-dom'
 import Logo from '../assets/logo.png'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
 
 export default function Header(props) {
-  const [isActive, setIsActive] = useState(false)
   const {value3} = useContext(ProductContext)
   const cart = value3
   
@@ -13,14 +12,8 @@ export default function Header(props) {
     backgroundColor: 'rgb(249 115 22)',
   }
 
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      window.scrollY > 90 ? setIsActive(true) : setIsActive(false)
-    })
-  },[])
-
   return (
-    <div className={`${isActive && 'fixed top-0 w-full z-50 shadow-md'} ml-0 py-0 bg-dark transition-all`}>
+    <div className='fixed top-0 w-full drop-shadow-md z-50 headers ml-0 py-0 bg-dark'>
       <div className='container_content flex  justify-between w-full'>
         <Nav className='flex justify-between w-full'>
           <NavLink

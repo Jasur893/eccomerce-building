@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
 
-export default function Delivery() {
+export default function Delivery(props) {
   const [city, setCity] = useState('')
   const [street, setStreet] = useState('')
   const [nextDeliveryDate, setNextDeliveryDate] = useState('')
@@ -9,12 +9,9 @@ export default function Delivery() {
   const [house, setHouse] = useState('')
   const [apartment, setApartment] = useState('')
   const [shippingAmount, setShippingAmount] = useState('')
-  const [show, setShow] = useState(null)
-
-  const handleShow = (e) => setShow(e.target.id)
-
+  
   const showText = () => {
-    if (show === 'Доставка курьером') {
+    if (props.show === 'Доставка курьером') {
       return (
         <div>
           <p className='font-bold mb-2'>Введите адрес доставки</p>
@@ -123,7 +120,7 @@ export default function Delivery() {
           </div>
         </div>
       )
-    } else if (show === 'Самовывоз') {
+    } else if (props.show === 'Самовывоз') {
       return (
         <div>
           <p className='font-bold mb-2'>Выберите пункт доставки</p>
@@ -161,7 +158,7 @@ export default function Delivery() {
         {['Доставка курьером', 'Самовывоз'].map((el, idx) => (
           <label key={idx} htmlFor={el}>
             <input
-              onChange={handleShow}
+              onChange={props.handleShow}
               type='radio'
               name='el'
               value={el}

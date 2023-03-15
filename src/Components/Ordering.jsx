@@ -2,8 +2,19 @@ import { NavLink, Route, Routes } from 'react-router-dom'
 import DataBuyer from './DataBuyer'
 import Delivery from './Delivery'
 import Payment from './Payment'
+import { useContext, useState } from 'react'
+import { ProductContext } from '../context/ProductContext'
 
 export default function Ordering() {
+  const [show, setShow] = useState(null)
+  const {value3, value7} = useContext(ProductContext);
+  const cart = value3;
+  const total = value7;
+
+  const handleShow = (e) => setShow(e.target.id)
+
+  const delivery = show === 'Доставка курьером' ? 950 : null;
+
   let isActiveStyle = {
     color: '#000',
   }
@@ -42,7 +53,7 @@ export default function Ordering() {
             <div>
               <Routes>
                 <Route path='data-buyer' element={<DataBuyer />} />
-                <Route path='delivery' element={<Delivery />} />
+                <Route path='delivery' element={<Delivery show={show} handleShow={handleShow} />} />
                 <Route path='payment' element={<Payment />} />
               </Routes>
             </div>
@@ -56,19 +67,15 @@ export default function Ordering() {
             <div className='bg-dark pl-3 pr-3 py-3 rounded-tr-md rounded-br-md rounded-bl-md'>
               <div className='flex justify-between text-white font-semibold text-[13px] sm:text-[20px]'>
                 <span>Итого</span>
-                <span className='text-orange-700'>3700 ₽</span>
+                <span className='text-orange-700'>{parseFloat(total) + delivery} ₽</span>
               </div>
               <div className='flex justify-between text-gray-300 pt-1 text-[10px] sm:text-[16px]'>
-                <span>11 товаров</span>
-                <span>2550 ₽</span>
-              </div>
-              <div className='flex justify-between text-gray-300 pt-1 text-[10px] sm:text-[16px]'>
-                <span>Скидка</span>
-                <span> — 250 ₽</span>
+                <span>{cart.length} товаров</span>
+                <span>{parseFloat(total)} ₽</span>
               </div>
               <div className='flex justify-between text-gray-300 pt-1 text-[10px] sm:text-[16px]'>
                 <span>Доставка</span>
-                <span>1500 ₽ ₽</span>
+                <span>{show === 'Доставка курьером' ? delivery : 0} ₽</span>
               </div>
             </div>
           </div>

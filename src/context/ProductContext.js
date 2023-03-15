@@ -5,102 +5,116 @@ import { db } from '../FirebaseConfigs/firebaseConfig'
 export const ProductContext = createContext()
 
 const ProductProvider = ({children}) => {
-  const [products, setProducts] = useState([])
-  const [cart, setCart] = useState([])
-  // console.log(products);
+  const [productsAll, setProductsALL] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [total, setTotal] = useState(0);
 
+  // console.log(productsAll);
 
   useEffect(() => {
     const getFilter = async() => {
       const productsArray = []
       await getDocs(collection(db, 'products-ГРУНТОВКА')).then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            productsArray.push({...doc.data(), id: doc.id})
+            productsArray.push({...doc.data(), id: doc.id, isLiked: false})
           })
         }).catch((error)=> {
           console.log(error.message);
         })
       await getDocs(collection(db, 'products-ДРЕЛИ')).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
         })
       }).catch((error)=> {
         console.log(error.message);
       })
       await getDocs(collection(db, 'products-КРАСТЕЛИ')).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
         })
       }).catch((error)=> {
         console.log(error.message);
       })
       await getDocs(collection(db, 'products-МОНТАЖНЫЙ')).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
         })
       }).catch((error)=> {
         console.log(error.message);
       })
       await getDocs(collection(db, 'products-НАСОСЫ')).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
         })
       }).catch((error)=> {
         console.log(error.message);
       })
       await getDocs(collection(db, 'products-ПЕРФОРАТОРЫ')).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
         })
       }).catch((error)=> {
         console.log(error.message);
       })
       await getDocs(collection(db, 'products-ПЕРЧАТКИ')).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
         })
       }).catch((error)=> {
         console.log(error.message);
       })
       await getDocs(collection(db, 'products-ПОЛИВОЧНЫЙ ИНВЕНТАРЬ')).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
         })
       }).catch((error)=> {
         console.log(error.message);
       })
       await getDocs(collection(db, 'products-СЛЕСАРНЫЙ')).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
         })
       }).catch((error)=> {
         console.log(error.message);
       })
       await getDocs(collection(db, 'products-СПЕЦ ОДЕЖДА')).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
         })
       }).catch((error)=> {
         console.log(error.message);
       })
       await getDocs(collection(db, 'products-СУХИЕ СМЕСИ')).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
         })
       }).catch((error)=> {
         console.log(error.message);
       })
       await getDocs(collection(db, 'products-ШЛИФОВАЛЬНЫЕ МАШИНКИ')).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
         })
-      }).catch((error)=> {
+      })
+      await getDocs(collection(db, 'products-ОБУВЬ')).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          productsArray.push({...doc.data(), id: doc.id, isLiked: false})
+        })
+      })
+      .catch((error)=> {
         console.log(error.message);
       })
-      setProducts(productsArray)
+      setProductsALL(productsArray)
     }
     getFilter()
   },[])
+
+  useEffect(()=> {
+    const total = cart.reduce((accumulator, currentItem)=> {
+      return accumulator + currentItem.price * currentItem.amount
+    }, 0)
+    setTotal(total)
+  },[cart]) 
 
   const addToCart = (productItem, id) => {
     const newItem = {...productItem, amount: 1}
@@ -118,6 +132,23 @@ const ProductProvider = ({children}) => {
       setCart([...cart, newItem])
     }
   }
+
+  const toggleFavorite = (idItem) => {
+    // const newItemlike = {...prodItem, isLiked: true}
+    const cartItemLike = productsAll.find((item) => item.id === idItem)
+    if(cartItemLike){
+      const newItemlike = [...productsAll].map((item) => {
+        if(item.id === idItem){
+          return {...item,  isLiked: true}
+        } else {
+          return item
+        }
+      });
+      setProductsALL(newItemlike)
+    }
+  }
+
+
 
   const removeFromCart = (id) => {
     const newCart = cart.filter((item)=> item.id !== id)
@@ -146,13 +177,17 @@ const ProductProvider = ({children}) => {
     }
   }
 
+  
+
   return <ProductContext.Provider value={{
-      value1:products,
+      value1: productsAll,
       value2: addToCart,
       value3: cart,
       value4: removeFromCart,
       value5: incrementAmount,
       value6: decrementAmount,
+      value7: total,
+      value8: toggleFavorite
       }}
     >
       {children}

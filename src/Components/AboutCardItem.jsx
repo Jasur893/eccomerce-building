@@ -7,22 +7,30 @@ import { query, onSnapshot, getDoc, doc } from 'firebase/firestore'
 import { db } from '../FirebaseConfigs/firebaseConfig'
 import { useEffect, useState } from 'react'
 import Loader from './Loader'
+import { useContext } from 'react'
+import { ProductContext } from '../context/ProductContext'
 
 export default function AboutCardItem() {
+  const {value1, value3, value2} = useContext(ProductContext);
+  const products = value1
+  const cart = value3;
+  const addToCart = value2;
+  
   const { nameId, typeId } = useParams()
-  const [productId, setProductId] = useState('')
+  const [productId, setProductId] = useState({})
   const [successMsg, setSuccessMsg] = useState('')
   const [errosMsg, setErrorMsg] = useState('')
   const [favorited, setFavorited] = useState(false)
   const isSetFavorited = () => setFavorited(!favorited)
 
-  console.log(productId)
+  console.log(productId);
 
   useEffect(() => {
     const getProduct = async () => {
       const docRef = doc(db, `products-${typeId.toUpperCase()}`, nameId)
       const docSnap = await getDoc(docRef)
-      setProductId(docSnap.data())
+      const newProductId = docSnap.data()
+      setProductId({...newProductId, isLiked: false})
     }
     getProduct()
   }, [])
@@ -32,6 +40,9 @@ export default function AboutCardItem() {
       color: isActive ? '#000' : undefined,
     }
   }
+
+  const product = products.find(item => item.id === nameId)
+  // console.log(product);
 
   return (
     <div className='pt-3 pb-3 bg-slate-100'>
@@ -58,7 +69,7 @@ export default function AboutCardItem() {
                     720 ₽
                   </span>
                   <div className='flex justify-start align-center gap-3 pt-3'>
-                    <span className='cursor-pointer py-2 px-3 bg-orange-700 rounded-md text-white'>
+                    <span onClick={() => addToCart(product, nameId)} className='cursor-pointer py-2 px-3 bg-orange-700 rounded-md text-white'>
                       В КОРЗИНУ
                     </span>
                     <div className='cursor-pointer flex flex-col justify-center text-gray-300'>

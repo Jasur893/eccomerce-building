@@ -40,7 +40,7 @@ const catalogs = [
     id: "electro",
     resources: [
       {
-        name: "Перфораторы",
+        name: "ПерфораторЫ",
         id: 'perforatori',
         image: perfo
       },

@@ -58,29 +58,10 @@ const  App = () => {
 
   const loggeduser =  GetCurrentUser()
   
-  
-  //  if(loggeduser) {
-  //   const  getCardData = () => {
-  //     const cartArray = []
-  //     const path = `cart-${loggeduser[0].uid}`
-
-  //   getDocs(collection(db, path)).then((querySnapshot) => {
-  //       console.log(querySnapshot);
-  //       querySnapshot.forEach((doc) => {
-  //         cartArray.push({...doc.data(), id: doc.id})
-  //         console.log(doc.id);
-  //       })
-  //       setCartData(cartArray)
-  //   })
-  //   .catch('Error error, error')
-    
-  //    }
-  //  }
-
-
   return (
     <>
       <Header userdata={loggeduser}/>
+      <div className='mt-14'></div>
       <HeaderNav  />
         <div className='main__section content'>
           <div>
