@@ -49,9 +49,9 @@ export default function AboutCardItem() {
                   <span className='text-2xl font-semibold pr-2'>
                     {productItem?.price} ₽
                   </span>
-                  <span className='text-base line-through text-gray-300 pr-6'>
+                  {/* <span className='text-base line-through text-gray-300 pr-6'>
                     720 ₽
-                  </span>
+                  </span> */}
                   <div className='flex justify-start align-center gap-3 pt-3'>
                     <span onClick={() => addToCart(productItem, nameId)} 
                       className={`${cartIsAdd ? 'bg-green-600' : 'bg-orange-700'} cursor-pointer py-2 px-3  rounded-md text-white`}>

@@ -47,7 +47,7 @@ export default function SearchPanel({data}) {
             return (
               <div key={idx} className='flex justify-between items-center py-1 hover:bg-gray-200 px-2'>
                 <img src={value.productImage} className='w-[35px] h-[35px]' alt="foto"/>
-                <Link className='no-underline grow hover:text-gray-900 text-gray-900'><span className='pl-3'>{String(value.productTittle).slice(0, 20)+ "..."}</span></Link>
+                <Link to={`/about-card/${value.id}/${value.productType}/*`} className='no-underline grow hover:text-gray-900 text-gray-900'><span className='pl-3'>{String(value.productTittle).slice(0, 20)+ "..."}</span></Link>
                 <span className='font-semibold'>{value.price} ₽</span>
               </div>
             )
