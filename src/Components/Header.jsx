@@ -62,14 +62,14 @@ export default function Header(props) {
 
               <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)}
                 to={props.userdata ? '/lichniy-kabinet' : '/login'}
-                className='flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
+                className='no-underline flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
                 <i className='px-3 py-2 text-xl fa-regular fa-circle-user'></i>
               </NavLink>
               
               <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)}
                 to='/basket'
-                className='relative flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
+                className='no-underline relative flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
                 <i className='px-3 py-2 text-xl fa-solid fa-cart-shopping'></i>
                 <span className='absolute top-2 right-1 flex justify-center items-center bg-orange-600 rounded-full text-[12px] w-[20px] h-[20px]'><i>{cart.length}</i></span>

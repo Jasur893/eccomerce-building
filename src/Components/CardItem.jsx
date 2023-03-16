@@ -1,7 +1,6 @@
 import Card from 'react-bootstrap/Card'
 import CaruselCards from './CaruselCards'
 import { Link } from 'react-router-dom'
-// import {useState} from 'react'
 import { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
 
@@ -12,7 +11,7 @@ export default function CardItem(props) {
   const removeFromCart = value4
   const showFavorite = value8
   const hideFavorite = value9
-  const {mark, id, productImage,productType, productTittle, price, isLiked, isAdded,} = props?.data
+  const {mark, id, productImage,productType, productTittle, price, isLiked} = props?.data
 
   let className = 'setmark'
   if (props.data?.mark === 'Новинка') {
@@ -27,8 +26,8 @@ export default function CardItem(props) {
   const cartIsAdd = !cartShowAdd ? cartShowAdd :  Object(cartShowAdd).isAdded
   
   return (
-    <Card className='relative border-0 flex flex-col transition ease-in-out delay-150 hover:translate-y-1'>
-      <div className='flex justify-between align-center p-2'>
+    <Card className='relative min-h-[360px] border-0 flex flex-col transition ease-in-out delay-150 hover:translate-y-1'>
+      <div className='flex justify-between align-center p-2 h-[40px]'>
         <span className={className}>{mark}</span>
         <div className='pl-2 pr-1 flex justify-end align-center leading-none'>
           <span className='text-gray-300 pr-4'>
@@ -79,11 +78,6 @@ export default function CardItem(props) {
                 <i className='text-base lg:text-xl leading-none text-orange-700 fa-solid fa-cart-shopping'></i>
               )}
             </div>
-            {/* <div 
-              onClick={() => addToCart(props?.data, id)}
-              className='absolute bottom-0 right-0 border-2 border-orange-700 bg-orange-700 rounded-br-md flex justify-center align-center p-1 lg:p-2 text-xs cursor-pointer'>
-              <i className="text-base lg:text-xl text-white leading-none fa-regular fa-circle-check"></i>
-            </div> */}
           </div>
         </div>
       </div>

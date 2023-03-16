@@ -1,7 +1,12 @@
-import Form from 'react-bootstrap/Form'
 import { NavLink } from 'react-router-dom'
+import SearchPanel  from './SearchPanel'
+import { useContext } from 'react';
+import { ProductContext } from '../context/ProductContext';
 
 export default function HeaderNav() {
+  const {value1} = useContext(ProductContext)
+  const productsAll = value1
+ 
   let activeStyle = {
     border: '1px solid #F05A00',
     borderRadius: '6px',
@@ -51,13 +56,7 @@ export default function HeaderNav() {
               </span>
             </div>
           </div>
-          <div className='custom_input flex flex-col justify-center'>
-            <Form.Control
-              className='py-0'
-              type='email'
-              placeholder='Поиск по каталогу'
-            />
-          </div>
+          <SearchPanel data={productsAll} />
         </div>
       </div>
     </div>

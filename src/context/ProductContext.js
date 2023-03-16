@@ -9,9 +9,6 @@ const ProductProvider = ({children}) => {
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
 
-  // console.log(cart);
-  // console.log(productsAll);
-
   useEffect(() => {
     const getFilter = async() => {
       const productsArray = []

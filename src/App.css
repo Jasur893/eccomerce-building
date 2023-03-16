@@ -15,24 +15,6 @@
   margin-left: auto;
 }
 
-.custom_input{
-  position: relative;
-
-}
-.custom_input:after{
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto 0;
-  width: 25px;
-  height: 25px;
-  background: url("./assets/search.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 .carousel-indicators {
   position: absolute;
   margin-top: 50px;
