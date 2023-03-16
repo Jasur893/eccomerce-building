@@ -1,39 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { NavDropdown } from 'react-bootstrap'
 import { getcatalogNames } from '../catalogApi'
 import AccardionCatalogs from './AccardionCatalogs'
 import CardItem from './CardItem'
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../FirebaseConfigs/firebaseConfig'; 
+import { useContext } from 'react'
+import { ProductContext } from '../context/ProductContext'
 import Loader from './Loader'
 
 export default function CatalogItems() {
+  const {value1} = useContext(ProductContext)
+  const productsAll = value1;
   const { catlogName } = useParams()
   const catalog = getcatalogNames()
-  const [products, setProducts] = useState([])
+  // const [products, setProducts] = useState([])
   const [active, setActive] = useState(null)
-  
-  console.log(products);
-
-  useEffect(() => {
-    const getProducts = () => {
-      const productsArray = []
-      const path = `products-${catlogName.toUpperCase()}`
-
-      getDocs(collection(db, path)).then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          productsArray.push({...doc.data(), id: doc.id})
-          console.log(doc.id, "=>", doc.data());
-          setProducts(productsArray)
-        })
-      }).catch((error)=> {
-        console.log(error.message);
-      })
-    }
-    getProducts()
-
-  },[])
 
   let activeStyle = {
     backgroundColor: 'rgb(249 115 22)'
@@ -77,11 +58,11 @@ export default function CatalogItems() {
           </div>
 
           <div className='col-span-4 sm:col-span-3'>
-            {products.length > 0 ? (
+            {productsAll.length > 0 ? (
               <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
-                {products.map((el) => (
-                  <div key={el.id}>
-                    <CardItem  data={el} />
+                {productsAll.filter(item => item.productType === catlogName).map((item) => (
+                  <div key={item.id}>
+                    <CardItem  data={item} />
                   </div>
                 ))}
               </div>
@@ -91,6 +72,7 @@ export default function CatalogItems() {
               </div>
             )}
           </div>
+          {}
         </div>
       </div>
     </div>

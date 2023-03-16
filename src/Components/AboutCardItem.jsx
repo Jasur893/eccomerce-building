@@ -3,37 +3,20 @@ import CardCharacteristic from './CardCharacteristic'
 import CardDelivery from './CardDelivery'
 import CardDescription from './CardDescription'
 import CardReview from './CardReview'
-import { query, onSnapshot, getDoc, doc } from 'firebase/firestore'
-import { db } from '../FirebaseConfigs/firebaseConfig'
-import { useEffect, useState } from 'react'
 import Loader from './Loader'
 import { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
 
 export default function AboutCardItem() {
-  const {value1, value3, value2} = useContext(ProductContext);
-  const products = value1
-  const cart = value3;
+  const {value1, value2, value3, value8, value9} = useContext(ProductContext);
+  const productsAll = value1
   const addToCart = value2;
-  
-  const { nameId, typeId } = useParams()
-  const [productId, setProductId] = useState({})
-  const [successMsg, setSuccessMsg] = useState('')
-  const [errosMsg, setErrorMsg] = useState('')
-  const [favorited, setFavorited] = useState(false)
-  const isSetFavorited = () => setFavorited(!favorited)
+  const cart = value3
+  const showFavorite = value8
+  const hideFavorite = value9
+  const { nameId} = useParams()
 
-  console.log(productId);
-
-  useEffect(() => {
-    const getProduct = async () => {
-      const docRef = doc(db, `products-${typeId.toUpperCase()}`, nameId)
-      const docSnap = await getDoc(docRef)
-      const newProductId = docSnap.data()
-      setProductId({...newProductId, isLiked: false})
-    }
-    getProduct()
-  }, [])
+  const productItem = productsAll.find(item => item.id === nameId)
 
   const navLinkStyle = ({ isActive }) => {
     return {
@@ -41,35 +24,37 @@ export default function AboutCardItem() {
     }
   }
 
-  const product = products.find(item => item.id === nameId)
-  // console.log(product);
+  const cartShowAdd = cart.find(item => item.id === nameId)
+  const cartIsAdd = !cartShowAdd ? cartShowAdd :  Object(cartShowAdd).isAdded
 
   return (
     <div className='pt-3 pb-3 bg-slate-100'>
       <div className='container_content'>
         <div className=' mt-5 bg-white'>
-          {productId ? (
+
+          {productItem ? (
             <>
               <div className='py-3 grid grid-cols-1 md:grid-cols-2'>
                 <div className='h-[300px] flex justify-center'>
                   <img
                     className='h-full'
-                    src={productId?.productImage}
+                    src={productItem?.productImage}
                     alt='card'
                   />
                 </div>
                 <div className='px-2'>
-                  <p className='pt-2 text-3xl'>{productId?.productTittle}</p>
+                  <p className='pt-2 text-3xl'>{productItem?.productTittle}</p>
                   <p className='text-[14px] text-green-300'>В наличии</p>
-                  <p className='w-[70%]'>{productId?.description}</p>
+                  <p className='w-[70%]'>{productItem?.description}</p>
                   <span className='text-2xl font-semibold pr-2'>
-                    {productId?.price} ₽
+                    {productItem?.price} ₽
                   </span>
                   <span className='text-base line-through text-gray-300 pr-6'>
                     720 ₽
                   </span>
                   <div className='flex justify-start align-center gap-3 pt-3'>
-                    <span onClick={() => addToCart(product, nameId)} className='cursor-pointer py-2 px-3 bg-orange-700 rounded-md text-white'>
+                    <span onClick={() => addToCart(productItem, nameId)} 
+                      className={`${cartIsAdd ? 'bg-green-600' : 'bg-orange-700'} cursor-pointer py-2 px-3  rounded-md text-white`}>
                       В КОРЗИНУ
                     </span>
                     <div className='cursor-pointer flex flex-col justify-center text-gray-300'>
@@ -77,14 +62,11 @@ export default function AboutCardItem() {
                     </div>
                     <div className='cursor-pointer flex flex-col justify-center text-gray-300'>
                       <div className='relative w-[16px] h-[16px]'>
-                        <input
-                          className='absolute top-0 right-0 left-0 opacity-0 w-[18px] cursor-pointer'
-                          checked={favorited}
-                          onChange={isSetFavorited}
-                          type='checkbox'
-                          value='showhide'
-                        />
-                        {favorited ? (
+                        <span
+                          className='absolute top-0 right-0 left-0 w-[18px] h-[18px] cursor-pointer'
+                          onClick={() => !productItem.isLiked ? showFavorite(nameId) : hideFavorite(nameId) }
+                        ></span>
+                        {productItem.isLiked ? (
                           <i className='text-[18px] text-red-500 fa-solid fa-heart'></i>
                         ) : (
                           <i className='text-[18px] text-gray-300 fa-sharp fa-regular fa-heart'></i>
@@ -129,19 +111,8 @@ export default function AboutCardItem() {
 
                 <div className='pl-3 py-4'>
                   <Routes>
-                    <Route
-                      index
-                      path='opisaniye'
-                      element={
-                        <CardDescription product={productId?.description} />
-                      }
-                    />
-                    <Route
-                      path='xarakteristika'
-                      element={
-                        <CardCharacteristic product={productId?.brand} />
-                      }
-                    />
+                    <Route index path='opisaniye' element={<CardDescription product={productItem?.description} />}/>
+                    <Route path='xarakteristika' element={<CardCharacteristic product={productItem?.brand} />}/>
                     <Route path='dostavka' element={<CardDelivery />} />
                     <Route path='otziv' element={<CardReview />} />
                   </Routes>

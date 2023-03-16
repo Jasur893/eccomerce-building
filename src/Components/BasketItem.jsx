@@ -35,7 +35,7 @@ export default function BasketItem(props) {
                 <div className='w-[30px] border-r-2 border-l-2 text-center mb-0 pt-[10px]'>
                   {amount}
                 </div>
-                <button onClick={() => incrementAmount(id)} className='hover:text-orange-700'>
+                <button onClick={() => incrementAmount(props?.data, id)} className='hover:text-orange-700'>
                   <i className='fa-solid fa-plus'></i>
                 </button>
               </div>

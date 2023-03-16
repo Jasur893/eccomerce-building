@@ -24,13 +24,11 @@ const  App = () => {
   const navigate = useNavigate()
   const [errosMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
-  // const [cartData, setCartData] = useState([])
- 
 
   function GetCurrentUser() {
     
     const [user, setUser] = useState('')
-    const userCollectionRef = collection(db, 'users')
+    // const userCollectionRef = collection(db, 'users')
 
     useMemo(() => {
       auth.onAuthStateChanged(userlogged => {

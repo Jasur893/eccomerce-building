@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import CardItem from './CardItem'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Scrollbar, A11y } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
-// import Loader from './Loader'
 import { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
 import Loader from './Loader';
@@ -14,30 +13,6 @@ export default function CardsSection(props) {
   const productsAll = value1;
   const prevRef = React.useRef(null);
   const nextRef = React.useRef(null);
-  // const [products, setProducts] = useState([])
-  
-
-  // const producAll =  productsAll.find(item => (item.productType === props.elName))
-  // console.log(producAll);
-  // console.log(props.elName);
-
-  // useEffect(() => {
-  //   const getProducts = () => {
-  //     const productsArray = []
-  //     const path = `products-${props.elName.toUpperCase()}`
-
-  //     getDocs(collection(db, path)).then((querySnapshot) => {
-  //       querySnapshot.forEach((doc) => {
-  //         productsArray.push({...doc.data(), id: doc.id, isLiked: false})
-  //         // console.log(doc.id, "=>", doc.data());
-  //         setProducts(productsArray)
-  //       })
-  //     }).catch((error)=> {
-  //       console.log(error.message);
-  //     })
-  //   }
-  //   getProducts()
-  // },[])
 
   return (
     <div className='mt-5'>

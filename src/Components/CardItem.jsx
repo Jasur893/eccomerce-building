@@ -5,15 +5,14 @@ import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
 
-
 export default function CardItem(props) {
-  const {value2, value8} = useContext(ProductContext)
-  const addToCart = value2;
-  const toggleFavorite = value8;
-  const {mark, id, productImage, productType, productTittle, price, isLiked} = props?.data
-  // const isSetFavorited = () => setFavorited(!favorited);
-  // const [favorited, setFavorited] = useState(false);
-
+  const { value2, value3, value4, value8, value9 } = useContext(ProductContext)
+  const addToCart = value2
+  const cart = value3
+  const removeFromCart = value4
+  const showFavorite = value8
+  const hideFavorite = value9
+  const {mark, id, productImage,productType, productTittle, price, isLiked, isAdded,} = props?.data
 
   let className = 'setmark'
   if (props.data?.mark === 'Новинка') {
@@ -24,6 +23,9 @@ export default function CardItem(props) {
     className += ' '
   }
 
+  const cartShowAdd = cart.find(item => item.id === id)
+  const cartIsAdd = !cartShowAdd ? cartShowAdd :  Object(cartShowAdd).isAdded
+  
   return (
     <Card className='relative border-0 flex flex-col transition ease-in-out delay-150 hover:translate-y-1'>
       <div className='flex justify-between align-center p-2'>
@@ -33,22 +35,17 @@ export default function CardItem(props) {
             <i className='fa-solid fa-chart-simple'></i>
           </span>
 
-
-            <div className='relative w-[16px] h-[16px]'>
-              <span
-                className='absolute top-0 right-0 left-0 w-[18px] h-[18px] border cursor-pointer'
-                onClick={() => toggleFavorite(id)}
-                // checked={favorited}
-                // onChange={isSetFavorited}
-                // type="checkbox"
-                // value='showhide'
-              />
-              {isLiked ?  (
-                  <i className="text-[18px] text-red-500 fa-solid fa-heart"></i>
-                ) : (
-                  <i className="text-[18px] text-gray-300 fa-sharp fa-regular fa-heart"></i>
-              )}
-              </div>
+          <div className='relative w-[16px] h-[16px]'>
+            <span
+              className='absolute top-0 right-0 left-0 w-[18px] h-[18px] cursor-pointer'
+              onClick={() => (!isLiked ? showFavorite(id) : hideFavorite(id))}
+            ></span>
+            {isLiked ? (
+              <i className='text-[18px] text-red-500 fa-solid fa-heart'></i>
+            ) : (
+              <i className='text-[18px] text-gray-300 fa-sharp fa-regular fa-heart'></i>
+            )}
+          </div>
         </div>
       </div>
 
@@ -65,24 +62,31 @@ export default function CardItem(props) {
         </Link>
         <div className='w-[90%]'>
           <div className='flex justify-start items-center flex-wrap'>
-            <span className='text-xl font-semibold pr-2'>
-              {price} ₽
-            </span>
+            <span className='text-xl font-semibold pr-2'>{price} ₽</span>
             {/* <span className='text-[14px] line-through text-gray-300 pr-3'>
                 720 ₽
               </span> */}
             <span className='text-xs md:text-sm whitespace-nowrap text-green-700'>
               <i className='fa-solid fa-check'></i> в наличии
             </span>
-            <div 
-              onClick={() => addToCart(props?.data, id)}
-              className='absolute bottom-0 right-0 border-2 border-orange-700 rounded-br-md flex justify-center align-center p-1 lg:p-2 text-xs cursor-pointer'>
-              <i className='text-base lg:text-xl leading-none fa-solid fa-cart-shopping'></i>
+            <div
+              onClick={() => !cartIsAdd ? addToCart(props?.data, id) :  removeFromCart(id)}
+              className={`${cartIsAdd ? 'bg-orange-700' : 'bg-white'} absolute bottom-0 right-0 border-orange-700 border-2 rounded-br-md flex justify-center align-center p-1 lg:p-2 text-xs cursor-pointer`}
+            >
+              {cartIsAdd ? (
+                <i className='text-base lg:text-xl text-white leading-none px-[2px] fa-regular fa-circle-check'></i>
+                ) : (
+                <i className='text-base lg:text-xl leading-none text-orange-700 fa-solid fa-cart-shopping'></i>
+              )}
             </div>
+            {/* <div 
+              onClick={() => addToCart(props?.data, id)}
+              className='absolute bottom-0 right-0 border-2 border-orange-700 bg-orange-700 rounded-br-md flex justify-center align-center p-1 lg:p-2 text-xs cursor-pointer'>
+              <i className="text-base lg:text-xl text-white leading-none fa-regular fa-circle-check"></i>
+            </div> */}
           </div>
         </div>
       </div>
     </Card>
   )
 }
-

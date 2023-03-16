@@ -5,12 +5,15 @@ import { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
 
 export default function Header(props) {
-  const {value3} = useContext(ProductContext)
+  const {value1, value3} = useContext(ProductContext)
+  const productsAll = value1
   const cart = value3
   
   let isAactiveStyle = {
     backgroundColor: 'rgb(249 115 22)',
   }
+
+  const productAll = productsAll.filter(item => item.isLiked === true).length
 
   return (
     <div className='fixed top-0 w-full drop-shadow-md z-50 headers ml-0 py-0 bg-dark'>
@@ -48,7 +51,7 @@ export default function Header(props) {
                 className='relative no-underline flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700 '
               >
                 <i className='px-3 py-2 text-xl fa-regular fa-heart'></i>
-                <span className='absolute top-2 right-1 flex justify-center items-center bg-orange-600 rounded-full text-[12px] w-[20px] h-[20px]'><i>{0}</i></span>
+                <span className='absolute top-2 right-1 flex justify-center items-center bg-orange-600 rounded-full text-[12px] w-[20px] h-[20px]'><i>{productAll}</i></span>
               </NavLink>
 
               <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)} to='/comparison'
