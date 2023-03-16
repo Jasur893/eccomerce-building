@@ -3,8 +3,11 @@ import { NavLink } from 'react-router-dom'
 import Logo from '../assets/logo.png'
 import { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
+import { UserContext } from '../context/UserContext'
 
-export default function Header(props) {
+export default function Header() {
+  const {userValue1} = useContext(UserContext)
+  const loggeduser = userValue1
   const {value1, value3} = useContext(ProductContext)
   const productsAll = value1
   const cart = value3
@@ -61,8 +64,8 @@ export default function Header(props) {
               </NavLink>
 
               <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)}
-                to={props.userdata ? '/lichniy-kabinet' : '/login'}
-                className='no-underline flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
+                to={loggeduser ? '/lichniy-kabinet' : '/login'}
+                className={`${!loggeduser ? 'text-gray-500' : 'text-gray-50'} hover:text-gray-50 no-underline flex flex-col justify-center h-full  bg-zinc-700 transition duration-700 hover:bg-orange-700`}
               >
                 <i className='px-3 py-2 text-xl fa-regular fa-circle-user'></i>
               </NavLink>

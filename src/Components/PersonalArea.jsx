@@ -1,19 +1,27 @@
 import { NavLink, Route, Routes } from 'react-router-dom';
 import HistoryOfOrders from './HistoryOfOrders';
 import PersonalInformation from './PersonalInformation';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
-export default function PersonalArea(props) {
+export default function PersonalArea() {
+  const {userValue1, userValue2} = useContext(UserContext)
+  const loggeduser = userValue1
+  const handleLogOut = userValue2
+
+
+
   let isActiveStyle = {
     color: 'orangered'
   }
 
   return (
-    <div className='bg-slate-100'>
+    <div className='bg-slate-100 pt-3'>
       <div className='container_content'>
-        <div className='mt-5 relative'>
+        <div className=' relative'>
           <h3 className='text-3xl'>Личный кабинет</h3>
-          <h6 className=''>Привет: {props.userId[0].email}</h6>
-          <span onClick={() => props?.handleLogOut()} className='absolute right-0 top-0 cursor-pointer hover:text-orange-500'>
+          <h6 className=''>Привет: {loggeduser[0].email}</h6>
+          <span onClick={() => handleLogOut()} className='absolute right-0 top-0 cursor-pointer hover:text-orange-500'>
             <i className="fa-solid fa-right-from-bracket"></i>
           </span>
         </div>

@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate} from 'react-router-dom'
+import { Routes, Route} from 'react-router-dom'
 import Header from './Components/Header'
 import HeaderNav from './Components/HeaderNav'
 import Footer from './Components/Footer'
@@ -14,57 +14,21 @@ import Basket from './Components/Basket'
 import Ordering from './Components/Ordering'
 import NotFound from './Components/NotFound'
 import './App.css'
-import { useMemo, useState } from 'react'
-import { query, where, getDocs, collection } from "firebase/firestore"; 
-import { auth, db } from './FirebaseConfigs/firebaseConfig'; 
 import Login from './Components/auth/Login'
 import SignUp from './Components/auth/SignUp'
+import { useContext } from 'react'
+import { UserContext } from './context/UserContext'
 
 const  App = () => {
-  const navigate = useNavigate()
-  const [errosMsg, setErrorMsg] = useState('')
-  const [successMsg, setSuccessMsg] = useState('')
-
-  function GetCurrentUser() {
-    
-    const [user, setUser] = useState('')
-    // const userCollectionRef = collection(db, 'users')
-
-    useMemo(() => {
-      auth.onAuthStateChanged(userlogged => {
-        if(userlogged){
-          const getUsers = async() => {
-            const q = query(collection(db, "users"),where("uid", "==", userlogged.uid))
-            const data = await getDocs(q)
-            setUser(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-          }
-          getUsers()
-        } else {
-          setUser(null)
-        }
-      })
-    },[])
-    return user
-  }
-
-  const handleLogOut = () => {
-    auth.signOut()
-      .then(() => {
-        navigate("/")
-      })
-  }
-
-  const loggeduser =  GetCurrentUser()
+  const {userValue1} = useContext(UserContext)
+  const loggeduser = userValue1
   
   return (
     <>
-      <Header userdata={loggeduser}/>
+      <Header/>
       <div className='mt-14'></div>
       <HeaderNav  />
         <div className='main__section content'>
-          <div>
-            <p>{loggeduser ? loggeduser[0].email : 'No data'} </p>
-          </div>
           <Routes>
             <Route exact path='/' element={<MainHeader />} />
             <Route path='catalog/*' element={<CatalogContent/>}/>
@@ -78,7 +42,7 @@ const  App = () => {
             <Route path='*' element={<NotFound />} />
 
             {loggeduser ? (
-              <Route path='/lichniy-kabinet/*' element={<PersonalArea handleLogOut={handleLogOut} userId={loggeduser}/>}/>
+              <Route path='/lichniy-kabinet/*' element={<PersonalArea/>}/>
             ) : (
               <>
                 <Route path='/login' element={<Login/>} />

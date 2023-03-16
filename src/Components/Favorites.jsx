@@ -11,7 +11,7 @@ export default function Favorites() {
   ))
 
   return (
-    <div className='mt-4'>
+    <div className='pt-4'>
       <div className='container_content'>
         <h4 className='text-lg md:text-3xl mb-3'>Избранное</h4>
         <p className='font-semibold mb-0'>{productAll.length > 0 ? productAll.length : 0} товаров</p>
