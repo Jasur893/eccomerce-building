@@ -1,56 +1,65 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth, db } from '../../FirebaseConfigs/firebaseConfig'
-import { collection, addDoc } from 'firebase/firestore'
+import { AuthContext } from '../../context/AuthContext'
 
 export default function SignUp() {
-  const [firstname, setFirsName] = useState('')
+  const {userValue1} = useContext(AuthContext)
+  const signUp = userValue1
+  // console.log(signUp);
   const [email, setEmail] = useState('')
-  const [phonenumber, setPhoneNumber] = useState('')
   const [password, setPassword] = useState('')
-  const navigate = useNavigate()
-
+  const [passwordConfirm, setPasswordConfirm] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit =  async(e) => {
     e.preventDefault()
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user
-        const initialcartvalue = 0
+    console.log('submit');
+    setErrorMsg('')
+    setLoading(true)
+    if(password !== passwordConfirm){
+      return setErrorMsg('пароль не подходит')
+    }
 
-        addDoc(collection(db, 'users'), {
-          firstname: firstname,
-          email: email,
-          phonenumber: phonenumber,
-          password: password,
-          cart: initialcartvalue,
-          uid: user.uid
-        }).then(() => {
-          setSuccessMsg('New useradded successfuly, You will now be automaticaly redirect to login page.')
-          setFirsName('')
-          setPhoneNumber('')
-          setEmail('')
-          setPassword('')
-          setErrorMsg('')
-          setTimeout(() => {
-            setSuccessMsg('')
-            navigate('/login')
-          }, 4000)
-        })
-        .catch((error) => { setErrorMsg(error.message) })
-      })
-      .catch((error) => {
-        if(error.message == 'Firebase: Error (auth/invalid-email).'){
-          setErrorMsg('Please fill all required fields')
-        }
-        if(error.message == 'Firebase: Error (auth/email-already-in-use).'){
-          setErrorMsg('User already exists')
-        }
-      })
+    try{
+      setLoading(true)
+      await  signUp(email, password)
+      
+      setErrorMsg('')
+      navigate('/login')
+    }catch {
+      setErrorMsg('не удалось создать учетную запись')
+    }
+    setLoading(false)
   }
+
+  // const handleSubmit = () => {
+  //   console.log('submit');
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //   .then((userCredential) => {
+  //     const user = userCredential
+  //     setSuccessMsg('signUp true')
+  //     console.log(user);
+  //     setEmail('')
+  //     setPassword('')
+  //     setTimeout(() => {
+  //       setSuccessMsg('')
+  //       navigate('/login')
+  //     }, 500)
+  //   })
+  //   .catch((error)=> {
+  //     const errorCode = error.code
+  //     const errorMsg = error.message
+  //     setErrorMsg(errorCode, errorMsg)
+
+  //     setTimeout(() => {
+  //       setErrorMsg('')
+  //     }, 1000)
+  //   })
+  // }
 
   return (
     <div className='flex justify-center py-3'>
@@ -59,19 +68,9 @@ export default function SignUp() {
         <form className='' onSubmit={handleSubmit}>
           {successMsg && <div className='p-2 rounded-md bg-green-500 text-green-900'>{successMsg}</div>}
           {errorMsg && <div className='p-2 rounded-md bg-red-500 text-red-900'>{errorMsg}</div>}
-          <label htmlFor='firstName' className='w-full text-xs text-gray-600'>
-            Имя
-          </label>
-          <input
-            onChange={(e) => setFirsName(e.target.value)}
-            value={firstname}
-            className='border-b-2 focus:outline-0 mb-2 w-full'
-            type='text'
-            id='firstName'
-          />
-
+          
           <label htmlFor='email' className='w-full text-xs text-gray-600'>
-            Электронная почта
+            электронная почта
           </label>
           <input
             onChange={(e) => setEmail(e.target.value)}
@@ -81,19 +80,8 @@ export default function SignUp() {
             id='email'
           />
 
-          <label htmlFor='phonenumber' className='w-full text-xs text-gray-600'>
-            Телефон
-          </label>
-          <input
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            value={phonenumber}
-            className='border-b-2 focus:outline-0 mb-2 w-full'
-            type='tel'
-            id='phonenumber'
-          />
-
           <label htmlFor='password' className='w-full text-xs text-gray-600'>
-            Парол
+            парол
           </label>
           <input
             onChange={(e) => setPassword(e.target.value)}
@@ -102,9 +90,20 @@ export default function SignUp() {
             type='password'
             id='password'
           />
-          <button
+          <label htmlFor='password-confirm' className='w-full text-xs text-gray-600'>
+            подтвердить пароль
+          </label>
+          <input
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+            value={passwordConfirm}
+            className='border-b-2 focus:outline-0 mb-2 w-full'
+            type='password'
+            id='password-confirm'
+          />
+          <button 
             className='w-full bg-gray-800 text-white pr-1 py-2 rounded-md'
             type='submit'
+            disabled={loading}
           >
             РЕГИСТРАЦИЯ
           </button>

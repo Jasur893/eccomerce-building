@@ -5,19 +5,20 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import ProductProvider from './context/ProductContext'
-import UserProvider from './context/UserContext'
+import AuthProvider from './context/AuthContext'
+import './FirebaseConfigs/firebaseConfig'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
 
   <BrowserRouter>
-    <UserProvider>
+    <AuthProvider>
     <ProductProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
   </ProductProvider>
-  </UserProvider>
+  </AuthProvider>
   </BrowserRouter>
 
   

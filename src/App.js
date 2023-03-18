@@ -17,12 +17,13 @@ import './App.css'
 import Login from './Components/auth/Login'
 import SignUp from './Components/auth/SignUp'
 import { useContext } from 'react'
-import { UserContext } from './context/UserContext'
+import { AuthContext } from './context/AuthContext'
+
 
 const  App = () => {
-  const {userValue1} = useContext(UserContext)
-  const loggeduser = userValue1
-  
+  const {userValue4} = useContext(AuthContext)
+  const userEmail = userValue4
+
   return (
     <>
       <Header/>
@@ -39,16 +40,15 @@ const  App = () => {
             <Route path='/news' element={<News />} />
             <Route path='/basket' element={<Basket/>} />
             <Route path='/ordering/*' element={<Ordering />} />
-            <Route path='*' element={<NotFound />} />
-
-            {loggeduser ? (
+            {userEmail ? (
               <Route path='/lichniy-kabinet/*' element={<PersonalArea/>}/>
-            ) : (
+            ): (
               <>
                 <Route path='/login' element={<Login/>} />
                 <Route path='/signup' element={<SignUp/>} />
               </>
             )}
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </div>
       <Footer />
@@ -57,7 +57,3 @@ const  App = () => {
 }
 
 export default App
-
-
-
-            

@@ -1,8 +1,8 @@
-import {createContext, useCallback, useEffect, useState} from 'react'
+import React, { useCallback, useEffect, useState} from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../FirebaseConfigs/firebaseConfig'
 
-export const ProductContext = createContext()
+export const ProductContext = React.createContext()
 
 const ProductProvider = ({children}) => {
   const [productsAll, setProductsALL] = useState([]);

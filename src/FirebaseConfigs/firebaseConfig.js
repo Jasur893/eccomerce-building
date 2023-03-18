@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore";
 import {getStorage} from "firebase/storage"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCDCHGV37TuGZl2t4AzMSzLVyrddr-cDRo",
-  authDomain: "eccomerce-20117.firebaseapp.com",
-  projectId: "eccomerce-20117",
-  storageBucket: "eccomerce-20117.appspot.com",
-  messagingSenderId: "634710210899",
-  appId: "1:634710210899:web:767a823c123645d8a189a6"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUSCET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()

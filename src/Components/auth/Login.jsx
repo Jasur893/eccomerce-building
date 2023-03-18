@@ -1,45 +1,36 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { AuthContext } from '../../context/AuthContext'
+import {startSession} from '../session.js'
 
 
 export default function Login() {
+  const {userValue3} = useContext(AuthContext)
+  const logIn = userValue3
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
-  const auth = getAuth();
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth,email,password)
-    .then((userCredential) => {
-      setSuccessMsg('Logged in successfully, You will now be automaticaly redirect to personal page')
+  const handleLogin = async(e) => {
+    e.preventDefault()
+    setErrorMsg('')
+    setLoading(true)
 
-      setEmail('')
-      setPassword('')
+    try{
+      setLoading(true)
+      let loginResponse = await logIn(email, password)
+      startSession(loginResponse.user)
       setErrorMsg('')
-      setTimeout(() => {
-        setSuccessMsg('')
-        navigate('/lichniy-kabinet/*')
-      }, 3000)
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      console.log(error.message);
-      if(error.message == 'Firebase: Error (auth/invalid-email).'){
-        setErrorMsg('Please fill all required fields')
-      }
-      if(error.message == 'Firebase: Error (auth/user-not-found).'){
-        setErrorMsg('Email not found')
-      }
-      if(error.message == 'Firebase: Error (auth/wrong-password).'){
-        setErrorMsg('Wrong Password')
-      }
-    })
+      navigate('/lichniy-kabinet')
+      setSuccessMsg('true')
+    }catch {
+      setErrorMsg('не удалось войти')
+    }
+    setLoading(false)
   }
-
 
   return (
     <div className='flex justify-center py-3'>
@@ -57,6 +48,7 @@ export default function Login() {
             className='border-b-2 focus:outline-0 mb-2 w-full'
             type='email'
             id='email'
+            required
           />
 
           <label htmlFor='password' className='w-full text-xs text-gray-600'>
@@ -68,6 +60,7 @@ export default function Login() {
             className='border-b-2 focus:outline-0 mb-2 w-full'
             type='password'
             id='password'
+            required
           />
           <button
             className='w-full bg-gray-800 text-white pr-1 py-2 rounded-md'

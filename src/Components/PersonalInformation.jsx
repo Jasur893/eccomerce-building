@@ -1,6 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { getFirestore } from 'firebase/firestore'
+import { ref, set, get, update, remove, child } from 'firebase/storage'
+import { query, where, getDocs, collection } from "firebase/firestore";
+import { db } from '../FirebaseConfigs/firebaseConfig'; 
+import { AuthContext } from '../context/AuthContext';
 
 export default function PersonalInformation() {
+  const {userValue1} = useContext(AuthContext)
+  const user = userValue1
+
   const [surName, setSurName] = useState('')
   const [firstName, setFirsName] = useState('')
   const [numberPhone, setnumberPhone] = useState('')
@@ -14,6 +22,7 @@ export default function PersonalInformation() {
   return (
     <div>
       <div className='bg-white p-4 rounded-md'>
+        <h4>{user.uid}</h4>
         <p className='text-xl'>Личные данные</p>
 
         <div className='grid grid-cols-2 gap-4 md:gap-14 mb-2'>
@@ -138,7 +147,7 @@ export default function PersonalInformation() {
         </div>
         <button
           type='button'
-          disabled
+          onClick={() => console.log('Update')}
           className='py-2 px-3 bg-gray-300 text-white rounded-md'
         >
           СОХРАНИТЬ ИЗМЕНЕНИЯ
