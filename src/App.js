@@ -22,7 +22,7 @@ import { AuthContext } from './context/AuthContext'
 
 const  App = () => {
   const {userValue4} = useContext(AuthContext)
-  const userEmail = userValue4
+  const userSession = userValue4
 
   return (
     <>
@@ -40,7 +40,7 @@ const  App = () => {
             <Route path='/news' element={<News />} />
             <Route path='/basket' element={<Basket/>} />
             <Route path='/ordering/*' element={<Ordering />} />
-            {userEmail ? (
+            {userSession ? (
               <Route path='/lichniy-kabinet/*' element={<PersonalArea/>}/>
             ): (
               <>

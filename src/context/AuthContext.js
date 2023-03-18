@@ -3,18 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../FirebaseConfigs/firebaseConfig'; 
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import {endSession, getSession, isLoggedIn} from '../Components/session'
+import {endSession, getSession} from '../Components/session'
 
 export const AuthContext = React.createContext()
 
 const AuthProvider = ({children}) => {
-  const [userEmail, setUserEmail] = useState()
+  const [userSession, setUserSession] = useState()
+  // console.log(userSession);
+
   const navigate = useNavigate()
-  console.log(userEmail);
 
   useEffect(() => {
     let session = getSession();
-    setUserEmail(session.email);
+    // console.log(session);
+    setUserSession(session);
   },[navigate])
 
   const signUp = (email, password) => {
@@ -35,7 +37,7 @@ const AuthProvider = ({children}) => {
       userValue1: signUp,
       userValue2: handleLogOut,
       userValue3: logIn,
-      userValue4: userEmail
+      userValue4: userSession
     }}
   >
     {children}

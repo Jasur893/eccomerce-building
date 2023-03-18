@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 
 export default function PersonalArea() {
   const {userValue4, userValue2} = useContext(AuthContext)
-  const userEmail = userValue4
+  const userSession = userValue4
   const handleLogOut = userValue2
 
   let isActiveStyle = {
@@ -18,7 +18,7 @@ export default function PersonalArea() {
       <div className='container_content'>
         <div className=' relative'>
           <h3 className='text-3xl'>Личный кабинет</h3>
-          <h6 className=''>Привет: {userEmail}</h6>
+          <h6 className=''>Привет: {userSession.email}</h6>
           <span onClick={() => handleLogOut()} className='absolute right-0 top-0 cursor-pointer hover:text-orange-500'>
             <i className="fa-solid fa-right-from-bracket"></i>
           </span>
@@ -34,7 +34,7 @@ export default function PersonalArea() {
             <div className='mb-4'>
               <Routes>
                 <Route path='history-of-orders' element={<HistoryOfOrders/>} />
-                <Route path='personal-information' element={<PersonalInformation/>}/>
+                <Route path='personal-information' element={<PersonalInformation/>} />
               </Routes>
             </div>
           </div>

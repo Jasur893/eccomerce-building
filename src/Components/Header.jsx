@@ -7,7 +7,7 @@ import { AuthContext } from '../context/AuthContext'
 
 export default function Header() {
   const {userValue4} = useContext(AuthContext)
-  const userEmail = userValue4
+  const userSession = userValue4
   const {value1, value3} = useContext(ProductContext)
   const productsAll = value1
   const cart = value3
@@ -64,8 +64,8 @@ export default function Header() {
               </NavLink>
 
               <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)}
-                to={userEmail ? '/lichniy-kabinet' : '/login'}
-                className={`${!userEmail ? 'text-gray-500' : 'text-gray-50'} hover:text-gray-50 no-underline flex flex-col justify-center h-full  bg-zinc-700 transition duration-700 hover:bg-orange-700`}
+                to={userSession ? '/lichniy-kabinet' : '/login'}
+                className={`${!userSession ? 'text-gray-500' : 'text-gray-50'} hover:text-gray-50 no-underline flex flex-col justify-center h-full  bg-zinc-700 transition duration-700 hover:bg-orange-700`}
               >
                 <i className='px-3 py-2 text-xl fa-regular fa-circle-user'></i>
               </NavLink>
