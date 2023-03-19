@@ -1,4 +1,3 @@
-import { NavLink, Route, Routes } from 'react-router-dom'
 import DataBuyer from './DataBuyer'
 import Delivery from './Delivery'
 import Payment from './Payment'
@@ -7,6 +6,7 @@ import { ProductContext } from '../context/ProductContext'
 
 export default function Ordering() {
   const [show, setShow] = useState('Доставка курьером')
+  const [activeTabO, setActiveTabO] = useState('data-buyer')
   const {value3, value7} = useContext(ProductContext);
   const cart = value3;
   const total = value7;
@@ -21,9 +21,16 @@ export default function Ordering() {
 
   const delivery = show === 'Доставка курьером' ? deliveryMoney : null;
 
-  let isActiveStyle = {
-    color: '#000',
+  function handleShowComponent(tab1, tab2, tab3){
+    if(activeTabO === 'data-buyer'){
+      return tab1
+    } else if(activeTabO === 'delivery'){
+      return tab2
+    } else if(activeTabO === 'payment'){
+      return tab3
+    }
   }
+
 
   return (
     <div className='bg-slate-100 pt-3'>
@@ -32,36 +39,29 @@ export default function Ordering() {
 
         <div className='bg-white rounded-tr-md grid rounded-tl-md grid-cols-12'>
           <div className='pl-3 pr-3 col-span-12 md:col-span-9'>
-            <div className='flex justify-start py-3 gap-x-2 md:gap-x-6 text-[16px] sm:text-xl'>
-              <NavLink
-                style={({ isActive }) => (isActive ? isActiveStyle : undefined)}
-                className='hover:text-current text-gray-300 no-underline '
-                to='data-buyer'
+            <ul className='flex justify-start py-3 pl-0 gap-x-2 md:gap-x-6 text-[16px] sm:text-xl'>
+              <li
+                className={`${activeTabO === 'data-buyer' ? 'text-gray-900' : ''} hover:text-current text-gray-300 no-underline cursor-pointer`}
+                onClick={() => setActiveTabO('data-buyer')}
               >
                 Данные покупателя
-              </NavLink>
-              <NavLink
-                style={({ isActive }) => (isActive ? isActiveStyle : undefined)}
-                className='hover:text-current text-gray-300 no-underline'
-                to='delivery'
+              </li>
+              <li
+                className={`${activeTabO === 'delivery' ? 'text-gray-900' : ''} hover:text-current text-gray-300 no-underline cursor-pointer`}
+                onClick={() => setActiveTabO('delivery')}
               >
                 Доставка
-              </NavLink>
-              <NavLink
-                style={({ isActive }) => (isActive ? isActiveStyle : undefined)}
-                className='hover:text-current text-gray-300 no-underline'
-                to='payment'
+              </li>
+              <li
+                className={`${activeTabO === 'payment' ? 'text-gray-900' : ''} hover:text-current text-gray-300 no-underline cursor-pointer`}
+                onClick={() => setActiveTabO('payment')}
               >
                 Оплата
-              </NavLink>
-            </div>
+              </li>
+            </ul>
 
             <div>
-              <Routes>
-                <Route path='data-buyer' element={<DataBuyer />} />
-                <Route path='delivery' element={<Delivery show={show} delivery={delivery} handleShow={handleShow} />} />
-                <Route path='payment' element={<Payment />} />
-              </Routes>
+              {handleShowComponent(<DataBuyer />, <Delivery show={show} delivery={delivery} handleShow={handleShow} />, <Payment />)}
             </div>
 
             <div className='mt-3 mb-3'>

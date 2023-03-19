@@ -1,17 +1,14 @@
-import { NavLink, Route, Routes } from 'react-router-dom';
 import HistoryOfOrders from './HistoryOfOrders';
 import PersonalInformation from './PersonalInformation';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 export default function PersonalArea() {
+  const [activeTab, setActivwTab] = useState('tab1')
+
   const {userValue4, userValue2} = useContext(AuthContext)
   const userSession = userValue4
   const handleLogOut = userValue2
-
-  let isActiveStyle = {
-    color: 'orangered'
-  }
 
   return (
     <div className='bg-slate-100 pt-3'>
@@ -25,17 +22,28 @@ export default function PersonalArea() {
         </div>
         <div className='grid grid-cols-12 gap-3 pb-3'>
           <div className='col-span-12 md:col-span-3'>
-            <div className='flex flex-col rounded-md bg-dark overflow-hidden'>
-              <NavLink style={({isActive}) => isActive ? isActiveStyle : undefined} to='history-of-orders' className='hover:text-gray-200 text-gray-100 p-2 border-b-[1px] border-gray-600  no-underline'>История заказов</NavLink>
-              <NavLink style={({isActive}) => isActive ? isActiveStyle : undefined} to='personal-information' className='hover:text-gray-200 text-gray-100 p-2  no-underline'>Личная информация</NavLink>
-            </div>
+            <ul className='flex flex-col rounded-md bg-dark overflow-hidden pl-0'>
+              <li
+                onClick={() => setActivwTab('tab1')}
+                className={`${activeTab === 'tab1' ? 'text-orange-500' : ''} cursor-pointer hover:text-orange-500 text-gray-100 p-2 border-b-[1px] border-gray-600  no-underline`}
+              >
+                История заказов
+              </li>
+              <li
+                onClick={() => setActivwTab('tab2')}
+                className={`${activeTab === 'tab2' ? 'activePA' : ''} cursor-pointer hover:text-orange-500 text-gray-100 p-2  no-underline`}
+              >
+                Личная информация
+              </li>
+            </ul>
           </div>
           <div className='col-span-12 md:col-span-9'>
             <div className='mb-4'>
-              <Routes>
-                <Route path='history-of-orders' element={<HistoryOfOrders/>} />
-                <Route path='personal-information' element={<PersonalInformation/>} />
-              </Routes>
+              {activeTab === 'tab1' ? (
+                <HistoryOfOrders/>
+              ) : (
+                <PersonalInformation/>
+              )}
             </div>
           </div>
         </div>
@@ -43,3 +51,6 @@ export default function PersonalArea() {
     </div>
   )
 }
+
+
+
