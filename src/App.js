@@ -22,7 +22,6 @@ import { AuthContext } from './context/AuthContext'
 
 const  App = () => {
   const {userValue4} = useContext(AuthContext)
-  const userSession = userValue4
 
   return (
     <>
@@ -40,7 +39,7 @@ const  App = () => {
             <Route path='/news' element={<News />} />
             <Route path='/basket' element={<Basket/>} />
             <Route path='/ordering/*' element={<Ordering />} />
-            {userSession ? (
+            {userValue4?.uid !== null ? (
               <Route path='/lichniy-kabinet/*' element={<PersonalArea/>}/>
             ): (
               <>

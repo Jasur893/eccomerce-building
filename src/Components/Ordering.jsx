@@ -6,14 +6,20 @@ import { useContext, useState } from 'react'
 import { ProductContext } from '../context/ProductContext'
 
 export default function Ordering() {
-  const [show, setShow] = useState(null)
+  const [show, setShow] = useState('Доставка курьером')
   const {value3, value7} = useContext(ProductContext);
   const cart = value3;
   const total = value7;
 
-  const handleShow = (e) => setShow(e.target.id)
+  console.log(cart);
 
-  const delivery = show === 'Доставка курьером' ? 950 : null;
+  const handleShow = (e) => setShow( e.target.id )
+  console.log(show);
+
+
+  const deliveryMoney = 950
+
+  const delivery = show === 'Доставка курьером' ? deliveryMoney : null;
 
   let isActiveStyle = {
     color: '#000',
@@ -53,13 +59,17 @@ export default function Ordering() {
             <div>
               <Routes>
                 <Route path='data-buyer' element={<DataBuyer />} />
-                <Route path='delivery' element={<Delivery show={show} handleShow={handleShow} />} />
+                <Route path='delivery' element={<Delivery show={show} delivery={delivery} handleShow={handleShow} />} />
                 <Route path='payment' element={<Payment />} />
               </Routes>
             </div>
 
             <div className='mt-3 mb-3'>
-              <button className='rounded-md py-2 px-4 text-[13px] sm:text-[16px] text-white bg-gray-900'>ПОДТВЕРДИТЬ ЗАКАЗ</button>
+              <button
+                className='rounded-md py-2 px-4 text-[13px] sm:text-[16px] text-white bg-gray-900'
+              >
+                ДАЛЕЕ
+              </button>
             </div>
           </div>
 

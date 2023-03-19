@@ -1,15 +1,55 @@
-import { useState } from 'react'
+import { useState, useEffect,  useContext} from 'react'
 import { Form } from 'react-bootstrap'
+import { doc, getDoc } from 'firebase/firestore';
+import { AuthContext } from '../context/AuthContext';
+import { db } from '../FirebaseConfigs/firebaseConfig';
+import moment from 'moment/moment';
 
 export default function Delivery(props) {
+  const {userValue4} = useContext(AuthContext)
+  const userSession = userValue4
+
   const [city, setCity] = useState('')
   const [street, setStreet] = useState('')
-  const [nextDeliveryDate, setNextDeliveryDate] = useState('')
   const [frame, setFrame] = useState('')
   const [house, setHouse] = useState('')
   const [apartment, setApartment] = useState('')
+  const [nextDeliveryDate, setNextDeliveryDate] = useState('')
   const [shippingAmount, setShippingAmount] = useState('')
+
+  const deliverSum = props?.delivery
+
+  const dataDelivery = () => {
+    const date = new Date();
+    return new Date(date.setDate(date.getDate() + 10));
+  }
   
+  useEffect(() => {
+    //get user data and paste data input 
+    if(userSession?.uid !== null) {
+      const getUserData = async() => {
+        const docRef = doc(db, "users", `${userSession?.uid}`);
+        const docSnap = await getDoc(docRef)
+        
+        if (docSnap.exists()) {
+          const dataUser = docSnap.data()
+          setCity(dataUser.city)
+          setStreet(dataUser.street)
+          setFrame(dataUser.frame)
+          setHouse(dataUser.house)
+          setApartment(dataUser.apartment)
+          setNextDeliveryDate(moment(dataDelivery()).format('DD.MM.YYYY'))
+        } else {
+          console.log("No such document!");
+        }
+      }
+      getUserData()
+    }
+  },[userSession?.uid])
+
+
+
+
   const showText = () => {
     if (props.show === 'Доставка курьером') {
       return (
@@ -110,7 +150,7 @@ export default function Delivery(props) {
               </label>
               <input
                 onChange={(e) => setShippingAmount(e.target.value)}
-                value={shippingAmount}
+                value={deliverSum}
                 className='border-b-2 focus:outline-0 mb-2 w-[90%]'
                 type='text'
                 name='shipping-amount'
@@ -154,18 +194,20 @@ export default function Delivery(props) {
     <div>
       <p>Выберите подходящий вам вариант доставки:</p>
 
-      <div className=' flex justify-start flex-wrap pr-2 gap-3 sm:gap-5 mb-2'>
+      <div className='flex justify-start flex-wrap pr-2 gap-3 sm:gap-5 mb-2'>
         {['Доставка курьером', 'Самовывоз'].map((el, idx) => (
-          <label key={idx} htmlFor={el}>
+          <div key={idx}>
             <input
               onChange={props.handleShow}
               type='radio'
               name='el'
+              checked={props.show === el}
               value={el}
               id={el}
-            />{' '}
-            {el}
-          </label>
+              className='cursor-pointer'
+            />
+            <label  htmlFor={el} className='cursor-pointer pl-2'>{el}</label>
+          </div>
         ))}
       </div>
 

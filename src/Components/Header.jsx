@@ -64,8 +64,8 @@ export default function Header() {
               </NavLink>
 
               <NavLink style={({isActive}) => (isActive ? isAactiveStyle : undefined)}
-                to={userSession ? '/lichniy-kabinet' : '/login'}
-                className={`${!userSession ? 'text-gray-500' : 'text-gray-50'} hover:text-gray-50 no-underline flex flex-col justify-center h-full  bg-zinc-700 transition duration-700 hover:bg-orange-700`}
+                to={userSession?.uid !== null ? '/lichniy-kabinet' : '/login'}
+                className={`${userSession?.uid !== null ? 'text-gray-50' : ' text-gray-500'} hover:text-gray-50 no-underline flex flex-col justify-center h-full  bg-zinc-700 transition duration-700 hover:bg-orange-700`}
               >
                 <i className='px-3 py-2 text-xl fa-regular fa-circle-user'></i>
               </NavLink>

@@ -17,19 +17,18 @@ export default function SignUp() {
 
   const handleSubmit =  async(e) => {
     e.preventDefault()
-    console.log('submit');
     setErrorMsg('')
     setLoading(true)
     if(password !== passwordConfirm){
+      setLoading(false)
       return setErrorMsg('пароль не подходит')
     }
 
     try{
-      setLoading(true)
       await  signUp(email, password)
-      
       setErrorMsg('')
       navigate('/login')
+      setLoading(false)
     }catch {
       setErrorMsg('не удалось создать учетную запись')
     }

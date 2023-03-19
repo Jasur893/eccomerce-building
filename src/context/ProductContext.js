@@ -10,7 +10,7 @@ const ProductProvider = ({children}) => {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const getFilter = async() => {
+    const getAllProduct = async() => {
       const productsArray = []
       await getDocs(collection(db, 'products-ГРУНТОВКА')).then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
@@ -104,7 +104,7 @@ const ProductProvider = ({children}) => {
       })
       setProductsALL(productsArray)
     }
-    getFilter()
+    getAllProduct()
   },[])
 
   useEffect(()=> {

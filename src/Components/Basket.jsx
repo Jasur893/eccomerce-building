@@ -51,12 +51,14 @@ export default function Basket() {
               <span className='text-[13px] sm:text-[20px]'>К оплате</span>
               <span className='text-orange-700 text-[13px] sm:text-[20px]'>{parseFloat(total).toFixed(2)} ₽</span>
             </div>
+            {!cart.length > 0 && <p className='text-green-600 mb-1'>выберите хотя бы один продукт</p>}
             <Link
-              to='/ordering'
+              to={`${cart.length > 0 ? '/ordering' : '/basket'}`}
               className='text-[10px] sm:text-[16px] px-2 py-1 no-underline rounded-md hover:bg-orange-800 bg-orange-700 text-white'
             >
               ПЕРЕЙТИ К ОФОРМЛЕНИЮ
             </Link>
+            
           </div>
         </div>
       </div>

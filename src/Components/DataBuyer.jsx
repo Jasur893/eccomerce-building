@@ -1,10 +1,38 @@
-import { useState } from 'react'
+import { doc, getDoc } from 'firebase/firestore';
+import { useEffect, useState, useContext } from 'react'
+import { AuthContext } from '../context/AuthContext';
+import { db } from '../FirebaseConfigs/firebaseConfig';
 
 export default function DataBuyer() {
+  const {userValue4} = useContext(AuthContext)
+  const userSession = userValue4
+
   const [surName, setSurName] = useState('')
   const [numberPhone, setnumberPhone] = useState('')
   const [firstName, setFirsName] = useState('')
   const [email, setEmail] = useState('')
+
+  useEffect(() => {
+    //get user data and paste data input 
+    if(userSession?.uid !== null) {
+      const getUserData = async() => {
+        const docRef = doc(db, "users", `${userSession?.uid}`);
+        const docSnap = await getDoc(docRef)
+        
+        if (docSnap.exists()) {
+          const dataUser = docSnap.data()
+          setSurName(dataUser.surName)
+          setFirsName(dataUser.firstName)
+          setnumberPhone(dataUser.numberPhone)
+          setEmail(dataUser.email)
+        } else {
+          console.log("No such document!");
+        }
+      }
+      getUserData()
+    }
+  },[userSession?.uid])
+
 
   return (
     <div className='grid grid-cols-2 gap-4 md:gap-14 mb-2'>
