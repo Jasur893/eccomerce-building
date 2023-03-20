@@ -4,7 +4,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 export default function PersonalArea() {
-  const [activeTab, setActivwTab] = useState('tab1')
+  const [activeTab, setActivwTab] = useState('tab2')
 
   const {userValue4, userValue2} = useContext(AuthContext)
   const userSession = userValue4
@@ -31,7 +31,7 @@ export default function PersonalArea() {
               </li>
               <li
                 onClick={() => setActivwTab('tab2')}
-                className={`${activeTab === 'tab2' ? 'activePA' : ''} cursor-pointer hover:text-orange-500 text-gray-100 p-2  no-underline`}
+                className={`${activeTab === 'tab2' ? 'text-orange-500' : ''} cursor-pointer hover:text-orange-500 text-gray-100 p-2  no-underline`}
               >
                 Личная информация
               </li>

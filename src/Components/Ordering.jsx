@@ -11,11 +11,7 @@ export default function Ordering() {
   const cart = value3;
   const total = value7;
 
-  console.log(cart);
-
   const handleShow = (e) => setShow( e.target.id )
-  console.log(show);
-
 
   const deliveryMoney = 950
 
@@ -28,6 +24,18 @@ export default function Ordering() {
       return tab2
     } else if(activeTabO === 'payment'){
       return tab3
+    }
+  }
+
+  function handleNext() {
+    console.log('clicked');
+    if(activeTabO === 'data-buyer'){
+      setActiveTabO('delivery')
+    } else if(activeTabO === 'delivery'){
+      setActiveTabO('payment')
+    } else if(activeTabO === 'payment'){
+      alert('Ваш заказ был получен')
+      return
     }
   }
 
@@ -66,9 +74,10 @@ export default function Ordering() {
 
             <div className='mt-3 mb-3'>
               <button
-                className='rounded-md py-2 px-4 text-[13px] sm:text-[16px] text-white bg-gray-900'
+                onClick={() => handleNext()}
+                className={`${activeTabO === 'payment' ? 'bg-orange-500' : 'bg-gray-900'}  rounded-md py-2 px-4 text-[13px] sm:text-[16px] text-white `}
               >
-                ДАЛЕЕ
+                {activeTabO === 'payment' ? 'ПОДТВЕРДИТЬ ЗАКАЗ' : 'ДАЛЕЕ'}
               </button>
             </div>
           </div>
