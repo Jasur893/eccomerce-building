@@ -34,8 +34,13 @@ export default function Ordering() {
     } else if(activeTabO === 'delivery'){
       setActiveTabO('payment')
     } else if(activeTabO === 'payment'){
-      alert('Ваш заказ был получен')
-      return
+      if(cart.length > 0){
+        alert('Ваш заказ был получен')
+        return
+      }else {
+        alert('у вас нет товаров')
+        return
+      }
     }
   }
 
