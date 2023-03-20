@@ -14,8 +14,8 @@ export default function PersonalArea() {
     <div className='bg-slate-100 pt-3'>
       <div className='container_content'>
         <div className=' relative'>
-          <h3 className='text-3xl'>Личный кабинет</h3>
-          <h6 className=''>Привет: {userSession?.email}</h6>
+          <h3 className='text-lg md:text-3xl'>Личный кабинет</h3>
+          <p className='mb-1 text-[13px] lg:text-base'>Привет: {userSession?.email}</p>
           <span onClick={() => handleLogOut()} className='absolute right-0 top-0 cursor-pointer hover:text-orange-500'>
             <i className="fa-solid fa-right-from-bracket"></i>
           </span>

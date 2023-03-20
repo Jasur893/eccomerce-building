@@ -30,7 +30,7 @@ export default function PersonalInformation() {
         
         if (docSnap.exists()) {
           const dataUser = docSnap.data()
-          console.log(dataUser)
+          // console.log(dataUser)
           setSurName(dataUser.surName)
           setFirsName(dataUser.firstName)
           setnumberPhone(dataUser.numberPhone)
@@ -211,7 +211,7 @@ export default function PersonalInformation() {
           type='button'
           onClick={setUserData}
           disabled={isLoading}
-          className={`${isLoading ? 'bg-gray-200' : 'bg-gray-600'} py-2 px-3 text-white rounded-md`}
+          className={`${isLoading ? 'bg-gray-200' : 'bg-gray-600'} text-[10px] md:text-base py-2 md:py-2 px-3 text-white rounded-md`}
         >
           СОХРАНИТЬ ИЗМЕНЕНИЯ
         </button>

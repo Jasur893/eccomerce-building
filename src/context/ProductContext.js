@@ -225,7 +225,29 @@ const ProductProvider = ({children}) => {
     // console.log('render decrementAmount');
   }
 
-  
+  //buyProducts
+  const handleBuyProducts = (delivery, deliveryMoney) => {
+    const newCartPayment = []
+    const totalPrice = total + delivery ? delivery : 0
+    const deliverService = deliveryMoney
+    const elemArr = [...cart]
+    if(cart) {
+      elemArr.map(item => {
+        const newItemObj = {
+          img: item.productImage,
+          title: item.productTittle,
+          price: item.price,
+          amount: item.amount,
+          sum: +item.price * item.amount,
+          
+        }
+        newCartPayment.push(newItemObj)
+      })
+    }else {
+      return cart
+    }
+    return {newCartPayment, totalPrice, deliverService}
+  }
 
   return <ProductContext.Provider value={{
       value1: productsAll,
@@ -237,6 +259,7 @@ const ProductProvider = ({children}) => {
       value7: total,
       value8: showFavorite,
       value9: hideFavorite,
+      value10: handleBuyProducts
       }}
     >
       {children}

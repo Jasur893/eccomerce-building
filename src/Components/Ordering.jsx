@@ -3,20 +3,29 @@ import Delivery from './Delivery'
 import Payment from './Payment'
 import { useContext, useState } from 'react'
 import { ProductContext } from '../context/ProductContext'
+import { AuthContext } from '../context/AuthContext'
+import { addDoc, collection} from 'firebase/firestore'
+import { db } from '../FirebaseConfigs/firebaseConfig'
+import moment from 'moment'
 
 export default function Ordering() {
   const [show, setShow] = useState('Доставка курьером')
   const [activeTabO, setActiveTabO] = useState('data-buyer')
-  const {value3, value7} = useContext(ProductContext);
+  const {userValue4} = useContext(AuthContext);
+  const {value3, value7, value10} = useContext(ProductContext);
   const cart = value3;
   const total = value7;
+  const handleBuyProducts = value10
 
   const handleShow = (e) => setShow( e.target.id )
-
   const deliveryMoney = 950
-
   const delivery = show === 'Доставка курьером' ? deliveryMoney : null;
+  const isDelivery = show === 'Доставка курьером' ? delivery : 0
 
+
+  let totalSum = parseFloat(total) + delivery
+
+  //handleTabsShow
   function handleShowComponent(tab1, tab2, tab3){
     if(activeTabO === 'data-buyer'){
       return tab1
@@ -27,8 +36,25 @@ export default function Ordering() {
     }
   }
 
+  //handleBuyProducts in useContext
+  const handleBuyProd = handleBuyProducts(totalSum, isDelivery)
+  //buy products and set DB 
+  const buyProducts = async() => {
+    await addDoc(collection(db, `user-buy-${userValue4?.uid}`), {
+      buyProduct: handleBuyProd,
+      created: moment().format('DD.MM.YYYY'),
+      order: new Date().getTime()
+    })
+    .then(() => {
+      console.log('ваши данные успешно установлены')
+    }).catch((error) => {
+      const errorEr = error.code
+      console.log(errorEr);
+    })
+  }
+
+  //button click
   function handleNext() {
-    console.log('clicked');
     if(activeTabO === 'data-buyer'){
       setActiveTabO('delivery')
     } else if(activeTabO === 'delivery'){
@@ -36,6 +62,7 @@ export default function Ordering() {
     } else if(activeTabO === 'payment'){
       if(cart.length > 0){
         alert('Ваш заказ был получен')
+        buyProducts()
         return
       }else {
         alert('у вас нет товаров')
