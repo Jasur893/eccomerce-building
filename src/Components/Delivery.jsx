@@ -15,6 +15,7 @@ export default function Delivery(props) {
   const [house, setHouse] = useState('')
   const [apartment, setApartment] = useState('')
   const [nextDeliveryDate, setNextDeliveryDate] = useState('')
+  // eslint-disable-next-line
   const [shippingAmount, setShippingAmount] = useState('')
 
   const deliverSum = props?.delivery

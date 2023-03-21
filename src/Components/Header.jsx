@@ -1,4 +1,3 @@
-import Nav from 'react-bootstrap/Nav'
 import { NavLink } from 'react-router-dom'
 import Logo from '../assets/logo.png'
 import { useContext } from 'react'
@@ -19,9 +18,9 @@ export default function Header() {
   const productAll = productsAll.filter(item => item.isLiked === true).length
 
   return (
-    <div className='fixed top-0 w-full drop-shadow-md z-50 headers ml-0 py-0 bg-dark'>
+    <div className='headers ml-0 py-0 bg-dark'>
       <div className='container_content flex  justify-between w-full'>
-        <Nav className='flex justify-between w-full'>
+        <div className='flex justify-between w-full'>
           <NavLink
             to='/#'
             className='flex justify-center items-center py-0'
@@ -79,7 +78,7 @@ export default function Header() {
               </NavLink>
             </div>
           </div>
-        </Nav>
+        </div>
       </div>
     </div>
   )

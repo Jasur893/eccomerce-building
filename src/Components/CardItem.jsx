@@ -11,7 +11,7 @@ export default function CardItem(props) {
   const removeFromCart = value4
   const showFavorite = value8
   const hideFavorite = value9
-  const {mark, id, productImage,productType, productTittle, price, isLiked} = props?.data
+  const {mark, id, productImage, productTittle, price, isLiked} = props?.data
 
   let className = 'setmark'
   if (props.data?.mark === 'Новинка') {
@@ -52,7 +52,7 @@ export default function CardItem(props) {
 
       <div className='p-2'>
         <Link
-          to={`/about-card/${id}/${productType}/*`}
+          to={`/about-card/${id}`}
           className='no-underline hover:text-orange-700 text-gray-900 text-sm mb-1'
         >
           <p className=' leading-[15px] mb-1'>

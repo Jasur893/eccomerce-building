@@ -188,3 +188,15 @@ div.scrollcards .card{
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06), 0px -10px 20px rgba(0, 0, 0, 0.06);
   z-index: 2;
 }
+
+@media (max-width: 895px) {
+  .search_panel{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .search_panel-w {
+    width: 100% !important;
+    margin-left: 0;
+  }
+}

@@ -232,6 +232,7 @@ const ProductProvider = ({children}) => {
     const deliverService = deliveryMoney
     const elemArr = [...cart]
     if(cart) {
+      // eslint-disable-next-line
       elemArr.map(item => {
         const newItemObj = {
           img: item.productImage,

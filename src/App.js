@@ -25,8 +25,8 @@ const  App = () => {
 
   return (
     <>
-      <Header/>
-      <div className='mt-14'></div>
+      <Header className='min-h-[56px]'/>
+      {/* <div className='h-[56px]'></div> */}
       <HeaderNav  />
         <div className='main__section content'>
           <Routes>
@@ -34,7 +34,7 @@ const  App = () => {
             <Route path='catalog/*' element={<CatalogContent/>}/>
             <Route path='catalog/:catalog1/:catalogId/:catlogName' element={<CatalogItems/>} />
             <Route path='favorites' element={<Favorites />} />
-            <Route path='/about-card/:nameId/:typeId/*' element={<AboutCardItem />} />
+            <Route path='/about-card/:nameId' element={<AboutCardItem />} />
             <Route path='/comparison/*' element={<ComparisonProduct/>} />
             <Route path='/news' element={<News />} />
             <Route path='/basket' element={<Basket/>} />

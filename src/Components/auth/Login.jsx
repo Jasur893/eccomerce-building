@@ -11,6 +11,7 @@ export default function Login() {
   const [email, setEmail] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
+  // eslint-disable-next-line
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 

@@ -64,7 +64,7 @@ export default function HistoryOfOrders() {
                 <div className='border-t-2 flex justify-between items-center pt-2'>
                   <p className='mb-0 text-[11px] sm:text-base' >Итого:</p>
                   <div>
-                    <span className={`${item.buyProduct.deliverService ? 'text-green-400' : 'text-gray-400'} pr-2 text-[10px] sm:text-[12px] `}>доставка {item.buyProduct.deliverService} ₽</span>
+                    <span className={`${item.buyProduct.deliverService ? 'text-green-400' : 'text-gray-400'} pr-2 text-[10px] sm:text-[12px] `}>+ доставка {item.buyProduct.deliverService} ₽</span>
                     <span className='text-[14px] sm:text-base'>{item.buyProduct.totalPrice} ₽</span>
 
                   </div>

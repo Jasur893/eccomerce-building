@@ -10,6 +10,7 @@ export default function SignUp() {
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
+  // eslint-disable-next-line
   const [successMsg, setSuccessMsg] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()

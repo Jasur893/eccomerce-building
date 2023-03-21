@@ -1,13 +1,13 @@
-import { NavLink, Route, Routes, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import CardCharacteristic from './CardCharacteristic'
-import CardDelivery from './CardDelivery'
 import CardDescription from './CardDescription'
 import CardReview from './CardReview'
 import Loader from './Loader'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ProductContext } from '../context/ProductContext'
 
 export default function AboutCardItem() {
+  const [activeTab, setActivwTab] = useState('tab1')
   const {value1, value2, value3, value8, value9} = useContext(ProductContext);
   const productsAll = value1
   const addToCart = value2;
@@ -18,14 +18,19 @@ export default function AboutCardItem() {
 
   const productItem = productsAll.find(item => item.id === nameId)
 
-  const navLinkStyle = ({ isActive }) => {
-    return {
-      color: isActive ? '#000' : undefined,
+  const cartShowAdd = cart.find(item => item.id === nameId)
+  const cartIsAdd = !cartShowAdd ? cartShowAdd :  Object(cartShowAdd).isAdded
+
+  const handleShowTab = () => {
+    if(activeTab === 'tab1'){
+      return <CardDescription product={productItem?.description} />
+    } else if(activeTab === 'tab2'){
+      return <CardCharacteristic product={productItem?.brand} />
+    } else if(activeTab === 'tab3') {
+      return <CardReview />
     }
   }
 
-  const cartShowAdd = cart.find(item => item.id === nameId)
-  const cartIsAdd = !cartShowAdd ? cartShowAdd :  Object(cartShowAdd).isAdded
 
   return (
     <div className='pt-3 pb-3 bg-slate-100'>
@@ -49,9 +54,6 @@ export default function AboutCardItem() {
                   <span className='text-2xl font-semibold pr-2'>
                     {productItem?.price} ₽
                   </span>
-                  {/* <span className='text-base line-through text-gray-300 pr-6'>
-                    720 ₽
-                  </span> */}
                   <div className='flex justify-start align-center gap-3 pt-3'>
                     <span onClick={() => addToCart(productItem, nameId)} 
                       className={`${cartIsAdd ? 'bg-green-600' : 'bg-orange-700'} cursor-pointer py-2 px-3  rounded-md text-white`}>
@@ -78,44 +80,29 @@ export default function AboutCardItem() {
               </div>
 
               <div>
-                <div className='pl-3 py-3 flex justify-start align-center flex-wrap gap-3 sm:gap-4'>
-                  <NavLink
-                    to='opisaniye'
-                    style={navLinkStyle}
-                    className='hover:text-black no-underline text-[17px] sm:text-xl text-gray-400'
+                <ul className='pl-3 py-3 flex justify-start align-center flex-wrap gap-3 sm:gap-4'>
+                  <li
+                    onClick={() => setActivwTab('tab1')}
+                    className={`${activeTab === 'tab1' ? 'text-gray-900' : ''} cursor-pointer hover:text-black no-underline text-[17px] sm:text-xl text-gray-400`}
                   >
                     Описание
-                  </NavLink>
-                  <NavLink
-                    to='xarakteristika'
-                    style={navLinkStyle}
-                    className='hover:text-black no-underline text-[17px] sm:text-xl text-gray-400'
+                  </li>
+                  <li
+                    onClick={() => setActivwTab('tab2')}
+                    className={`${activeTab === 'tab2' ? 'text-gray-900' : ''} cursor-pointer hover:text-black no-underline text-[17px] sm:text-xl text-gray-400`}
                   >
                     Характеристики
-                  </NavLink>
-                  <NavLink
-                    to='dostavka'
-                    style={navLinkStyle}
-                    className='hover:text-black no-underline text-[17px] sm:text-xl text-gray-400'
-                  >
-                    Доставка
-                  </NavLink>
-                  <NavLink
-                    to='otziv'
-                    style={navLinkStyle}
-                    className='hover:text-black no-underline text-[17px] sm:text-xl text-gray-400'
+                  </li>
+                  <li
+                    onClick={() => setActivwTab('tab3')}
+                    className={`${activeTab === 'tab3' ? 'text-gray-900' : ''} cursor-pointer hover:text-black no-underline text-[17px] sm:text-xl text-gray-400`}
                   >
                     Отзывы
-                  </NavLink>
-                </div>
+                  </li>
+                </ul>
 
                 <div className='pl-3 py-4'>
-                  <Routes>
-                    <Route index path='opisaniye' element={<CardDescription product={productItem?.description} />}/>
-                    <Route path='xarakteristika' element={<CardCharacteristic product={productItem?.brand} />}/>
-                    <Route path='dostavka' element={<CardDelivery />} />
-                    <Route path='otziv' element={<CardReview />} />
-                  </Routes>
+                  {handleShowTab()}
                 </div>
               </div>
             </>
