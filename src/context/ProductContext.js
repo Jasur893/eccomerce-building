@@ -132,36 +132,19 @@ const ProductProvider = ({children}) => {
     // console.log('render addtocart');
   },[cart])
 
-  // const addToCartReverse = (productItem, id) => {
-  //   const newItem = {...productItem, isAdded: false}
-  //   const cartItem = cart.find((item) => item.id === id)
-  //   if(cartItem) {
-  //     const newCart = [...cart].map((item) => {
-  //       if(item.id === id) {
-  //         return {...item, isAdded: false}
-  //       } else {
-  //         return item
-  //       }
-  //     });
-  //     setCart(newCart)
-  //   } else {
-  //     setCart([...cart, newItem])
-  //   }
-  // }
-
   const showFavorite = useCallback((idItem) => {
-    // const newItemlike = {...prodItem, isLiked: true}
-    const cartItemLike = productsAll.find((item) => item.id === idItem)
-    if(cartItemLike){
-      const newItemlike = [...productsAll].map((item) => {
-        if(item.id === idItem){
-          return {...item,  isLiked: true}
-        } else {
-          return item
-        }
-      });
-      setProductsALL(newItemlike)
-    }
+  // const newItemlike = {...prodItem, isLiked: true}
+  const cartItemLike = productsAll.find((item) => item.id === idItem)
+  if(cartItemLike){
+    const newItemlike = [...productsAll].map((item) => {
+      if(item.id === idItem){
+        return {...item,  isLiked: true}
+      } else {
+        return item
+      }
+    });
+    setProductsALL(newItemlike)
+  }
     // console.log('render showFavorite');
   },[productsAll])
 
@@ -240,7 +223,6 @@ const ProductProvider = ({children}) => {
           price: item.price,
           amount: item.amount,
           sum: +item.price * item.amount,
-          
         }
         newCartPayment.push(newItemObj)
       })

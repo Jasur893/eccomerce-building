@@ -37,15 +37,15 @@ export default function HeaderNav() {
               </NavLink>
               <NavLink
                 style={({ isActive }) => isActive ? activeStyle : undefined}
-                to='/promotion'
+                to='/stock'
                 className='border-[1px] border-black rounded-md transition duration-700 hover:border-orange-700 no-underline'>
                 <div className='p-2 text-white'>Акции</div>
               </NavLink>
               <NavLink
                 style={({ isActive }) => isActive ? activeStyle : undefined}
-                to='/hit-season'
+                to='/new'
                 className='border-[1px] border-black rounded-md transition duration-700 hover:border-orange-700  no-underline'>
-                <div className='p-2 text-white'>Хиты сезона</div>
+                <div className='p-2 text-white'>Новинки</div>
               </NavLink>
               <div className='p-2'>
                 <div className=''>

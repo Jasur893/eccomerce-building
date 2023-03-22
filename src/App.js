@@ -18,6 +18,8 @@ import Login from './Components/auth/Login'
 import SignUp from './Components/auth/SignUp'
 import { useContext } from 'react'
 import { AuthContext } from './context/AuthContext'
+import New from './Components/New'
+import Stock from './Components/Stock'
 
 
 const  App = () => {
@@ -39,6 +41,8 @@ const  App = () => {
             <Route path='/news' element={<News />} />
             <Route path='/basket' element={<Basket/>} />
             <Route path='/ordering/*' element={<Ordering />} />
+            <Route path='/new' element={<New />} />
+            <Route path='/stock' element={<Stock />} />
             {userValue4?.uid !== null ? (
               <Route path='/lichniy-kabinet/*' element={<PersonalArea/>}/>
             ): (

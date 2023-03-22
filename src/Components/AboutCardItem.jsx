@@ -21,13 +21,14 @@ export default function AboutCardItem() {
   const cartShowAdd = cart.find(item => item.id === nameId)
   const cartIsAdd = !cartShowAdd ? cartShowAdd :  Object(cartShowAdd).isAdded
 
+  //handleShowTab
   const handleShowTab = () => {
     if(activeTab === 'tab1'){
       return <CardDescription product={productItem?.description} />
     } else if(activeTab === 'tab2'){
       return <CardCharacteristic product={productItem?.brand} />
     } else if(activeTab === 'tab3') {
-      return <CardReview />
+      return <CardReview nameId={nameId} />
     }
   }
 
@@ -101,7 +102,7 @@ export default function AboutCardItem() {
                   </li>
                 </ul>
 
-                <div className='pl-3 py-4'>
+                <div className='px-3 py-4 h-full'>
                   {handleShowTab()}
                 </div>
               </div>
