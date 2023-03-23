@@ -17,7 +17,7 @@ export default function AboutCardItem() {
   const { nameId} = useParams()
 
   const productItem = productsAll.find(item => item.id === nameId)
-
+  
   const cartShowAdd = cart.find(item => item.id === nameId)
   const cartIsAdd = !cartShowAdd ? cartShowAdd :  Object(cartShowAdd).isAdded
 
@@ -26,7 +26,7 @@ export default function AboutCardItem() {
     if(activeTab === 'tab1'){
       return <CardDescription product={productItem?.description} />
     } else if(activeTab === 'tab2'){
-      return <CardCharacteristic product={productItem?.brand} />
+      return <CardCharacteristic characteristic={productItem?.characteristic} />
     } else if(activeTab === 'tab3') {
       return <CardReview nameId={nameId} />
     }
@@ -50,6 +50,7 @@ export default function AboutCardItem() {
                 </div>
                 <div className='px-2'>
                   <p className='pt-2 text-3xl'>{productItem?.productTittle}</p>
+                  <p className='text-base'>Бренд : <span className='font-semibold font-mono text-lg'>{productItem?.brand}</span></p>
                   <p className='text-[14px] text-green-300'>В наличии</p>
                   <p className='w-[70%]'>{productItem?.description}</p>
                   <span className='text-2xl font-semibold pr-2'>

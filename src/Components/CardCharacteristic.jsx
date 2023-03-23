@@ -1,12 +1,20 @@
 export default function CardCharacteristic(props) {
   return (
-    <div>
-      <p className='mb-1 font-semibold'>Бренд: <span className='pl-5 font-normal'>{props.product}</span></p>
-      <p className='mb-1 font-semibold'>Расход: <span className='pl-5 font-normal'>от 0,15 до 0,18 кг/м2</span></p>
-      <p className='mb-1 font-semibold'>Назначение: <span className='pl-5 font-normal'>Для деревьев</span></p>
-      <p className='mb-1 font-semibold'>Тип работ : <span className='pl-5 font-normal'>Наружное</span></p>
-      <p className='mb-1 font-semibold'>Упаковка: <span className='pl-5 font-normal'>Ведро</span></p>
-      <p className='mb-1 font-semibold'>Время высыхания: <span className='pl-5 font-normal'>1ч</span></p>
-    </div>
+    <table>
+      <tbody>
+        <tr className=''>
+        <td className='pr-4'>
+          {Object.keys(props.characteristic).map((item, idx) => (
+            <p className='mb-0 font-semibold' key={idx}>{item}: </p>
+          ))}
+        </td>
+        <td className=''>
+          {Object.values(props.characteristic).map((item, idx) => (
+            <p className='mb-0' key={idx}>{item}</p>
+          ))}
+        </td>
+        </tr>
+    </tbody>
+    </table>
   )
 }
