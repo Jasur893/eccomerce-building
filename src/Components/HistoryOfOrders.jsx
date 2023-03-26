@@ -23,9 +23,6 @@ export default function HistoryOfOrders() {
     getAllOreders()
   },[userValue4?.uid])
 
-  console.log(orders);
-
-
   return (
     <div>
       <div>
