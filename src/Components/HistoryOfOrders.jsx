@@ -69,7 +69,7 @@ export default function HistoryOfOrders() {
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
-        ))}
+        )).reverse()}
        </div>
       ) : (
         <div className='text-center'>

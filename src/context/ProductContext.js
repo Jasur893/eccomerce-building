@@ -1,13 +1,18 @@
-import React, { useCallback, useEffect, useState} from 'react'
+import React, {useEffect, useReducer} from 'react'
+import { reducer } from '../redux/reducer'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../FirebaseConfigs/firebaseConfig'
 
 export const ProductContext = React.createContext()
 
+const initialState = {
+  productsAll: [],
+  cart: [],
+  total: 0
+}
+
 const ProductProvider = ({children}) => {
-  const [productsAll, setProductsALL] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [value, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
     const getAllProduct = async() => {
@@ -108,113 +113,51 @@ const ProductProvider = ({children}) => {
   },[])
 
   useEffect(()=> {
-    const total = cart.reduce((accumulator, currentItem)=> {
+    const total = value.cart.reduce((accumulator, currentItem)=> {
       return accumulator + currentItem.price * currentItem.amount
     }, 0)
     setTotal(total)
-  },[cart]) 
+  },[value.cart])
 
-  const addToCart = useCallback((productItem, id) => {
-    const newItem = {...productItem, amount: 1, isAdded: true}
-    const cartItem = cart.find((item) => item.id === id)
-    if(cartItem) {
-      const newCart = [...cart].map((item) => {
-        if(item.id === id) {
-          return {...item, isAdded: true}
-        } else {
-          return item
-        }
-      });
-      setCart(newCart)
-    } else {
-      setCart([...cart, newItem])
-    }
-    // console.log('render addtocart');
-  },[cart])
-
-  const showFavorite = useCallback((idItem) => {
-  // const newItemlike = {...prodItem, isLiked: true}
-  const cartItemLike = productsAll.find((item) => item.id === idItem)
-  if(cartItemLike){
-    const newItemlike = [...productsAll].map((item) => {
-      if(item.id === idItem){
-        return {...item,  isLiked: true}
-      } else {
-        return item
-      }
-    });
-    setProductsALL(newItemlike)
+  function setProductsALL(data) {
+    dispatch({type: 'SET_PRODUCTS_ALL', payload: data})
   }
-    // console.log('render showFavorite');
-  },[productsAll])
+
+  function setTotal(sum) {
+    dispatch({type: 'SET_TOTAL', payload: sum})
+  }
+  
+  const addToCart = (productItem, itemId) => {
+    dispatch({type: 'ADD_TO_CART', payload: {prodItem: productItem, id: itemId}})
+  }
+
+  const removeFromCart = (itemId) => {
+    dispatch({type: 'REMOVE_FROM_CART', payload: {id: itemId}})
+  }
+
+  const incrementAmount = (productItem, itemId) => {
+    dispatch({type: 'INCREMENT_AMOUNT', payload: {prodItem: productItem, id: itemId}})
+  }
+
+  const decrementAmount = (itemId) => {
+    dispatch({type: 'DECREMENT_AMOUNT', payload: {id: itemId}})
+  }
+
+  const showFavorite = (idItem) => {
+    dispatch({type: 'SHOW_FAVORITE', payload: {id: idItem}})
+  }
 
   const hideFavorite = (idItem) => {
-    // const newItemlike = {...prodItem, isLiked: false}
-    const cartItemLike = productsAll.find((item) => item.id === idItem)
-    if(cartItemLike){
-      const newItemlike = [...productsAll].map((item) => {
-        if(item.id === idItem){
-          return {...item,  isLiked: false}
-        } else {
-          return item
-        }
-      });
-      setProductsALL(newItemlike)
-      // console.log('render hideFavorite');
-    }
-  }
-
-  const removeFromCart = (id) => {
-    const newCart = cart.filter((item)=> item.id !== id)
-
-    setCart(newCart)
-    // console.log('render removeFromCart');
-  }
-
-  const incrementAmount = (productItem, id) => {
-    const newItem = {...productItem, amount: 1}
-    const cartItem = cart.find(item => item.id === id);
-    // addToIncrement(cartItem, id)
-    if(cartItem) {
-      const newCart = [...cart].map((item) => {
-        if(item.id === id) {
-          return {...item, amount: cartItem.amount + 1}
-        } else {
-          return item
-        }
-      });
-      setCart(newCart)
-    } else {
-      setCart([...cart, newItem])
-    }
-    // console.log('render incrementAmount');
-  }
-
-  const decrementAmount = (id) => {
-    const cartItem = cart.find(item => item.id === id)
-    if(cartItem){
-      const newCart = cart.map(item => {
-        if(item.id === id){
-          return {...item, amount: cartItem.amount -1}
-        }else {
-          return item;
-        }
-      });
-      setCart(newCart);
-    }
-    if(cartItem.amount < 2){
-      removeFromCart(id)
-    }
-    // console.log('render decrementAmount');
+    dispatch({type: 'HIDE_FAVORITE', payload: {id: idItem}})
   }
 
   //buyProducts
   const handleBuyProducts = (delivery, deliveryMoney) => {
     const newCartPayment = []
-    const totalPrice = total + delivery ? delivery : 0
+    const totalPrice = value.total + delivery ? delivery : 0
     const deliverService = deliveryMoney
-    const elemArr = [...cart]
-    if(cart) {
+    const elemArr = [...value.cart]
+    if(value.cart) {
       // eslint-disable-next-line
       elemArr.map(item => {
         const newItemObj = {
@@ -227,19 +170,19 @@ const ProductProvider = ({children}) => {
         newCartPayment.push(newItemObj)
       })
     }else {
-      return cart
+      return value.cart
     }
     return {newCartPayment, totalPrice, deliverService}
   }
 
   return <ProductContext.Provider value={{
-      value1: productsAll,
+      value1: value.productsAll,
       value2: addToCart,
-      value3: cart,
+      value3: value.cart,
       value4: removeFromCart,
       value5: incrementAmount,
       value6: decrementAmount,
-      value7: total,
+      value7: value.total,
       value8: showFavorite,
       value9: hideFavorite,
       value10: handleBuyProducts
