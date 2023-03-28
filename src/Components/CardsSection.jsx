@@ -4,13 +4,11 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Scrollbar, A11y } from 'swiper'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { useContext } from 'react'
-import { ProductContext } from '../context/ProductContext'
 import Loader from './Loader';
+import { useSelector } from 'react-redux';
 
 export default function CardsSection(props) {
-  const {value1} = useContext(ProductContext)
-  const productsAll = value1;
+  const productsAll = useSelector((state) => state.productsAll)
   const prevRef = React.useRef(null);
   const nextRef = React.useRef(null);
 

@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom'
 import BasketItem from './BasketItem'
 import { useContext } from 'react'
-import { ProductContext } from '../context/ProductContext'
 import { AuthContext } from '../context/AuthContext'
+import { useSelector } from 'react-redux'
 
 export default function Basket() {
+  const cart = useSelector((state) => state.cart)
+  const total = useSelector((state) => state.total)
   const {userValue4} = useContext(AuthContext);
-  const {value3, value7} = useContext(ProductContext);
-  const cart = value3;
-  const total = value7;
-
+  
   return (
     <div className='bg-slate-100 pt-3'>
       <div className='container_content'>

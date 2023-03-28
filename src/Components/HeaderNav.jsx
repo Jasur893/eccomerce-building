@@ -1,12 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import SearchPanel  from './SearchPanel'
-import { useContext } from 'react';
-import { ProductContext } from '../context/ProductContext';
 import { Navbar } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 export default function HeaderNav() {
-  const {value1} = useContext(ProductContext)
-  const productsAll = value1
+  const productsAll = useSelector((state) => state.productsAll)
  
   let activeStyle = {
     border: '1px solid #F05A00',

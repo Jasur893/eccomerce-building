@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import {collection, getDocs, query, where, doc, updateDoc, addDoc} from 'firebase/firestore'
+import { useState } from 'react'
+import {collection, addDoc} from 'firebase/firestore'
 import {getDownloadURL, ref, uploadBytes} from 'firebase/storage'
 import { db, storage } from '../FirebaseConfigs/firebaseConfig'
 

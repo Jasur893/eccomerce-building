@@ -1,10 +1,8 @@
-import { useContext } from 'react'
-import { ProductContext } from '../context/ProductContext'
+import { useSelector } from 'react-redux'
 import CardItem from './CardItem'
 
 export default function Favorites() {
-  const {value1} = useContext(ProductContext)
-  const productsAll = value1
+  const productsAll = useSelector((state) => state.productsAll)
 
   const productAll = productsAll.filter(item => item.isLiked === true).map(item => (
     <CardItem key={item.id} data={item}/>

@@ -1,20 +1,18 @@
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import CardCharacteristic from './CardCharacteristic'
 import CardDescription from './CardDescription'
 import CardReview from './CardReview'
 import Loader from './Loader'
-import { useContext, useState } from 'react'
-import { ProductContext } from '../context/ProductContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart, hideFavorite, showFavorite } from '../redux/actions'
 
 export default function AboutCardItem() {
-  const [activeTab, setActivwTab] = useState('tab1')
-  const {value1, value2, value3, value8, value9} = useContext(ProductContext);
-  const productsAll = value1
-  const addToCart = value2;
-  const cart = value3
-  const showFavorite = value8
-  const hideFavorite = value9
+  const productsAll = useSelector((state) => state.productsAll)
+  const cart = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
   const { nameId} = useParams()
+  const [activeTab, setActivwTab] = useState('tab1')
 
   const productItem = productsAll.find(item => item.id === nameId)
   
@@ -57,7 +55,7 @@ export default function AboutCardItem() {
                     {productItem?.price} ₽
                   </span>
                   <div className='flex justify-start align-center gap-3 pt-3'>
-                    <span onClick={() => addToCart(productItem, nameId)} 
+                    <span onClick={() => dispatch(addToCart(productItem, nameId))} 
                       className={`${cartIsAdd ? 'bg-green-600' : 'bg-orange-700'} cursor-pointer py-2 px-3  rounded-md text-white`}>
                       В КОРЗИНУ
                     </span>
@@ -68,7 +66,7 @@ export default function AboutCardItem() {
                       <div className='relative w-[16px] h-[16px]'>
                         <span
                           className='absolute top-0 right-0 left-0 w-[18px] h-[18px] cursor-pointer'
-                          onClick={() => !productItem.isLiked ? showFavorite(nameId) : hideFavorite(nameId) }
+                          onClick={() => !productItem.isLiked ? dispatch(showFavorite(nameId)) : dispatch(hideFavorite(nameId))}
                         ></span>
                         {productItem.isLiked ? (
                           <i className='text-[18px] text-red-500 fa-solid fa-heart'></i>

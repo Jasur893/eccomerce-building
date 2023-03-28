@@ -1,16 +1,12 @@
 import Card from 'react-bootstrap/Card'
 import CaruselCards from './CaruselCards'
 import { Link } from 'react-router-dom'
-import { useContext } from 'react'
-import { ProductContext } from '../context/ProductContext'
+import { useSelector, useDispatch } from 'react-redux'
+import { addToCart, removeFromCart, showFavorite, hideFavorite } from '../redux/actions'
 
 export default function CardItem(props) {
-  const { value2, value3, value4, value8, value9 } = useContext(ProductContext)
-  const addToCart = value2
-  const cart = value3
-  const removeFromCart = value4
-  const showFavorite = value8
-  const hideFavorite = value9
+  const cart = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
   const {mark, id, productImage, productTittle, price, isLiked} = props?.data
 
   let className = 'setmark'
@@ -37,7 +33,7 @@ export default function CardItem(props) {
           <div className='relative w-[16px] h-[16px]'>
             <span
               className='absolute top-0 right-0 left-0 w-[18px] h-[18px] cursor-pointer'
-              onClick={() => (!isLiked ? showFavorite(id) : hideFavorite(id))}
+              onClick={() => (!isLiked ? dispatch(showFavorite(id)) : dispatch(hideFavorite(id)))}
             ></span>
             {isLiked ? (
               <i className='text-[18px] text-red-500 fa-solid fa-heart'></i>
@@ -69,7 +65,7 @@ export default function CardItem(props) {
               <i className='fa-solid fa-check'></i> в наличии
             </span>
             <div
-              onClick={() => !cartIsAdd ? addToCart(props?.data, id) :  removeFromCart(id)}
+              onClick={() => !cartIsAdd ? dispatch(addToCart(props?.data, id)) :  dispatch(removeFromCart(id))}
               className={`${cartIsAdd ? 'bg-orange-700' : 'bg-white'} absolute bottom-0 right-0 border-orange-700 border-2 rounded-br-md flex justify-center align-center p-1 lg:p-2 text-xs cursor-pointer`}
             >
               {cartIsAdd ? (

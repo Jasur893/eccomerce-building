@@ -3,13 +3,11 @@ import Tabs from 'react-bootstrap/Tabs'
 import FilterNew from './FilterNew'
 import FilterStock from './FilterStock'
 import FilterHitSale from './FilterHitSale'
-import { useContext } from 'react'
-import {ProductContext} from '../context/ProductContext'
+import { useSelector } from 'react-redux'
 
  
 export default function FilterSlider() {
-  const {value1} = useContext(ProductContext)
-  const productsAll = value1
+  const productsAll = useSelector((state) => state.productsAll)
 
   return (
       <div className='bg-black'>

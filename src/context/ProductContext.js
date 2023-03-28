@@ -1,18 +1,17 @@
-import React, {useEffect, useReducer} from 'react'
-import { reducer } from '../redux/reducer'
+import React, {useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../FirebaseConfigs/firebaseConfig'
+import { setProductsALL, setTotal } from '../redux/actions'
 
 export const ProductContext = React.createContext()
 
-const initialState = {
-  productsAll: [],
-  cart: [],
-  total: 0
-}
-
 const ProductProvider = ({children}) => {
-  const [value, dispatch] = useReducer(reducer, initialState)
+  // const [value, dispatch] = useReducer(reducer, initialState)
+  const cart = useSelector((state) => state.cart)
+  const total = useSelector((state) => state.total)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const getAllProduct = async() => {
@@ -107,57 +106,25 @@ const ProductProvider = ({children}) => {
       .catch((error)=> {
         console.log(error.message);
       })
-      setProductsALL(productsArray)
+      dispatch(setProductsALL(productsArray))
     }
     getAllProduct()
-  },[])
+  },[dispatch])
 
   useEffect(()=> {
-    const total = value.cart.reduce((accumulator, currentItem)=> {
+    const total = cart.reduce((accumulator, currentItem)=> {
       return accumulator + currentItem.price * currentItem.amount
     }, 0)
-    setTotal(total)
-  },[value.cart])
-
-  function setProductsALL(data) {
-    dispatch({type: 'SET_PRODUCTS_ALL', payload: data})
-  }
-
-  function setTotal(sum) {
-    dispatch({type: 'SET_TOTAL', payload: sum})
-  }
-  
-  const addToCart = (productItem, itemId) => {
-    dispatch({type: 'ADD_TO_CART', payload: {prodItem: productItem, id: itemId}})
-  }
-
-  const removeFromCart = (itemId) => {
-    dispatch({type: 'REMOVE_FROM_CART', payload: {id: itemId}})
-  }
-
-  const incrementAmount = (productItem, itemId) => {
-    dispatch({type: 'INCREMENT_AMOUNT', payload: {prodItem: productItem, id: itemId}})
-  }
-
-  const decrementAmount = (itemId) => {
-    dispatch({type: 'DECREMENT_AMOUNT', payload: {id: itemId}})
-  }
-
-  const showFavorite = (idItem) => {
-    dispatch({type: 'SHOW_FAVORITE', payload: {id: idItem}})
-  }
-
-  const hideFavorite = (idItem) => {
-    dispatch({type: 'HIDE_FAVORITE', payload: {id: idItem}})
-  }
+    dispatch(setTotal(total))
+  },[cart, dispatch])
 
   //buyProducts
   const handleBuyProducts = (delivery, deliveryMoney) => {
     const newCartPayment = []
-    const totalPrice = value.total + delivery ? delivery : 0
+    const totalPrice = total + delivery ? delivery : 0
     const deliverService = deliveryMoney
-    const elemArr = [...value.cart]
-    if(value.cart) {
+    const elemArr = [...cart]
+    if(cart) {
       // eslint-disable-next-line
       elemArr.map(item => {
         const newItemObj = {
@@ -170,25 +137,16 @@ const ProductProvider = ({children}) => {
         newCartPayment.push(newItemObj)
       })
     }else {
-      return value.cart
+      return cart
     }
     return {newCartPayment, totalPrice, deliverService}
   }
 
   return <ProductContext.Provider value={{
-      value1: value.productsAll,
-      value2: addToCart,
-      value3: value.cart,
-      value4: removeFromCart,
-      value5: incrementAmount,
-      value6: decrementAmount,
-      value7: value.total,
-      value8: showFavorite,
-      value9: hideFavorite,
-      value10: handleBuyProducts
-      }}
-    >
-      {children}
+      value1: handleBuyProducts
+    }}
+  >
+    {children}
   </ProductContext.Provider>
 }
 

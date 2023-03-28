@@ -4,16 +4,13 @@ import { NavDropdown } from 'react-bootstrap'
 import { getcatalogNames } from '../catalogApi'
 import AccardionCatalogs from './AccardionCatalogs'
 import CardItem from './CardItem'
-import { useContext } from 'react'
-import { ProductContext } from '../context/ProductContext'
 import Loader from './Loader'
+import { useSelector } from 'react-redux'
 
 export default function CatalogItems() {
-  const {value1} = useContext(ProductContext)
-  const productsAll = value1;
+  const productsAll = useSelector((state) => state.productsAll)
   const { catlogName } = useParams()
   const catalog = getcatalogNames()
-  // const [products, setProducts] = useState([])
   const [active, setActive] = useState(null)
 
   let activeStyle = {

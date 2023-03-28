@@ -1,21 +1,22 @@
+import { useContext, useState } from 'react'
 import DataBuyer from './DataBuyer'
 import Delivery from './Delivery'
 import Payment from './Payment'
-import { useContext, useState } from 'react'
 import { ProductContext } from '../context/ProductContext'
 import { AuthContext } from '../context/AuthContext'
 import { addDoc, collection} from 'firebase/firestore'
 import { db } from '../FirebaseConfigs/firebaseConfig'
 import moment from 'moment'
+import { useSelector } from 'react-redux'
 
 export default function Ordering() {
+  const cart = useSelector((state) => state.cart)
+  const total = useSelector((state) => state.total)
   const [show, setShow] = useState('Доставка курьером')
   const [activeTabO, setActiveTabO] = useState('data-buyer')
   const {userValue4} = useContext(AuthContext);
-  const {value3, value7, value10} = useContext(ProductContext);
-  const cart = value3;
-  const total = value7;
-  const handleBuyProducts = value10
+  const {value1} = useContext(ProductContext);
+  const handleBuyProducts = value1
 
   const handleShow = (e) => setShow( e.target.id )
   const deliveryMoney = 950
