@@ -1,12 +1,10 @@
-import { useState, useContext } from 'react'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../context/AuthContext'
+import { auth } from '../../FirebaseConfigs/firebaseConfig'
 import {startSession} from '../../session'
 
-
 export default function Login() {
-  const {userValue3} = useContext(AuthContext)
-  const logIn = userValue3
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
@@ -14,6 +12,10 @@ export default function Login() {
   // eslint-disable-next-line
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+
+  const logIn = async(email, password) => {
+    return signInWithEmailAndPassword(auth ,email,password)
+  }
 
   const handleLogin = async(e) => {
     e.preventDefault()

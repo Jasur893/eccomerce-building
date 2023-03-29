@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom'
 import BasketItem from './BasketItem'
-import { useContext } from 'react'
-import { AuthContext } from '../context/AuthContext'
 import { useSelector } from 'react-redux'
 
 export default function Basket() {
   const cart = useSelector((state) => state.cart)
   const total = useSelector((state) => state.total)
-  const {userValue4} = useContext(AuthContext);
+  const userSession = useSelector((state) => state.userSession)
   
   return (
     <div className='bg-slate-100 pt-3'>
@@ -52,10 +50,10 @@ export default function Basket() {
               <span className='text-[13px] sm:text-[20px]'>К оплате</span>
               <span className='text-orange-700 text-[13px] sm:text-[20px]'>{parseFloat(total).toFixed(2)} ₽</span>
             </div>
-            {userValue4?.uid !== null ?  null  : <p className='text-red-500 mb-1 text-[12px] md:text-base'>у вас нет аккаунта!</p>}
+            {userSession?.uid !== null ?  null  : <p className='text-red-500 mb-1 text-[12px] md:text-base'>у вас нет аккаунта!</p>}
             {!cart.length > 0 && <p className='text-green-600 mb-1 text-[12px] md:text-base'>выберите хотя бы один продукт</p>}
             <Link
-              to={`${cart.length > 0 && userValue4?.uid !== null ? '/ordering' : '/basket'}`}
+              to={`${cart.length > 0 && userSession?.uid !== null ? '/ordering' : '/basket'}`}
               className='text-[10px] sm:text-[16px] px-2 py-1 no-underline rounded-md hover:bg-orange-800 bg-orange-700 text-white'
             >
               ПЕРЕЙТИ К ОФОРМЛЕНИЮ

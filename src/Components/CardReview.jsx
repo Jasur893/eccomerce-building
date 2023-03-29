@@ -1,11 +1,11 @@
 import { addDoc, collection, getDocs } from 'firebase/firestore'
-import { useState, useContext, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { db } from '../FirebaseConfigs/firebaseConfig'
 import ReviewItem from './ReviewItem'
-import { AuthContext } from '../context/AuthContext'
+import { useSelector } from 'react-redux'
 
 export default function CardReview({nameId}) {
-  const {userValue4} = useContext(AuthContext)
+  const userSession = useSelector((state) => state.userSession)
   const [reviews, setReviews] = useState([])
   const [userName, setUserName] = useState('')
   const [comment, setComment] = useState('')
@@ -32,7 +32,6 @@ export default function CardReview({nameId}) {
     getAllComments()
   },[nameId])
 
-
   //add comment
   const addComment = async() => {
     setIsLoading(true)
@@ -58,9 +57,6 @@ export default function CardReview({nameId}) {
         
   }
 
-
-
-
   return (
     <div className='relative'>
       <div className='min-h-[280px]'>
@@ -69,10 +65,10 @@ export default function CardReview({nameId}) {
       </div>
       </div>
       <div className='text-center mt-3 '>
-        {userValue4?.uid ? null : <p className='mb-0 text-green-400'>вы должны войти в систему</p> }
+        {userSession?.uid ? null : <p className='mb-0 text-green-400'>вы должны войти в систему</p> }
         <button
           onClick={handleShow}
-          disabled={userValue4?.uid ? false : true}
+          disabled={userSession?.uid ? false : true}
           className='hover:bg-orange-800 bg-orange-700 text-white rounded-md py-2 px-3'
         >
           ОСТАВИТЬ ОТЗЫВ

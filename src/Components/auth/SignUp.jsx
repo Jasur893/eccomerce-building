@@ -1,11 +1,9 @@
-import { useState, useContext } from 'react'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../../context/AuthContext'
+import { auth } from '../../FirebaseConfigs/firebaseConfig'
 
 export default function SignUp() {
-  const {userValue1} = useContext(AuthContext)
-  const signUp = userValue1
-  // console.log(signUp);
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
@@ -15,7 +13,10 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-
+  const signUp = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+  }
+  
   const handleSubmit =  async(e) => {
     e.preventDefault()
     setErrorMsg('')
@@ -35,31 +36,6 @@ export default function SignUp() {
     }
     setLoading(false)
   }
-
-  // const handleSubmit = () => {
-  //   console.log('submit');
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //   .then((userCredential) => {
-  //     const user = userCredential
-  //     setSuccessMsg('signUp true')
-  //     console.log(user);
-  //     setEmail('')
-  //     setPassword('')
-  //     setTimeout(() => {
-  //       setSuccessMsg('')
-  //       navigate('/login')
-  //     }, 500)
-  //   })
-  //   .catch((error)=> {
-  //     const errorCode = error.code
-  //     const errorMsg = error.message
-  //     setErrorMsg(errorCode, errorMsg)
-
-  //     setTimeout(() => {
-  //       setErrorMsg('')
-  //     }, 1000)
-  //   })
-  // }
 
   return (
     <div className='flex justify-center py-3'>

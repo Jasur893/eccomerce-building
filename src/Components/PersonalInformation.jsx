@@ -1,12 +1,10 @@
 import { doc, getDoc, setDoc} from 'firebase/firestore';
-import { useState, useContext, useEffect, useCallback } from 'react'
-import { AuthContext } from '../context/AuthContext';
+import { useState, useEffect, useCallback } from 'react'
+import { useSelector } from 'react-redux';
 import { db } from '../FirebaseConfigs/firebaseConfig';
 
 export default function PersonalInformation() {
-  const {userValue4} = useContext(AuthContext)
-  const userSession = userValue4
-  // console.log(userValue4);
+  const userSession = useSelector((state) => state.userSession)
   const [surName, setSurName] = useState('')
   const [firstName, setFirsName] = useState('')
   const [numberPhone, setnumberPhone] = useState('')

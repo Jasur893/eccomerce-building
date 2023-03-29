@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { Routes, Route} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Routes, Route, useNavigate} from 'react-router-dom'
 import Header from './Components/Header'
 import HeaderNav from './Components/HeaderNav'
 import Footer from './Components/Footer'
@@ -18,20 +18,26 @@ import NotFound from './Components/NotFound'
 import './App.css'
 import Login from './Components/auth/Login'
 import SignUp from './Components/auth/SignUp'
-import { useContext } from 'react'
-import { AuthContext } from './context/AuthContext'
 import New from './Components/New'
 import Stock from './Components/Stock'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from './FirebaseConfigs/firebaseConfig'
-import { setProductsALL } from './redux/actions'
+import { setProductsALL, setUserSession } from './redux/actions'
 import { getProducts } from './productApi'
-
+import { getSession } from './session'
 
 const  App = () => {
-  const {userValue4} = useContext(AuthContext)
+  const userSession = useSelector((state) => state.userSession)
   const productAll = getProducts()
   const dispatch = useDispatch()
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    let session = getSession();
+    dispatch(setUserSession(session))
+    //eslint-disable-next-line
+  },[navigate])
 
   useEffect(() => {
     const getAllProduct = async() => {
@@ -68,7 +74,7 @@ const  App = () => {
             <Route path='/ordering/*' element={<Ordering />} />
             <Route path='/new' element={<New />} />
             <Route path='/stock' element={<Stock />} />
-            {userValue4?.uid !== null ? (
+            {userSession?.uid !== null ? (
               <Route path='/lichniy-kabinet/*' element={<PersonalArea/>}/>
             ): (
               <>

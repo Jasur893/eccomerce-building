@@ -1,7 +1,8 @@
 const initialState = {
   productsAll: [],
   cart: [],
-  total: 0
+  total: 0,
+  userSession: null
 }
 
 export function reducer(state = initialState, {type, payload}){
@@ -124,6 +125,12 @@ export function reducer(state = initialState, {type, payload}){
       return {
         ...state,
         total: total
+      }
+
+    case 'SET_USER_SESSION':
+      return {
+        ...state,
+        userSession: payload.currentUser
       }
 
     default:

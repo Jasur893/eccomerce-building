@@ -1,14 +1,19 @@
 import HistoryOfOrders from './HistoryOfOrders';
 import PersonalInformation from './PersonalInformation';
-import { useContext, useState } from 'react';
-import { AuthContext } from '../context/AuthContext';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import {useNavigate} from 'react-router-dom'
+import {endSession} from '../session.js'
 
 export default function PersonalArea() {
   const [activeTab, setActivwTab] = useState('tab2')
+  const userSession = useSelector((state) => state.userSession)
+  const navigate = useNavigate()
 
-  const {userValue4, userValue2} = useContext(AuthContext)
-  const userSession = userValue4
-  const handleLogOut = userValue2
+  const handleLogOut = () => {
+    endSession();
+    navigate("/");
+  }
 
   return (
     <div className='bg-slate-100 pt-3'>

@@ -1,7 +1,7 @@
 export const  setProductsALL = (data) => {
   return {
     type: 'SET_PRODUCTS_ALL',
-    payload: data
+    payload: data,
   }
 }
 
@@ -50,5 +50,12 @@ export const hideFavorite = (idItem) => {
   return {
     type: 'HIDE_FAVORITE', 
     payload: {id: idItem}
+  }
+}
+
+export const setUserSession = (user) => {
+  return {
+    type: 'SET_USER_SESSION',
+    payload: {currentUser: user}
   }
 }

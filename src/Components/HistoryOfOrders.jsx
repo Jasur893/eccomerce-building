@@ -1,17 +1,17 @@
 import { collection, getDocs } from 'firebase/firestore'
-import { useState, useContext, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
-import { AuthContext } from '../context/AuthContext'
+import { useSelector } from 'react-redux'
 import { db } from '../FirebaseConfigs/firebaseConfig'
 
 export default function HistoryOfOrders() {
-  const {userValue4} = useContext(AuthContext)
+  const userSession = useSelector((state) => state.userSession)
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
     const getAllOreders = async() => {
       const ordersArray = []
-      await getDocs(collection(db, `user-buy-${userValue4?.uid}`)).then((querySnapshot) => {
+      await getDocs(collection(db, `user-buy-${userSession?.uid}`)).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           ordersArray.push({...doc.data(), id: doc.id, isLiked: false, isAdded: false})
         })
@@ -21,7 +21,7 @@ export default function HistoryOfOrders() {
       setOrders(ordersArray)
     }
     getAllOreders()
-  },[userValue4?.uid])
+  },[userSession?.uid])
 
   return (
     <div>

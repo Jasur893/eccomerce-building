@@ -1,8 +1,7 @@
-import { useCallback, useContext, useState } from 'react'
+import { useCallback, useState } from 'react'
 import DataBuyer from './DataBuyer'
 import Delivery from './Delivery'
 import Payment from './Payment'
-import { AuthContext } from '../context/AuthContext'
 import { addDoc, collection } from 'firebase/firestore'
 import { db } from '../FirebaseConfigs/firebaseConfig'
 import moment from 'moment'
@@ -11,9 +10,9 @@ import { useSelector } from 'react-redux'
 export default function Ordering() {
   const cart = useSelector((state) => state.cart)
   const total = useSelector((state) => state.total)
+  const userSession = useSelector((state) => state.userSession)
   const [show, setShow] = useState('Доставка курьером')
   const [activeTabO, setActiveTabO] = useState('data-buyer')
-  const { userValue4 } = useContext(AuthContext)
   const deliveryMoney = 950
   const delivery = show === 'Доставка курьером' ? deliveryMoney : null
   const isDelivery = show === 'Доставка курьером' ? delivery : 0
@@ -57,7 +56,7 @@ export default function Ordering() {
 
   //buy products and set firebase
   const buyProducts = async () => {
-    await addDoc(collection(db, `user-buy-${userValue4?.uid}`), {
+    await addDoc(collection(db, `user-buy-${userSession?.uid}`), {
       buyProduct: handleBuyProducts(totalSum, isDelivery),
       created: moment().format('DD.MM.YYYY'),
       order: new Date().getTime(),

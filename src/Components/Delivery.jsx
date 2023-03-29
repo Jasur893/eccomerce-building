@@ -1,14 +1,12 @@
-import { useState, useEffect,  useContext} from 'react'
+import { useState, useEffect } from 'react'
 import { Form } from 'react-bootstrap'
 import { doc, getDoc } from 'firebase/firestore';
-import { AuthContext } from '../context/AuthContext';
 import { db } from '../FirebaseConfigs/firebaseConfig';
 import moment from 'moment/moment';
+import { useSelector } from 'react-redux';
 
 export default function Delivery(props) {
-  const {userValue4} = useContext(AuthContext)
-  const userSession = userValue4
-
+  const userSession = useSelector((state) => state.userSession)
   const [city, setCity] = useState('')
   const [street, setStreet] = useState('')
   const [frame, setFrame] = useState('')

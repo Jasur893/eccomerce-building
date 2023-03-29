@@ -1,13 +1,11 @@
 import { NavLink } from 'react-router-dom'
 import Logo from '../assets/logo.png'
-import { useContext, useEffect } from 'react'
-import { AuthContext } from '../context/AuthContext'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setTotal } from '../redux/actions'
 
 export default function Header() {
-  const {userValue4} = useContext(AuthContext)
-  const userSession = userValue4
+  const userSession = useSelector((state) => state.userSession)
   const cart = useSelector((state) => state.cart)
   const productsAll = useSelector((state) => state.productsAll)
   const dispatch = useDispatch()

@@ -1,12 +1,10 @@
 import { doc, getDoc } from 'firebase/firestore';
-import { useEffect, useState, useContext } from 'react'
-import { AuthContext } from '../context/AuthContext';
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import { db } from '../FirebaseConfigs/firebaseConfig';
 
 export default function DataBuyer() {
-  const {userValue4} = useContext(AuthContext)
-  const userSession = userValue4
-
+  const userSession = useSelector((state) => state.userSession)
   const [surName, setSurName] = useState('')
   const [numberPhone, setnumberPhone] = useState('')
   const [firstName, setFirsName] = useState('')
