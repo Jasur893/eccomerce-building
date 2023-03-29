@@ -5,10 +5,9 @@ export const  setProductsALL = (data) => {
   }
 }
 
-export const setTotal = (sum) => {
+export const setTotal = () => {
   return {
     type: 'SET_TOTAL',
-    payload: sum
   }
 }
 

@@ -1,14 +1,20 @@
 import { NavLink } from 'react-router-dom'
 import Logo from '../assets/logo.png'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { AuthContext } from '../context/AuthContext'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setTotal } from '../redux/actions'
 
 export default function Header() {
   const {userValue4} = useContext(AuthContext)
   const userSession = userValue4
   const cart = useSelector((state) => state.cart)
   const productsAll = useSelector((state) => state.productsAll)
+  const dispatch = useDispatch()
+
+  useEffect(()=> {
+    dispatch(setTotal())
+  },[cart, dispatch])
   
   let isAactiveStyle = {
     backgroundColor: 'rgb(249 115 22)',

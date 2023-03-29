@@ -118,9 +118,12 @@ export function reducer(state = initialState, {type, payload}){
       }
 
     case 'SET_TOTAL':
+      let total = state.cart.reduce((accumulator, currentItem)=> {
+        return accumulator + currentItem.price * currentItem.amount
+      }, 0)
       return {
         ...state,
-        total: payload
+        total: total
       }
 
     default:
