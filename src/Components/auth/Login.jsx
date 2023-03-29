@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
-import {startSession} from '../session.js'
+import {startSession} from '../../session'
 
 
 export default function Login() {

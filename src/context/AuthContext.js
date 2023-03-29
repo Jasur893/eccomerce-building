@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../FirebaseConfigs/firebaseConfig'; 
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import {endSession, getSession} from '../Components/session'
+import {endSession, getSession} from '../session'
 
 export const AuthContext = React.createContext()
 
