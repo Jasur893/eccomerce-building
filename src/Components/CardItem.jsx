@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addToCart, removeFromCart, showFavorite, hideFavorite } from '../redux/actions'
 
 export default function CardItem(props) {
-  const cart = useSelector((state) => state.cart)
+  const cart = useSelector((state) => state.products1.cart)
   const dispatch = useDispatch()
   const {mark, id, productImage, productTittle, price, isLiked} = props?.data
 
@@ -18,7 +18,7 @@ export default function CardItem(props) {
     className += ' '
   }
 
-  const cartShowAdd = cart.find(item => item.id === id)
+  const cartShowAdd = cart?.find(item => item.id === id)
   const cartIsAdd = !cartShowAdd ? cartShowAdd :  Object(cartShowAdd).isAdded
   
   return (

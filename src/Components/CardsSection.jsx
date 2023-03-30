@@ -8,7 +8,7 @@ import Loader from './Loader';
 import { useSelector } from 'react-redux';
 
 export default function CardsSection(props) {
-  const productsAll = useSelector((state) => state.productsAll)
+  const productsAll = useSelector((state) => state.products1.productsAll)
   const prevRef = React.useRef(null);
   const nextRef = React.useRef(null);
 
@@ -33,7 +33,7 @@ export default function CardsSection(props) {
           </span>
         </div>
       </div>
-        {productsAll.length !== 0 ? (
+        {productsAll?.length !== 0 ? (
           <Swiper
             className='pb-2'
             modules={[Navigation, Scrollbar, A11y]}
@@ -70,7 +70,7 @@ export default function CardsSection(props) {
               },
             }}
           >
-            {productsAll.filter((itemFilter) => itemFilter.productType === props.elName).map((product)=> (
+            {productsAll?.filter((itemFilter) => itemFilter.productType === props.elName).map((product)=> (
               <SwiperSlide 
                 key={product.id}>
                 {<CardItem data={product}/>}

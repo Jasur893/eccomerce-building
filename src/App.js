@@ -27,7 +27,7 @@ import { getProducts } from './productApi'
 import { getSession } from './session'
 
 const  App = () => {
-  const userSession = useSelector((state) => state.userSession)
+  const userSession = useSelector((state) => state.session2.userSession)
   const productAll = getProducts()
   const dispatch = useDispatch()
 

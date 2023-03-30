@@ -8,7 +8,7 @@ export default function SearchPanel({data}) {
   const handleFilter = (e) => {
     const searchWord = e.target.value;
     setWordEntered(searchWord)
-    const newFilter = data.filter((value) => {
+    const newFilter = data?.filter((value) => {
       return value.productTittle.toLowerCase().includes(searchWord.toLowerCase())
     })
     if(searchWord === ""){
@@ -34,16 +34,16 @@ export default function SearchPanel({data}) {
           placeholder='Поиск по каталогу'
         />
         
-        {filteredData.length === 0 ? (
+        {filteredData?.length === 0 ? (
           <span className='absolute top-2 right-1 cursor-pointer '><i className="fa-solid fa-magnifying-glass"></i></span>
         ) : (
           <span onClick={clearInput} className='absolute top-2 right-2 cursor-pointer '><i className="fa-solid fa-xmark"></i></span>
         )} 
       </div>
       
-      {filteredData.length !== 0 && (
+      {filteredData?.length !== 0 && (
         <div className='absolute top-11 right-0 z-20 border w-full sm:w-[350px] max-h-[400px] overflow-y-auto bg-white rounded-md'>
-          {filteredData.map((value, idx) => {
+          {filteredData?.map((value, idx) => {
             return (
               <div key={idx} className='flex justify-between items-center py-1 hover:bg-gray-200 px-2'>
                 <img src={value.productImage} className='w-[35px] h-[35px]' alt="foto"/>

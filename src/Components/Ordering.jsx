@@ -8,9 +8,9 @@ import moment from 'moment'
 import { useSelector } from 'react-redux'
 
 export default function Ordering() {
-  const cart = useSelector((state) => state.cart)
-  const total = useSelector((state) => state.total)
-  const userSession = useSelector((state) => state.userSession)
+  const cart = useSelector((state) => state.products1.cart)
+  const total = useSelector((state) => state.products1.total)
+  const userSession = useSelector((state) => state.session2.userSession)
   const [show, setShow] = useState('Доставка курьером')
   const [activeTabO, setActiveTabO] = useState('data-buyer')
   const deliveryMoney = 950
@@ -77,7 +77,7 @@ export default function Ordering() {
     } else if (activeTabO === 'delivery') {
       setActiveTabO('payment')
     } else if (activeTabO === 'payment') {
-      if (cart.length > 0) {
+      if (cart?.length > 0) {
         alert('Ваш заказ был получен')
         buyProducts()
         return
@@ -155,7 +155,7 @@ export default function Ordering() {
                 </span>
               </div>
               <div className='flex justify-between text-gray-300 pt-1 text-[10px] sm:text-[16px]'>
-                <span>{cart.length} товаров</span>
+                <span>{cart?.length} товаров</span>
                 <span>{parseFloat(total)} ₽</span>
               </div>
               <div className='flex justify-between text-gray-300 pt-1 text-[10px] sm:text-[16px]'>

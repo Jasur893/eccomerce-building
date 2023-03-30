@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setTotal } from '../redux/actions'
 
 export default function Header() {
-  const userSession = useSelector((state) => state.userSession)
-  const cart = useSelector((state) => state.cart)
-  const productsAll = useSelector((state) => state.productsAll)
+  const userSession = useSelector((state) => state.session2.userSession)
+  const cart = useSelector((state) => state.products1.cart)
+  const productsAll = useSelector((state) => state.products1.productsAll)
   const dispatch = useDispatch()
 
   useEffect(()=> {
@@ -18,7 +18,7 @@ export default function Header() {
     backgroundColor: 'rgb(249 115 22)',
   }
 
-  const productAll = productsAll.filter(item => item.isLiked === true).length
+  const productAll = productsAll?.filter(item => item.isLiked === true).length
 
   return (
     <div className='headers ml-0 py-0 bg-dark'>
@@ -77,7 +77,7 @@ export default function Header() {
                 className='no-underline relative flex flex-col justify-center h-full text-white bg-zinc-700 transition duration-700 hover:bg-orange-700'
               >
                 <i className='px-3 py-2 text-xl fa-solid fa-cart-shopping'></i>
-                <span className='absolute top-2 right-1 flex justify-center items-center bg-orange-600 rounded-full text-[12px] w-[20px] h-[20px]'><i>{cart.length}</i></span>
+                <span className='absolute top-2 right-1 flex justify-center items-center bg-orange-600 rounded-full text-[12px] w-[20px] h-[20px]'><i>{cart?.length}</i></span>
               </NavLink>
             </div>
           </div>

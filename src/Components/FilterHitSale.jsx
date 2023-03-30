@@ -25,7 +25,7 @@ export default function FilterHitSale(props) {
         </span>
       </div>
       <div className='w-[95%]'>
-        {props.data.length > 0 ? (
+        {props.data?.length > 0 ? (
           <Swiper
           className='p-3'
           modules={[Navigation, Scrollbar, A11y, Pagination]}
@@ -64,7 +64,7 @@ export default function FilterHitSale(props) {
             },
           }}
         >
-          {props.data.filter(item => item.mark === '').map((mark, idx)=> (
+          {props.data?.filter(item => item.mark === '').map((mark, idx)=> (
             <SwiperSlide key={idx}>
               <CardItem data={mark} />
             </SwiperSlide>

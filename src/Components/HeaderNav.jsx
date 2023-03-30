@@ -4,7 +4,7 @@ import { Navbar } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
 export default function HeaderNav() {
-  const productsAll = useSelector((state) => state.productsAll)
+  const productsAll = useSelector((state) => state.products1.productsAll)
  
   let activeStyle = {
     border: '1px solid #F05A00',

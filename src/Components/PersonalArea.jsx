@@ -7,7 +7,7 @@ import {endSession} from '../session.js'
 
 export default function PersonalArea() {
   const [activeTab, setActivwTab] = useState('tab2')
-  const userSession = useSelector((state) => state.userSession)
+  const userSession = useSelector((state) => state.session2.userSession)
   const navigate = useNavigate()
 
   const handleLogOut = () => {

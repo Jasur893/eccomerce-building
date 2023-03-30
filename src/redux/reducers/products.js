@@ -1,11 +1,10 @@
 const initialState = {
   productsAll: [],
   cart: [],
-  total: 0,
-  userSession: null
+  total: 0
 }
 
-export function reducer(state = initialState, {type, payload}){
+export function products(state = initialState, {type, payload}){
   switch(type) {
     case 'ADD_TO_CART': {
       const newItem = {...payload.prodItem, amount: 1, isAdded: true}
@@ -126,13 +125,6 @@ export function reducer(state = initialState, {type, payload}){
         ...state,
         total: total
       }
-
-    case 'SET_USER_SESSION':
-      return {
-        ...state,
-        userSession: payload.currentUser
-      }
-
     default:
       return state
   }

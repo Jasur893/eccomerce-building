@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
  
 export default function FilterSlider() {
-  const productsAll = useSelector((state) => state.productsAll)
+  const productsAll = useSelector((state) => state.products1.productsAll)
 
   return (
       <div className='bg-black'>

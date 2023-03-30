@@ -2,9 +2,9 @@ import { useSelector } from 'react-redux'
 import CardItem from './CardItem'
 
 export default function Stock() {
-  const productsAll = useSelector((state) => state.productsAll)
+  const productsAll = useSelector((state) => state.products1.productsAll)
 
-  const productAll = productsAll.filter(item => item.mark === 'Акция').map(item => (
+  const productAll = productsAll?.filter(item => item.mark === 'Акция').map(item => (
     <CardItem key={item.id} data={item}/>
   ))
 

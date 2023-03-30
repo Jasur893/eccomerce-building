@@ -8,23 +8,23 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, hideFavorite, showFavorite } from '../redux/actions'
 
 export default function AboutCardItem() {
-  const productsAll = useSelector((state) => state.productsAll)
-  const cart = useSelector((state) => state.cart)
+  const productsAll = useSelector((state) => state.products1.productsAll)
+  const cart = useSelector((state) => state.products1.cart)
   const dispatch = useDispatch()
   const { nameId} = useParams()
   const [activeTab, setActivwTab] = useState('tab1')
 
-  const productItem = productsAll.find(item => item.id === nameId)
+  const productItem = productsAll?.find(item => item.id === nameId)
   
-  const cartShowAdd = cart.find(item => item.id === nameId)
+  const cartShowAdd = cart?.find(item => item.id === nameId)
   const cartIsAdd = !cartShowAdd ? cartShowAdd :  Object(cartShowAdd).isAdded
 
   //handleShowTab
   const handleShowTab = () => {
     if(activeTab === 'tab1'){
-      return <CardDescription product={productItem?.description} />
+      return <CardDescription product={productItem.description} />
     } else if(activeTab === 'tab2'){
-      return <CardCharacteristic characteristic={productItem?.characteristic} />
+      return <CardCharacteristic characteristic={productItem.characteristic} />
     } else if(activeTab === 'tab3') {
       return <CardReview nameId={nameId} />
     }
@@ -42,17 +42,17 @@ export default function AboutCardItem() {
                 <div className='h-[300px] flex justify-center'>
                   <img
                     className='h-full'
-                    src={productItem?.productImage}
+                    src={productItem.productImage}
                     alt='card'
                   />
                 </div>
                 <div className='px-2'>
-                  <p className='pt-2 text-3xl'>{productItem?.productTittle}</p>
-                  <p className='text-base'>Бренд : <span className='font-semibold font-mono text-lg'>{productItem?.brand}</span></p>
+                  <p className='pt-2 text-3xl'>{productItem.productTittle}</p>
+                  <p className='text-base'>Бренд : <span className='font-semibold font-mono text-lg'>{productItem.brand}</span></p>
                   <p className='text-[14px] text-green-300'>В наличии</p>
-                  <p className='w-[70%]'>{productItem?.description}</p>
+                  <p className='w-[70%]'>{productItem.description}</p>
                   <span className='text-2xl font-semibold pr-2'>
-                    {productItem?.price} ₽
+                    {productItem.price} ₽
                   </span>
                   <div className='flex justify-start align-center gap-3 pt-3'>
                     <span onClick={() => dispatch(addToCart(productItem, nameId))} 

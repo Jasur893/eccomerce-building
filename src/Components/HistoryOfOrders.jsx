@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { db } from '../FirebaseConfigs/firebaseConfig'
 
 export default function HistoryOfOrders() {
-  const userSession = useSelector((state) => state.userSession)
+  const userSession = useSelector((state) => state.session2.userSession)
   const [orders, setOrders] = useState([])
 
   useEffect(() => {

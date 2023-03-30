@@ -3,7 +3,7 @@ import moment from 'moment/moment'
 export default function ReviewItem({reviews}) {
   return (
     <>
-      {reviews.map((item, idx) => (
+      {reviews?.map((item, idx) => (
         <div key={idx} 
           className='border rounded-md p-3'>
           <h5>{item.name}</h5>

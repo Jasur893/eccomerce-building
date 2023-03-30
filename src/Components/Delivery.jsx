@@ -6,7 +6,7 @@ import moment from 'moment/moment';
 import { useSelector } from 'react-redux';
 
 export default function Delivery(props) {
-  const userSession = useSelector((state) => state.userSession)
+  const userSession = useSelector((state) => state.session2.userSession)
   const [city, setCity] = useState('')
   const [street, setStreet] = useState('')
   const [frame, setFrame] = useState('')

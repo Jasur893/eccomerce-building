@@ -8,7 +8,7 @@ import Loader from './Loader'
 import { useSelector } from 'react-redux'
 
 export default function CatalogItems() {
-  const productsAll = useSelector((state) => state.productsAll)
+  const productsAll = useSelector((state) => state.products1.productsAll)
   const { catlogName } = useParams()
   const catalog = getcatalogNames()
   const [active, setActive] = useState(null)
@@ -55,9 +55,9 @@ export default function CatalogItems() {
           </div>
 
           <div className='col-span-4 sm:col-span-3'>
-            {productsAll.length > 0 ? (
+            {productsAll?.length > 0 ? (
               <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3'>
-                {productsAll.filter(item => item.productType === catlogName).map((item) => (
+                {productsAll?.filter(item => item.productType === catlogName).map((item) => (
                   <div key={item.id}>
                     <CardItem  data={item} />
                   </div>

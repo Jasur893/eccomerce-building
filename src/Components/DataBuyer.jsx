@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { db } from '../FirebaseConfigs/firebaseConfig';
 
 export default function DataBuyer() {
-  const userSession = useSelector((state) => state.userSession)
+  const userSession = useSelector((state) => state.session2.userSession)
   const [surName, setSurName] = useState('')
   const [numberPhone, setnumberPhone] = useState('')
   const [firstName, setFirsName] = useState('')

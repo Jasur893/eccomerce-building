@@ -5,7 +5,7 @@ import ReviewItem from './ReviewItem'
 import { useSelector } from 'react-redux'
 
 export default function CardReview({nameId}) {
-  const userSession = useSelector((state) => state.userSession)
+  const userSession = useSelector((state) => state.session2.userSession)
   const [reviews, setReviews] = useState([])
   const [userName, setUserName] = useState('')
   const [comment, setComment] = useState('')
