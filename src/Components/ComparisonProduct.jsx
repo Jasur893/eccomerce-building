@@ -6,8 +6,11 @@ import 'swiper/css/navigation'
 import { NavLink, Route, Routes } from 'react-router-dom'
 import { getcatalogNames } from '../catalogApi'
 import ComparisionList from './ComparisionList'
+import { useSelector } from 'react-redux'
 
 export default function ComparisonProduct() {
+  const comparision = useSelector((state) => state.products1.comparision)
+  console.log(comparision);
   const prevRef = React.useRef(null)
   const nextRef = React.useRef(null)
   const [active, setActive] = useState(null)

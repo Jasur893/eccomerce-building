@@ -2,7 +2,7 @@ import Card from 'react-bootstrap/Card'
 import CaruselCards from './CaruselCards'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { addToCart, removeFromCart, showFavorite, hideFavorite } from '../redux/actions'
+import { addToCart, removeFromCart, showFavorite, hideFavorite, addComparision } from '../redux/actions'
 
 export default function CardItem(props) {
   const cart = useSelector((state) => state.products1.cart)
@@ -26,7 +26,7 @@ export default function CardItem(props) {
       <div className='flex justify-between align-center p-2 h-[40px]'>
         <span className={className}>{mark}</span>
         <div className='pl-2 pr-1 flex justify-end align-center leading-none'>
-          <span className='text-gray-300 pr-4'>
+          <span onClick={() => dispatch(addComparision(props?.data, id))} className='text-gray-300 pr-4 cursor-pointer'>
             <i className='fa-solid fa-chart-simple'></i>
           </span>
 
