@@ -80,32 +80,30 @@ export default function ComparisonProduct() {
               },
             }}
           >
-            {catalog.map(({name, id}) => (
-              <SwiperSlide
-              key={id}
-              onClick={() => setActive(id)}
-              className={`comparition_swipper-space ${active === id && "active"}`}
-              >
-                <NavLink to={id} className='text-white no-underline min-w-max w-full text-center'>
-                  <p className='mb-0 py-2 '>{name}</p>
-                </NavLink>
-              </SwiperSlide>
+            {catalog.map((item) => (
+              Object.values(item.resources).map((resoEl) => (
+                <SwiperSlide key={resoEl.id} onClick={() => setActive(resoEl.id)} className={`comparition_swipper-space ${active === resoEl.id && "active"}`}
+                >
+                  <NavLink 
+                    to={`${resoEl.id}/${resoEl.name}`}
+                    className='text-white no-underline min-w-max w-full text-center'
+                  >
+                    <p className='mb-0 py-2 '>{resoEl.name}</p>
+                  </NavLink>
+                </SwiperSlide>
+              ))
             ))}
           </Swiper>
         </div>
             
           <div className='mt-3 scroll_position' >
-          <Routes>
-                <Route path='molyarni-tovari' element={<ComparisionList/>} />
-                <Route path='electro' element={<ComparisionList/>} />
-                <Route path='spets-odejda' element={<ComparisionList/>} />
-                <Route path='seasons' element={<ComparisionList/>} />
-                <Route path='dlya-doma-dachi' element={<ComparisionList/>} />
-                <Route path='insturmenti' element={<ComparisionList/>} />
-              </Routes>
+            <Routes>
+              <Route path=':catalogId/:catalogName' element={<ComparisionList/>} />
+            </Routes>
           </div>
         
       </div>
     </div>
   )
 }
+
