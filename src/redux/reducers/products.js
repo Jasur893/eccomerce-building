@@ -132,13 +132,13 @@ export function products(state = initialState, { type, payload }) {
       }
 
     case 'ADD_COMPARISION': {
-      const newItem = { ...payload.prodItem, amount: 1, isAdded: true }
+      const newItem = {...payload.prodItem, ...payload.prodItem.characteristic}
       const cartItem = state.comparision.find((item) => item.id === payload.id)
       let newCart = null
       if (cartItem) {
         newCart = [...state.comparision].map((item) => {
           if (item.id === payload.id) {
-            return { ...item, isAdded: true }
+            return { ...item}
           } else {
             return item
           }
@@ -150,6 +150,12 @@ export function products(state = initialState, { type, payload }) {
         ...state,
         comparision: newCart,
       }
+    }
+
+    case 'REMOVE_COMPARISION': 
+    return {
+      ...state,
+      comparision: state.comparision.filter((item) => item.id !== payload.id),
     }
 
     default:

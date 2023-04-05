@@ -26,7 +26,7 @@ export default function CardItem(props) {
       <div className='flex justify-between align-center p-2 h-[40px]'>
         <span className={className}>{mark}</span>
         <div className='pl-2 pr-1 flex justify-end align-center leading-none'>
-          <span onClick={() => dispatch(addComparision(props?.data, id))} className='text-gray-300 pr-4 cursor-pointer'>
+          <span onClick={() => dispatch(addComparision(props?.data, id))} className='text-gray-300 hover:text-green-400 pr-4 cursor-pointer'>
             <i className='fa-solid fa-chart-simple'></i>
           </span>
 

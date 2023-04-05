@@ -1,101 +1,85 @@
 import { useState } from 'react';
-import Table from 'react-bootstrap/Table';
 import ComparisionCardItem from './ComparisionCardItem';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Table } from 'react-bootstrap';
 
 export default function ComparisionList() {
   const comparision = useSelector((state) => state.products1.comparision)
   const {catalogId, catalogName} = useParams()
-  console.log(catalogId, catalogName);
+  // console.log(catalogId, catalogName);
   const [showOne, setShowOne] = useState(true)
+ 
+  const filterArr = comparision.filter((el) => el.productType === catalogName)
+
+  // const newArr = filterArr.map((item) => (
+  //   <div key={item.id} className='border flex'>
+  //     {<p>{item.Вес_кг}</p>}
+  //   </div>
+  // ))
+  // console.log(newArr);
 
   return (
     <div className='scroll_position'>
       <div className='flex gap-3'>
-        {comparision.filter((el) => el.productType === catalogName).map((ItemEl) => (
-          <ComparisionCardItem key={ItemEl.id} {...ItemEl} />
+        <div className='min-w-[130px] w-[130px]'>hello</div>
+        {comparision.filter((el) => el.productType === catalogName).map((itemEl) => (
+          <ComparisionCardItem key={itemEl.id} {...itemEl} />
         ))}
       </div>
       
-      <div onClick={() => setShowOne(!showOne)} className='mt-3 flex justify-between px-3 cursor-pointer font-medium'>
-        <p  className=''>Основные характеристики</p>
+      <div onClick={() => setShowOne(!showOne)} className='mt-3 flex justify-between px-3 py-2 items-center cursor-pointer font-medium border mb-2'>
+        <p  className='mb-0'>Основные характеристики</p>
         <i className="fa-solid fa-chevron-down"></i>
       </div>
-      {showOne && <Table striped>
+      {showOne && <Table striped className='max-w-min'>
         <tbody className='border'>
-          <tr className=''>
-            <td className=''>Тип</td>
-            <td>Эмаль</td>
-            <td>Эмаль</td>
-            <td>Эмаль</td>
-            <td>Краска</td>
-          </tr>
-          <tr>
-            <td>Наименование</td>
-            <td>Эмаль</td>
-            <td>Эмаль</td>
-            <td>Эмаль</td>
-            <td>Краска</td>
-          </tr>
-          <tr className=''>
-            <td>Назначение</td>
-            <td>для фасадов, для стен, для потолков, для кухонных/ванных комнат, для детских комнат</td>
-            <td>для окон и дверей, для металлических изделий, для деревянных изделий, для цоколей, для лоджий, для ограждений</td>
-            <td>для металлических изделий, для деревянных изделий, для цоколей, для лоджий, для ограждений</td>
-            <td>для фасадов, для стен</td>
-          </tr>
-          <tr>
-            <td>Тип работ</td>
-            <td>внутренние, наружные</td>
-            <td>внутренние, наружные</td>
-            <td>внутренние</td>
-            <td>наружные</td>
-          </tr>
-          <tr>
-            <td>Основа</td>
-            <td>акриловая</td>
-            <td>акриловая</td>
-            <td>акриловая</td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td>Разбавитель</td>
-            <td>вода</td>
-            <td>вода</td>
-            <td>вода</td>
-            <td>вода</td>
-          </tr>
-          <tr>
-            <td>Цвет</td>
-            <td>Красный</td>
-            <td>Красный</td>
-            <td>Красный</td>
-            <td>Красный</td>
-          </tr>
-          <tr>
-            <td>Степень глянца</td>
-            <td>матовая</td>
-            <td>полуглянцевая</td>
-            <td>матовая</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Вес</td>
-            <td>1 кг</td>
-            <td>3 кг</td>
-            <td>5 кг</td>
-            <td>1 кг</td>
-          </tr>
-          <tr>
-            <td>Расход</td>
-            <td>0,1 кг/м2</td>
-            <td>0,4 кг/м2</td>
-            <td>04 кг/м2</td>
-            <td>0,1 кг/м2</td>
-          </tr>
+          {filterArr[0]?.Вес_кг !== undefined ? <tr className=''>
+            <td className='min-w-[130px] w-[130px]'>Вес кг</td>
+            {filterArr.map((item, idx) => (
+              <td key={idx} className='min-w-[220px] w-[220px]'>
+                {item.Вес_кг ? item.Вес_кг : <i className="fa-solid fa-minus"></i>}
+              </td>
+            ))}
+          </tr> : null}
+          {filterArr[0]?.Вид_работ !== undefined ? <tr className=''>
+            <td className='min-w-[130px] w-[130px]'>Вид работ</td>
+            {filterArr.map((item, idx) => (
+              <td key={idx} className='min-w-[220px] w-[220px]'>
+                {item.Вид_работ ? item.Вид_работ :  <i className="fa-solid fa-minus"></i>}
+              </td>
+            ))}
+          </tr> : null}
+          {filterArr[0]?.Влагостойкость !== undefined ? <tr className=''>
+            <td className='min-w-[130px] w-[130px]'>Влагостойкость</td>
+            {filterArr.map((item, idx) => (
+              <td key={idx} className='min-w-[220px] w-[220px]'>
+                {item.Влагостойкость ? item.Влагостойкость : <i className="fa-solid fa-minus"></i>}
+              </td>
+            ))}
+          </tr> : null}
+          {filterArr[0]?.Время_высыхания !== undefined ? <tr className=''>
+            <td className='min-w-[130px] w-[130px]'>Время высыхания</td>
+            {filterArr.map((item, idx) => (
+              <td key={idx} className='min-w-[220px] w-[220px]'>
+                {item.Время_высыхания ? item.Время_высыхания : <i className="fa-solid fa-minus"></i>}
+              </td>
+            ))}
+          </tr> : null}
+          {filterArr[0]?.Материал_основания !== undefined ? <tr className=''>
+            <td className='min-w-[130px] w-[130px]'>Материал основания</td>
+            {filterArr.map((item, idx) => (
+              <td key={idx} className='min-w-[220px] w-[220px]'>
+                {item.Материал_основания ? item.Материал_основания : <i className="fa-solid fa-minus"></i>}
+              </td>
+            ))}
+          </tr> : null}
+
+
         </tbody>
       </Table>}
     </div>
   )
 }
+
+// characteristic

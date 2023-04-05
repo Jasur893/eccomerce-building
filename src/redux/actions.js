@@ -66,3 +66,10 @@ export const addComparision = (productItem, itemId) => {
     payload: { prodItem: productItem, id: itemId },
   }
 }
+
+export const removeComparision = (itemId) => {
+  return {
+    type: 'REMOVE_COMPARISION',
+    payload: { id: itemId },
+  }
+}
