@@ -6,65 +6,45 @@ import 'swiper/css/navigation'
 import "swiper/css/pagination";
 import CardItem from './CardItem'
 import Loader from './Loader'
+import { useSelector } from 'react-redux'
 
-export default function FilterHitSale(props) {
-  const prevRef = React.useRef(null)
-  const nextRef = React.useRef(null)
+export default function FilterHitSale() {
+  const productsAll = useSelector((state) => state.products1.productsAll)
 
   return (
-    <div className='relative flex justify-center align-center w-full px-2 py-3 h-full'>
-      <div className='pr-2 flex flex-col justify-center'>
-        <span
-          ref={prevRef}
-          className='cursor-pointer text-gray-300 hover:text-black'
-        >
-          <i
-            style={{ paddingTop: '4px', paddingBottom: '4px' }}
-            className='bg-white rounded-full px-2 fa-solid fa-angle-left'
-          ></i>
-        </span>
-      </div>
-      <div className='w-[95%]'>
-        {props.data?.length > 0 ? (
+    <div className='w-full px-2 py-3 h-full'>
+      <div>
+        {productsAll?.length > 0 ? (
           <Swiper
           className='p-3'
           modules={[Navigation, Scrollbar, A11y, Pagination]}
-          navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          }}
+          navigation={true}
           pagination={{ 
             dynamicBullets: true,
           }}
-          onInit={(swipper) => {
-            swipper.params.navigation.prevEl = prevRef.current
-            swipper.params.navigation.nextEl = nextRef.current
-            swipper.navigation.init()
-            swipper.navigation.update()
-          }}
           scrollbar={{ hide: false }}
-          spaceBetween={50}
+          spaceBetween={25}
           slidesPerView={4}
           breakpoints={{
             320: {
               slidesPerView: 1,
-              spaceBetween: 20,
+              spaceBetween: 10,
             },
             576: {
               slidesPerView: 2,
-              spaceBetween: 20,
+              spaceBetween: 15,
             },
             768: {
               slidesPerView: 3,
-              spaceBetween: 40,
+              spaceBetween: 20,
             },
             1024: {
               slidesPerView: 4,
-              spaceBetween: 50,
+              spaceBetween: 25,
             },
           }}
         >
-          {props.data?.filter(item => item.mark === '').map((mark, idx)=> (
+          {productsAll?.filter(item => item.mark === '').map((mark, idx)=> (
             <SwiperSlide key={idx}>
               <CardItem data={mark} />
             </SwiperSlide>
@@ -73,17 +53,6 @@ export default function FilterHitSale(props) {
         ) : (
           <div className='flex justify-center py-3'><Loader /></div>
         )}
-      </div>
-      <div className='pl-2 flex flex-col justify-center'>
-        <span
-          ref={nextRef}
-          className='cursor-pointer text-gray-300 hover:text-black'
-        >
-          <i
-            style={{ paddingTop: '4px', paddingBottom: '4px' }}
-            className='bg-white rounded-full px-2 fa-solid fa-angle-right'
-          ></i>
-        </span>
       </div>
     </div>
   )
