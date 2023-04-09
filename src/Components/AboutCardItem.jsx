@@ -5,7 +5,7 @@ import CardDescription from './CardDescription'
 import CardReview from './CardReview'
 import Loader from './Loader'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart, hideFavorite, showFavorite } from '../redux/actions'
+import { addComparision, addToCart, hideFavorite, showFavorite } from '../redux/actions'
 
 export default function AboutCardItem() {
   const productsAll = useSelector((state) => state.products1.productsAll)
@@ -59,7 +59,9 @@ export default function AboutCardItem() {
                       className={`${cartIsAdd ? 'bg-green-600' : 'bg-orange-700'} cursor-pointer py-2 px-3  rounded-md text-white`}>
                       В КОРЗИНУ
                     </span>
-                    <div className='cursor-pointer flex flex-col justify-center text-gray-300'>
+                    <div 
+                      onClick={() => dispatch(addComparision(productItem, nameId))}
+                      className='cursor-pointer flex flex-col justify-center text-gray-300 hover:text-green-400'>
                       <i className='text-xl fa-solid fa-chart-simple'></i>
                     </div>
                     <div className='cursor-pointer flex flex-col justify-center text-gray-300'>

@@ -3,13 +3,59 @@ import ComparisionCardItem from './ComparisionCardItem';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Table } from 'react-bootstrap';
+import ComTableTypeGruntovka from './comporisionTableItem/ComTableTypeGruntovka';
+import ComTableTypeDreli from './comporisionTableItem/ComTableTypeDreli';
+import ComTableTypeKrasteli from './comporisionTableItem/ComTableTypeKrasteli';
+import ComTableTypeMontajniy from './comporisionTableItem/ComTableTypeMontajniy';
+import ComTableTypeNasosi from './comporisionTableItem/ComTableTypeNasosi';
+import ComTableTypeObuv from './comporisionTableItem/ComTableTypeObuv';
+import ComTableTypePerforatori from './comporisionTableItem/ComTableTypePerforatori';
+import ComTableTypePerchatki from './comporisionTableItem/ComTableTypePerchatki';
+import ComTableTypePolivochniyInvertor from './comporisionTableItem/ComTableTypePolivochniyInvertor';
+import ComTableTypeSlesarniy from './comporisionTableItem/ComTableTypeSlesarniy';
+import ComtableTypeSpetsOdejda from './comporisionTableItem/ComtableTypeSpetsOdejda';
+import ComTableTypeSuxiyeSmesi from './comporisionTableItem/ComTableTypeSuxiyeSmesi';
+import ComTableTypeShlifmashinki from './comporisionTableItem/ComTableTypeShlifmashinki';
 
 export default function ComparisionList() {
   const comparision = useSelector((state) => state.products1.comparision)
-  const {catalogName} = useParams()
+  const {catalogId, catalogName} = useParams()
   const [showOne, setShowOne] = useState(true)
  
   const filterArr = comparision.filter((el) => el.productType === catalogName)
+
+  const filterTable = (catalogId, filterArr) => {
+    switch (catalogId) {
+      case 'gruntovka':
+        return <ComTableTypeGruntovka filterArr={filterArr} />
+      case 'krasteli':
+        return <ComTableTypeKrasteli filterArr={filterArr} />
+      case 'suxiye-smesi':
+        return <ComTableTypeSuxiyeSmesi filterArr={filterArr} />
+      case 'perforatori':
+        return <ComTableTypePerforatori filterArr={filterArr}/>
+      case 'dreli':
+        return <ComTableTypeDreli filterArr={filterArr}/>
+      case 'shlifmashinki':
+        return <ComTableTypeShlifmashinki filterArr={filterArr} />
+      case 'spets-odejda':
+        return <ComtableTypeSpetsOdejda filterArr={filterArr} />
+      case 'obuv':
+        return <ComTableTypeObuv filterArr={filterArr}/>
+      case 'perchatki':
+        return <ComTableTypePerchatki filterArr={filterArr} />
+      case 'polivochniy-invertor':
+        return <ComTableTypePolivochniyInvertor filterArr={filterArr} />
+      case 'nasosi':
+        return <ComTableTypeNasosi filterArr={filterArr} />
+      case 'slesarniy':
+        return <ComTableTypeSlesarniy filterArr={filterArr} />
+      case 'montajniy':
+        return <ComTableTypeMontajniy filterArr={filterArr} />
+      default:
+        return
+    }
+  }
 
   return (
     <div className='scroll_position'>
@@ -27,155 +73,9 @@ export default function ComparisionList() {
       </div>
       {showOne && <Table striped className='max-w-min'>
         <tbody className='border'>
-          {/* --- type ГРУНТОВКА --- */}
-          {filterArr[0]?.Вес_кг !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Вес кг</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Вес_кг ? item.Вес_кг : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Вид_работ !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Вид работ</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Вид_работ ? item.Вид_работ :  <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Влагостойкость !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Влагостойкость</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Влагостойкость ? item.Влагостойкость : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Время_высыхания !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Время высыхания</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Время_высыхания ? item.Время_высыхания : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Материал_основания !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Материал основания</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Материал_основания ? item.Материал_основания : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Основа !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Основа</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Основа ? item.Основа : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Расход !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Расход</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Расход ? item.Расход : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Страна_происхождения !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Страна происхождения</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Страна_происхождения ? item.Страна_происхождения : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-
-          {/* --- type ДРЕЛИ --- */}
-          {filterArr[0]?.Мощность !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Мощность</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Мощность ? item.Мощность : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Регулировка_оборотов !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Регулировка оборотов</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Регулировка_оборотов ? item.Регулировка_оборотов : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Страна_производства !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Страна производства</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Страна_производства ? item.Страна_производства : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Частота_вращения_шпинделя !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Частота вращения шпинделя</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Частота_вращения_шпинделя ? item.Частота_вращения_шпинделя : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Тип_патрона !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Тип патрона</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Тип_патрона ? item.Тип_патрона : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Мощность !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Мощность</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Мощность ? item.Мощность : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Мах_диаметр_сверления_дерево !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Мах диаметр сверления (дерево)</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Мах_диаметр_сверления_дерево ? item.Мах_диаметр_сверления_дерево : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-
-          {/* --- type КРАСТЕЛИ --- */}
-          {filterArr[0]?.Вес !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Вес</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Вес ? item.Вес : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          {filterArr[0]?.Срок_хранения !== undefined ? <tr className=''>
-            <td className='min-w-[130px] w-[130px]'>Срок хранения</td>
-            {filterArr.map((item, idx) => (
-              <td key={idx} className='min-w-[220px] w-[220px]'>
-                {item.Срок_хранения ? item.Срок_хранения : <i className="fa-solid fa-minus"></i>}
-              </td>
-            ))}
-          </tr> : null}
-          
-          {/* --- type МОНТАЖНЫЙ --- */}
-
-
+          {filterTable(catalogId, filterArr)}
         </tbody>
       </Table>}
     </div>
   )
 }
-
-// characteristic
