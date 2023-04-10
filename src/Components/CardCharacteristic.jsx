@@ -1,19 +1,21 @@
 export default function CardCharacteristic(props) {
+  console.log(props.characteristic);
+  
+
   return (
-    <table>
-      <tbody>
-        <tr className=''>
-        <td className='pr-4'>
-          {Object.keys(props?.characteristic).map((item, idx) => (
-            <p className='mb-0 font-semibold' key={idx}>{item}: </p>
-          ))}
-        </td>
-        <td className=''>
-          {Object.values(props?.characteristic).map((item, idx) => (
-            <p className='mb-0' key={idx}>{item}</p>
-          ))}
-        </td>
-        </tr>
+    <table className='w-full'>
+      <tbody >
+        {/* eslint-disable-next-line */}
+        {Object.keys(props.characteristic).map((key, idx) => {
+          if(key && props.characteristic[key]){
+            return (
+              <tr key={idx} className='border'>
+                <td className='pl-1 pr-2 py-1'>{String(key).replaceAll('_', " ")}</td>
+                <td className='pr-1'>{props.characteristic[key]}</td>
+              </tr>
+            )
+          }
+        })}
     </tbody>
     </table>
   )

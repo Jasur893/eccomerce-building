@@ -103,7 +103,7 @@ export default function AboutCardItem() {
                   </li>
                 </ul>
 
-                <div className='px-3 py-4 h-full'>
+                <div className='px-2 py-4 h-full'>
                   {handleShowTab()}
                 </div>
               </div>
